@@ -18,14 +18,19 @@ const Contact = ({ setPage }) => {
   async function getInTouch(event) {
     event.preventDefault();
     Email.send({
-      Host: "smtp.elasticemail.com",
-      Username: "tannermonaco@gmail.com",
-      Password: "86893095EF391B2D7A33AF4C11F65787024B",
-      To: "tannermonaco@gmail.com",
-      From: email,
-      Subject: `New Inquiry From Your Portfolio Page From ${firstName} ${lastName}`,
-      Body: message,
-    }).then((message) => alert(message));
+      SecureToken : "C973D7AD-F097-4B95-91F4-40ABC5567812",
+      To : email,
+      From : "tannermonaco@gmail.com",
+      Subject : "Tanner Monaco - Fullstack Web Developer",
+      Body : message,
+    Attachments : [
+    {
+      name : "TannerMonacoTechnicalResume09062022.pdf",
+      path : "../resume/TannerMonacoTechnicalResume09062022.pdf"
+    }]
+  }).then(
+    message => alert(message)
+  );
     setMessage("");
     setFirstName("");
     setLastName("");
