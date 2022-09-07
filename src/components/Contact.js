@@ -20,7 +20,7 @@ const Contact = ({ setPage }) => {
   async function getInTouch(event) {
     event.preventDefault();
     Email.send({
-      SecureToken : "fdafef61-8e7c-426b-bc4d-c835f08c349b",
+      SecureToken : "6865fa7b-4e2f-442a-93c6-11e3549b2716",
       To : email,
       From : "tannermonaco@gmail.com",
       Subject : "Tanner Monaco - Fullstack Web Developer",
