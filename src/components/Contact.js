@@ -16,7 +16,7 @@ const Contact = ({ setPage }) => {
 
   const resumeName = "TannerMonacoTechnicalResume09062022"
   const resumeNamePDF = `${resumeName}.pdf`
-  const resumePath = `/static/media/${resumeName}.cbadfb86567ae74f8a0b.pdf`
+  const resumePath = `https://inquisitive-moonbeam-a44b2b.netlify.app/static/media/${resumeName}.cbadfb86567ae74f8a0b.pdf`
 
   async function getInTouch(event) {
     event.preventDefault();
