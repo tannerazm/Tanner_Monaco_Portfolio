@@ -14,19 +14,21 @@ const Contact = ({ setPage }) => {
   const [email, setEmail] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
+  const resumeName = "TannerMonacoTechnicalResume09062022.pdf"
+  const resumePath = `../resume/${resumeName}`
 
   async function getInTouch(event) {
     event.preventDefault();
     Email.send({
-      SecureToken : "C973D7AD-F097-4B95-91F4-40ABC5567812",
+      SecureToken : "fdafef61-8e7c-426b-bc4d-c835f08c349b",
       To : email,
       From : "tannermonaco@gmail.com",
       Subject : "Tanner Monaco - Fullstack Web Developer",
       Body : message,
     Attachments : [
     {
-      name : "TannerMonacoTechnicalResume09062022.pdf",
-      path : "../resume/TannerMonacoTechnicalResume09062022.pdf"
+      name : resumeName,
+      path : resumePath
     }]
   }).then(
     message => alert(message)
