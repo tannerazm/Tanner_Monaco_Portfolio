@@ -14,8 +14,9 @@ const Contact = ({ setPage }) => {
   const [email, setEmail] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
-  const resumeName = "TannerMonacoTechnicalResume09062022.pdf"
-  const resumePath = `../resume/${resumeName}`
+  const resumeName = "TannerMonacoTechnicalResume09062022"
+  const resumeNamePDF = `${resumeName}.pdf`
+  const resumePath = `/static/media/${resumeName}.cbadfb86567ae74f8a0b.pdf`
 
   async function getInTouch(event) {
     event.preventDefault();
@@ -27,7 +28,7 @@ const Contact = ({ setPage }) => {
       Body : message,
     Attachments : [
     {
-      name : resumeName,
+      name : resumeNamePDF,
       path : resumePath
     }]
   }).then(
