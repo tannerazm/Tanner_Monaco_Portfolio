@@ -1,4 +1,7 @@
 import { useEffect } from "react";
+import { GrLocationPin } from "react-icons/gr";
+import { AiOutlinePhone, AiOutlineLinkedin } from "react-icons/ai";
+import { MdAlternateEmail } from "react-icons/md";
 // Programming Language Logos
 import ExcelLogo from "../programmingicons/ExcelLogo.png";
 import VSCodeLogo from "../programmingicons/VSCodeLogo.png";
@@ -24,15 +27,15 @@ import BreathOfTheWild from "../photos/BreathOfTheWild.jpg";
 import CapriSunCapris from "../photos/CapriSunCapris.png";
 import KindaNeedThisJob from "../photos/KindaNeedThisJob.jpg";
 import Company401K from "../photos/Company401K.png";
-import RhineRiverCastle from "../photos/RhineRiverCastle.jpg"
-import ParisFranceEiffelTower from "../photos/ParisFranceEiffelTower.jpg"
-import GrandCaymanIsland from "../photos/GrandCaymanIsland.jpg"
-import GameOfThrones from "../photos/GameOfThrones.jpg"
-import HarryPotter from "../photos/HarryPotter.jpg"
-import LordOfTheRings from "../photos/LordOfTheRings.jpg"
-import Land from "../photos/Land.jpg"
-import AQuietPlace from "../photos/AQuietPlace.jpg"
-import EagleEye from "../photos/EagleEye.jpg"
+import RhineRiverCastle from "../photos/RhineRiverCastle.jpg";
+import ParisFranceEiffelTower from "../photos/ParisFranceEiffelTower.jpg";
+import GrandCaymanIsland from "../photos/GrandCaymanIsland.jpg";
+import GameOfThrones from "../photos/GameOfThrones.jpg";
+import HarryPotter from "../photos/HarryPotter.jpg";
+import LordOfTheRings from "../photos/LordOfTheRings.jpg";
+import Land from "../photos/Land.jpg";
+import AQuietPlace from "../photos/AQuietPlace.jpg";
+import EagleEye from "../photos/EagleEye.jpg";
 
 import "../style/About.css";
 
@@ -87,6 +90,34 @@ const About = ({ setPage }) => {
         <h1 className="aboutMeNameH1">{typewriterNameString}</h1>
       </div>
       <img src={MeSeattle} className="aboutMePhoto" />
+      <div className="aboutMeAdditionalInfoGridContainer">
+        <div className="aboutMeAdditionalInfoIndividualGridDiv">
+          <span>
+            <GrLocationPin className="aboutMeLocationPinIcon" />
+          </span>
+          <br></br>
+          <span className="aboutMeLocationSpan">11193 Cherryvale St.,</span>
+          <br></br>
+          <span className="aboutMeLocationSpan">Firestone, CO 80504</span>
+          <br></br>
+          <span className="aboutMeLocationSpan">(willing to relocate)</span>
+          <br></br>
+        </div>
+        <div className="aboutMeAdditionalInfoIndividualGridDiv">
+          <span>
+            <AiOutlinePhone className="aboutMePhoneIcon" />
+            <MdAlternateEmail className="aboutMeEmailIcon" />
+            <AiOutlineLinkedin className="aboutMeLinkedInIcon" />
+          </span>
+          <br></br>
+          <span className="aboutMeLocationSpan">(303) 472-9342</span>
+          <br></br>
+          <span className="aboutMeLocationSpan">tannermonaco@gmail.com</span>
+          <br></br>
+          <span className="aboutMeLocationSpan">/in/tannermonaco</span>
+          <br></br>
+        </div>
+      </div>
       <div className="aboutMeProgrammingLogosGridContainer">
         <div className="aboutMeProgrammingLogosIndividualGridDiv">
           <img src={ExcelLogo} className="aboutMeProgrammingLogos fade-in" />

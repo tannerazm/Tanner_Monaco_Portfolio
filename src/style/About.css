@@ -75,6 +75,48 @@
   margin: 50px 200px 50px 0px;
 }
 
+.aboutMePhoto {
+  animation: fadeInPicture ease 5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+}
+
+.aboutMeAdditionalInfoGridContainer {
+  display: grid;
+  width: 100%;
+  margin: 50px 0px;
+  grid-template-columns: 50% 50%;
+  gap: 20px 0px;
+}
+
+.aboutMeAdditionalInfoIndividualGridDiv {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.aboutMeLocationPinIcon,
+.aboutMePhoneIcon,
+.aboutMeEmailIcon,
+.aboutMeLinkedInIcon {
+  font-size: 4vw;
+  background-color: gray;
+  width: 4vw;
+  height: 4vw;
+  border-radius: 50%;
+  margin: 0px 10px;
+  padding: 10px;
+}
+
+.aboutMeLocationSpan {
+  font-size: 4vw;
+}
+
+.aboutMeLocationSpan:last-of-type {
+  border-bottom: #841617 4px solid;
+}
+
 .aboutMeProgrammingLogosIndividualGrid {
   display: flex;
   justify-content: flex-end;
@@ -137,12 +179,6 @@
   font-size: 75px;
   color: #841617;
   border-bottom: 4px solid #841617;
-}
-
-.aboutMePhoto {
-  animation: fadeInPicture ease 5s;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
 }
 
 .fade-in {
