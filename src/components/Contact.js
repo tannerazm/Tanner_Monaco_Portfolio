@@ -1,14 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import { useAlert } from "react-alert";
 import "../style/Contact.css";
 
 const Contact = ({ setPage }) => {
   useEffect(() => {
     setPage("Contact");
   }, []);
-
-  const alert = useAlert();
 
   const [message, setMessage] = useState("");
   const [firstName, setFirstName] = useState("");
@@ -35,11 +32,7 @@ const Contact = ({ setPage }) => {
       from_email_id: email,
     };
 
-    emailjs
-      .send("service_uls9257", "template_mz33k3g", send_to_self_params)
-      .then(function (res) {
-        alert.show("Your message has been sent successfully.");
-      });
+    emailjs.send("service_uls9257", "template_mz33k3g", send_to_self_params);
     emailjs.send("service_uls9257", "template_n4wjd5j", send_to_them_params);
 
     setMessage("");
@@ -83,7 +76,10 @@ const Contact = ({ setPage }) => {
                   setMessage(event.target.value);
                 }}
               ></textarea>
-              <span><b className="red">*</b> Let me know what inspires you to contact me!</span>
+              <span>
+                <b className="red">*</b> Let me know what inspires you to
+                contact me!
+              </span>
             </div>
             <br></br>
             <br></br>
@@ -95,7 +91,9 @@ const Contact = ({ setPage }) => {
                 }}
                 required="required"
               />
-              <span><b className="red">*</b> Your First Name</span>
+              <span>
+                <b className="red">*</b> Your First Name
+              </span>
             </div>
             <br></br>
             <div className="contactMeInputBox">
@@ -106,7 +104,9 @@ const Contact = ({ setPage }) => {
                 }}
                 required="required"
               />
-              <span><b className="red">*</b> Your Last Name</span>
+              <span>
+                <b className="red">*</b> Your Last Name
+              </span>
             </div>
             <br></br>
             <div className="contactMeInputBox">
@@ -117,7 +117,9 @@ const Contact = ({ setPage }) => {
                 }}
                 required="required"
               />
-              <span><b className="red">*</b> Your Email</span>
+              <span>
+                <b className="red">*</b> Your Email
+              </span>
             </div>
             <br></br>
             <div className="contactMeInputBox">
@@ -128,7 +130,9 @@ const Contact = ({ setPage }) => {
                 }}
                 required="required"
               />
-              <span><b className="red">*</b> Your Phone Number</span>
+              <span>
+                <b className="red">*</b> Your Phone Number
+              </span>
             </div>
             <br></br>
             <div className="contactMeInputBox">
@@ -139,11 +143,15 @@ const Contact = ({ setPage }) => {
                 }}
                 required="required"
               />
-              <span><b className="red">*</b> Your Company</span>
+              <span>
+                <b className="red">*</b> Your Company
+              </span>
             </div>
             <br></br>
             <br></br>
-            <small><b className="red">*</b> fields are required.</small>
+            <small>
+              <b className="red">*</b> fields are required.
+            </small>
             <br></br>
             {successMessage ? (
               <>
