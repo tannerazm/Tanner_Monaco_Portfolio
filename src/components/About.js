@@ -73,7 +73,7 @@ const About = ({ setPage }) => {
   });
   // End Intersection Observers
 
-  // Typewriting Feature
+  // Typewriting Features
   const typewriterNameString =
     "Hello World. My name is Tanner. I am a Full Stack Web Developer.";
   const nameStringLength = typewriterNameString.length;
@@ -82,7 +82,7 @@ const About = ({ setPage }) => {
   if (aboutMeNameH1) {
     aboutMeNameH1.style.setProperty("--name-string-length", nameStringLength);
   }
-  // End Typewriting Feature
+  // End Typewriting Features
 
   return (
     <div className="aboutPage">
