@@ -1,0 +1,164 @@
+@import url("https://fonts.googleapis.com/css2?family=Alumni+Sans+Pinstripe&display=swap");
+
+.navBar {
+  position: relative;
+  background-color: gray;
+  margin: -8px -8px 0px -8px;
+  width: 98.5vw;
+}
+
+.tannerNavBar {
+  position: absolute;
+  margin: 1rem 0rem 0rem -6rem;
+  width: 300px;
+  text-align: center;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 50px;
+  font-family: "Alumni Sans Pinstripe", sans-serif;
+  color: black;
+}
+
+.tannerNavBar:hover {
+  color: white;
+  font-weight: normal;
+}
+
+.linksNavBar {
+  display: flex;
+  justify-content: space-between;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+}
+
+.linksNavBar div {
+  margin-left: 50px;
+  padding-top: 2rem;
+}
+
+.NavLink {
+  color: black;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 25px;
+  font-family: "Alumni Sans Pinstripe", sans-serif;
+}
+
+.NavLink:hover {
+  color: white;
+  font-weight: normal;
+}
+
+.NavLinkActive {
+  color: white;
+  font-weight: bold;
+  text-decoration: none;
+  font-size: 25px;
+  font-family: "Alumni Sans Pinstripe", sans-serif;
+}
+
+.gitHubDivImg {
+  background: url("../logos/GitHub64Dark.png") no-repeat;
+  opacity: 0.85;
+  margin-top: 10px;
+  width: 64px;
+  height: 64px;
+}
+
+.gitHubDivImg:hover {
+  background: url("../logos/GitHub64Light.png") no-repeat;
+  opacity: 1;
+  width: 64px;
+  height: 64px;
+}
+
+.discordDivImg {
+  background: url("../logos/DiscordDark.svg") no-repeat;
+  margin-top: 15px;
+  margin-right: 10px;
+  width: 71px;
+  height: 54px;
+}
+
+.discordDivImg:hover {
+  background: url("../logos/DiscordLight.svg") no-repeat;
+  width: 71px;
+  height: 54px;
+}
+
+@media (min-width: 1125px) {
+
+  ul li {
+    display: inline-flex;
+  }
+
+  .gitHubDivImg {
+    margin-top: 25px;
+  }
+
+  .discordDivImg {
+    margin-top: 30px;
+  }
+
+  .headerHamburgerIcon {
+    display: none;
+  }
+
+  .mainDesktopHeader {
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 4%;
+  }
+
+  .mainMobileHeader {
+    display: none;
+  }
+
+}
+
+@media (max-width: 1124px) {
+    .mobileNavHeaderHamburgerIcon {
+        margin-left: 83.5%;
+    }
+  
+    .headerHamburgerIcon, .headerCloseIcon {
+    font-size: 3rem;
+    padding: 2.13rem 0rem;
+    color: black;
+    justify-content: flex-end;
+    cursor: pointer;
+  }
+
+  .mainDesktopHeader {
+    display: none;
+  }
+
+  .mainMobileHeader {
+    display: flex;
+  }
+
+  .mobileLinksNavBar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-color: gray;
+    top: 140px;
+    right: 15px;
+    width: 100px;
+    border: 2px solid black;
+    box-shadow: 6px 6px 18px -3px rgba(0,0,0,0.7);
+    border-radius: 5px;
+    padding-bottom: 15px;
+    margin-right: 25px;
+    z-index: 2;
+  }
+  
+  .mobileLinksNavBar ul li {
+    list-style-type: none;
+    margin-left: -40px;
+  }
+
+}

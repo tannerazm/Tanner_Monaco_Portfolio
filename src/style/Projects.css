@@ -1,0 +1,75 @@
+.projectsPage {
+  min-height: 77vh;
+}
+
+.individualProjectCard {
+  cursor: pointer;
+}
+
+.individualProjectCard:hover {
+  box-shadow: 8px 8px 23px -3px #000000;
+}
+
+.projectCards > div {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  height: 400px;
+  border-radius: 25px;
+}
+
+.projectTitle {
+  text-align: center;
+  text-decoration: none;
+  margin-bottom: 0.75rem;
+  font-size: 50px;
+}
+
+.projectTitleLink {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+.projectTitleLink:hover {
+  text-decoration: none;
+  color: gray;
+  font-weight: bolder;
+}
+
+.projectThumbnail {
+  height: 21.15rem;
+  width: 100%;
+  border-radius: 0px 0px 25px 25px;
+}
+
+@media screen and (min-width: 500px) {
+  .projectCards {
+    display: grid;
+    margin: 20px 57.5px 0px 57.5px;
+    grid-template-columns: 100%;
+    grid-row-gap: 20px;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .projectCards {
+    display: grid;
+    margin: 20px;
+    margin-right: 45px;
+    grid-template-columns: 50% 50%;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+  }
+}
+
+@media screen and (min-width: 1750px) {
+  .projectCards {
+    display: grid;
+    margin: 20px;
+    margin-right: 57.5px;
+    grid-template-columns: 33.33% 33.33% 33.33%;
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+  }
+}

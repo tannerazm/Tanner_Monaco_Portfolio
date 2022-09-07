@@ -1,0 +1,93 @@
+.individualProjectPage {
+    min-height: 78.8vh;
+}
+
+.individualProjectContainer {
+    text-align: center;
+    font-weight: bold;
+}
+
+.divBackToAllProjects {
+    text-align: left;
+}
+
+.navLinkBackToAllProjects {
+    text-decoration: none;
+    font-weight: bolder;
+    color: black;
+    font-size: 25px;
+}
+
+.navLinkBackToAllProjects:hover {
+    color: gray;
+}
+
+.individualProjectNameSpan {
+    font-size: 100px;
+    cursor: pointer;
+}
+
+.individualProjectATag {
+    text-decoration: none;
+    color: black;
+    border-bottom: 2px solid black;
+}
+
+.individualProjectATag:hover {
+    color: gray;
+    border-bottom: 2px solid gray;
+}
+
+.individualProjectPicture {
+    width: 50%;
+    height: 75%;
+    border-radius: 25px;
+}
+
+.individualProjectPicture:hover {
+    width: 90%;
+    height: 140%;
+    font-weight: normal;
+    box-shadow: 6px 6px 18px -3px rgba(0,0,0,0.7);
+}
+
+.individualProjectExtrasDiv {
+    text-align: center;
+}
+
+.individualProjectDescriptionDiv {
+    margin-top: 50px;
+    text-align: left;
+}
+
+.individualProjectDescriptionSpan {
+    font-size: 50px;
+}
+
+#individualProjectDescription {
+    font-size: 40px;
+}
+
+@media screen and (max-width: 1500px) {
+
+    .individualProjectATag {
+        font-size: 75px;
+    }
+
+}
+
+@media screen and (max-width: 1000px) {
+
+    .individualProjectATag {
+        font-size: 50px;
+    }
+
+}
+
+@media screen and (max-width: 650px) {
+
+    .individualProjectATag {
+        font-size: 35px;
+    }
+
+}
