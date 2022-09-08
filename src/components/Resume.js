@@ -14,7 +14,7 @@ const Projects = ({ setPage }) => {
           src="https://docs.google.com/document/d/e/2PACX-1vSmdmtFWpHK9xpS8_dv-iBzyJFFyDLqQbimp1OgfRoQCufGwFEM1AqH4zgFgABv2W5-_AZ6kmmU_AON/pub?embedded=true"
         ></iframe>
         <a
-          href="../resume/TannerMonacoTechnicalResume09062022.pdf"
+          href="../resume/TannerMonacoTechnicalResume09082022.pdf"
           download=""
         >
           <button className="downloadResumeButton">Download Resume</button>
