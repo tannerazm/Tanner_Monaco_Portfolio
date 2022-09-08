@@ -32,7 +32,7 @@ const TopSecretShirtsLAProject = () => {
             className="individualProjectDescriptionSpan"
             id="individualProjectExtras"
           >
-            June 26th, 2022
+            August 26th, 2022
           </span>
           <br></br>
           <br></br>
@@ -40,7 +40,7 @@ const TopSecretShirtsLAProject = () => {
             className="individualProjectDescriptionSpan"
             id="individualProjectExtras"
           >
-            HTML | CSS | DOM Manipulation | JavaScript
+            HTML | CSS | JavaScript | PostgreSQL | Express | React | Node.js
           </span>
         </div>
         <br></br>
@@ -49,26 +49,13 @@ const TopSecretShirtsLAProject = () => {
           className="individualProjectDescriptionSpan"
           id="individualProjectDescription"
         >
-          This project is a personal take on the age old game, Tic Tac Toe. It
-          resembles efforts in HTML, CSS, DOM Manipulation and JavaScript. This
-          project was built over the second week of the Fullstack Academy
-          boot-camp and displays some ingenious ways to link a front facing HTML
-          page with a "back-end" JavaScript file structure to determine winners,
-          players and so much more. Being my second project in the cohort, this
-          was a tough project due to the lack of knowledge at the time, and took
-          a ton of critical thinking and utilizing the features and code that we
-          had learned in a brand new way.
+          This is a group project that resembles the very important and essential functions of an e-commerce website. This project encompasses efforts in the entire PERN stack with front-end and back-end capabilities and built over the last three weeks of the course. Our project team was three individuals strong. We all specialized in specific areas (whether it be front-end, API calls, or back-end) while also aiding in the help of the other's section whenever help or guidance was needed.
           <br></br>
           <br></br>
-          The hardest part of this project was definitely understanding how to
-          make the computer functional on it's own.
-          <br></br>
-          <br></br>I thoroughly enjoyed working on this project where I got to
-          display my full capabilities up until that point.
+          The largest struggle for this project was attaching the back-end to the front-end and understanding one person's code when everyone has/had different styles. My knowledge was paramount in being able to decipher these intricacies and adapt my code to suit the different styles efficiently and effectively. I feel like this was not only the largest struggle, but also the largest reward, as it forced me to be dynamic and truly understand everyone's coding style.
           <br></br>
           <br></br>
-          Extra Features: Score Counter | Fully Functional Clear Button |
-          Additional CSS Features
+          Another huge lesson I learned was not even the code itself, but the management and success of my coworkers. Working on a team of individuals where you had to delegate, inspire and push each other to new limits was it's own beast in itself. The differences in personalities, level of understanding, and schedules added another layer of technicality that really pushed us to work together throughout the entire process. We did a really nice job managing all of these "components" and were able to truly come together. Yes, there were some hurdles, but overall, it's something that we worked through and tackled right away.
         </span>
       </div>
     </div>

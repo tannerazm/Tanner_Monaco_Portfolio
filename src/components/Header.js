@@ -3,7 +3,7 @@ import DesktopHeader from "./DesktopHeader";
 import MobileHeader from "./MobileHeader";
 import "../style/Header.css";
 
-const Header = ({ page, individualProject }) => {
+const Header = ({ page }) => {
   return (
     <div id="topOfPage">
     <menu className="navBar">
@@ -13,10 +13,10 @@ const Header = ({ page, individualProject }) => {
         </NavLink>
       </div>
       <div className="mainDesktopHeader">
-        <DesktopHeader page={page} individualProject={individualProject} />
+        <DesktopHeader page={page} />
       </div>
       <div className="mainMobileHeader">
-        <MobileHeader page={page} individualProject={individualProject} />
+        <MobileHeader page={page} />
       </div>
     </menu>
     </div>

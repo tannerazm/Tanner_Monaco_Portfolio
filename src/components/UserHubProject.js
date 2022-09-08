@@ -31,7 +31,7 @@ const UserHubProject = () => {
             className="individualProjectDescriptionSpan"
             id="individualProjectExtras"
           >
-            June 26th, 2022
+            July 5th, 2022
           </span>
           <br></br>
           <br></br>
@@ -39,7 +39,7 @@ const UserHubProject = () => {
             className="individualProjectDescriptionSpan"
             id="individualProjectExtras"
           >
-            HTML | CSS | DOM Manipulation | JavaScript
+            HTML | CSS | DOM Manipulation | JavaScript | React | API Calls
           </span>
         </div>
         <br></br>
@@ -48,26 +48,13 @@ const UserHubProject = () => {
           className="individualProjectDescriptionSpan"
           id="individualProjectDescription"
         >
-          This project is a personal take on the age old game, Tic Tac Toe. It
-          resembles efforts in HTML, CSS, DOM Manipulation and JavaScript. This
-          project was built over the second week of the Fullstack Academy
-          boot-camp and displays some ingenious ways to link a front facing HTML
-          page with a "back-end" JavaScript file structure to determine winners,
-          players and so much more. Being my second project in the cohort, this
-          was a tough project due to the lack of knowledge at the time, and took
-          a ton of critical thinking and utilizing the features and code that we
-          had learned in a brand new way.
+          This project was another follow along project where I had a reference website that I was trying to match. This was our first iteration and "toe-dip" into react and API calls. This is an SPA and features login functionality with different pages for todos and posts. 
           <br></br>
           <br></br>
-          The hardest part of this project was definitely understanding how to
-          make the computer functional on it's own.
-          <br></br>
-          <br></br>I thoroughly enjoyed working on this project where I got to
-          display my full capabilities up until that point.
+          The most difficult portion of this project was understanding how the login/logout feature truly works and how to implement local storage in order to persist login information. This, paired with the learning and implementing of API calls made for an interesting learning curve, one that I was super excited about. Also, being able to take information that a database has and display it on the screen in a presentable manner was super rewarding.
           <br></br>
           <br></br>
-          Extra Features: Score Counter | Fully Functional Clear Button |
-          Additional CSS Features
+          The reason why this project was important, interesting and fun for me was how I was starting to see my web development starting to really kick-start. With being able to log into a website and see information that someone had/has posted was just too cool. I could start seeing all of the applications where I could implement this new knowledge and it really made me start wondering "What am I going to learn next?"
         </span>
       </div>
     </div>

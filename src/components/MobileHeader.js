@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { MdOutlineMenu, MdOutlineClose } from "react-icons/md";
 import MobileHeaderNavLinks from "./MobileHeaderNavLinks";
 
-const MobileHeader = ({ page, individualProject }) => {
+const MobileHeader = ({ page }) => {
   const [open, setOpen] = useState(false);
 
   const hamburgerIcon = (
@@ -26,7 +26,7 @@ const MobileHeader = ({ page, individualProject }) => {
   return (
     <nav className="mobileNavHeaderHamburgerIcon">
       {!open ? hamburgerIcon : closeIconWithLinks}
-      {open && <MobileHeaderNavLinks open={open} page={page} individualProject={individualProject} />}
+      {open && <MobileHeaderNavLinks open={open} page={page} />}
     </nav>
   );
 };

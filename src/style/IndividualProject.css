@@ -91,3 +91,20 @@
     }
 
 }
+
+.qwirtyEndProductExample {
+    display: flex;
+    justify-content: center;
+}
+
+.qwirtyExampleProject {
+    display: flex;
+    justify-content: center;
+    color: black;
+    text-decoration: none;
+}
+
+.qwirtyExampleProject:hover {
+    color: gray;
+    text-decoration: underline;
+}

@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 
-const MobileHeaderNavLinks = ({ page, open, individualProject }) => {
+const MobileHeaderNavLinks = ({ page, open }) => {
   return (
     <div>
       {open ? (

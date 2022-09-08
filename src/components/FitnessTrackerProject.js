@@ -32,7 +32,7 @@ const FitnessTrackerProject = () => {
           className="individualProjectDescriptionSpan"
           id="individualProjectExtras"
         >
-          June 26th, 2022
+          Aug 5th, 2022
         </span>
         <br></br>
         <br></br>
@@ -40,7 +40,7 @@ const FitnessTrackerProject = () => {
           className="individualProjectDescriptionSpan"
           id="individualProjectExtras"
         >
-          HTML | CSS | DOM Manipulation | JavaScript
+          HTML | CSS | JavaScript | PostgreSQL | Express | React | Node.js
         </span>
       </div>
       <br></br>
@@ -49,26 +49,16 @@ const FitnessTrackerProject = () => {
         className="individualProjectDescriptionSpan"
         id="individualProjectDescription"
       >
-        This project is a personal take on the age old game, Tic Tac Toe. It
-        resembles efforts in HTML, CSS, DOM Manipulation and JavaScript. This
-        project was built over the second week of the Fullstack Academy
-        boot-camp and displays some ingenious ways to link a front facing HTML
-        page with a "back-end" JavaScript file structure to determine winners,
-        players and so much more. Being my second project in the cohort, this
-        was a tough project due to the lack of knowledge at the time, and took
-        a ton of critical thinking and utilizing the features and code that we
-        had learned in a brand new way.
+        This project is the penultimate project in this course where we implement back-end and front-end functionality and connect them together. We used test driven code in order to build the back-end and then used API calls in order to reference and CRUD that information in the front-end. This was the first project (out of two - Top Secret Shirts LA being the other project) where we utilized building a back-end. The project was split into two sections over the course of two weeks. The first week focused solely on the back-end creation and the second week followed up with the front-end creation. This project was a beast just for the sole fact that it was the first time we built our own back-end and I had very little knowledge in it's creation.
         <br></br>
         <br></br>
-        The hardest part of this project was definitely understanding how to
-        make the computer functional on it's own.
-        <br></br>
-        <br></br>I thoroughly enjoyed working on this project where I got to
-        display my full capabilities up until that point.
+        This was definitely a sink-or-swim project and forced me to learn quickly. I worked with another partner on this project and they focused mainly on the CSS of the page whereas I focused on the "meat and potatoes." I feel like more delegation towards helping with portions of the PERN stack would have been a nice way to separate the project into more even slices rather than saving her portion for the end.
         <br></br>
         <br></br>
-        Extra Features: Score Counter | Fully Functional Clear Button |
-        Additional CSS Features
+        Overall, this is another project where I learned way more than I had initially thought. I truly learned how to build a back-end and implement different tables, join them, and drop them when necessary. The front end was very stylish and my partner knew a little bit of Photoshop in order to create the filter for the moving background image. This was definitely a project that I was super proud of just based on the way it looks, feels, and flows.
+        <br></br>
+        <br></br>
+        Extra Features: Photoshop
       </span>
     </div>
   </div>

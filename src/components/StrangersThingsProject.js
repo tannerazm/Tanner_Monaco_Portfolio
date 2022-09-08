@@ -31,7 +31,7 @@ const StrangersThingsProject = () => {
           className="individualProjectDescriptionSpan"
           id="individualProjectExtras"
         >
-          June 26th, 2022
+          July 12th, 2022
         </span>
         <br></br>
         <br></br>
@@ -39,7 +39,7 @@ const StrangersThingsProject = () => {
           className="individualProjectDescriptionSpan"
           id="individualProjectExtras"
         >
-          HTML | CSS | DOM Manipulation | JavaScript
+          HTML | CSS | DOM Manipulation | JavaScript | React | API Calls
         </span>
       </div>
       <br></br>
@@ -48,26 +48,13 @@ const StrangersThingsProject = () => {
         className="individualProjectDescriptionSpan"
         id="individualProjectDescription"
       >
-        This project is a personal take on the age old game, Tic Tac Toe. It
-        resembles efforts in HTML, CSS, DOM Manipulation and JavaScript. This
-        project was built over the second week of the Fullstack Academy
-        boot-camp and displays some ingenious ways to link a front facing HTML
-        page with a "back-end" JavaScript file structure to determine winners,
-        players and so much more. Being my second project in the cohort, this
-        was a tough project due to the lack of knowledge at the time, and took
-        a ton of critical thinking and utilizing the features and code that we
-        had learned in a brand new way.
+        This project's name has no way to do with the tv series, Stranger Things, but has everything to do with a Craigslist variant with a funny name tagging along. We still hadn't dabbled in building our own back-end yet, but still used API calls in order to retrieve information from a database. We implemented a login/logout feature and allowed for posting of items, updating an item, deleting an item, and seeing items others (as well as yourself) have added. No payment features have been added to this project, similar to how Craigslist functions, however you can message another individual and converse about the item directly.
         <br></br>
         <br></br>
-        The hardest part of this project was definitely understanding how to
-        make the computer functional on it's own.
-        <br></br>
-        <br></br>I thoroughly enjoyed working on this project where I got to
-        display my full capabilities up until that point.
+        If I am being honest, this project didn't pose too many struggles or issues. This was our first project without references to anything or specific instructions on how to handle desired look or functionality. We were given some instructions and told to just "build it". Being thrown into the "deep-end" was a blessing in disguise. I learned SO much from this project and was truly able to start coding on my own. I did work with a partner on this project, but anything that they were doing I definitely helped along the process with.
         <br></br>
         <br></br>
-        Extra Features: Score Counter | Fully Functional Clear Button |
-        Additional CSS Features
+        This project was probably the first time where I said "I built that and it looks amazing!" after finishing a project. Outside of the backend, everything was my code and it was a beautiful feeling.
       </span>
     </div>
   </div>

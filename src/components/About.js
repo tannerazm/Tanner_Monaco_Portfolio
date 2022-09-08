@@ -91,7 +91,7 @@ const About = ({ setPage }) => {
       </div>
       <img src={MeSeattle} className="aboutMePhoto" />
       <div className="aboutMeAdditionalInfoGridContainer">
-        <div className="aboutMeAdditionalInfoIndividualGridDiv">
+        <div className="aboutMeAdditionalInfoIndividualGridDiv slide-in from-left">
           <span>
             <GrLocationPin className="aboutMeLocationPinIcon" />
           </span>
@@ -103,7 +103,7 @@ const About = ({ setPage }) => {
           <span className="aboutMeLocationSpan">(willing to relocate)</span>
           <br></br>
         </div>
-        <div className="aboutMeAdditionalInfoIndividualGridDiv">
+        <div className="aboutMeAdditionalInfoIndividualGridDiv slide-in from-right">
           <span>
             <AiOutlinePhone className="aboutMePhoneIcon" />
             <MdAlternateEmail className="aboutMeEmailIcon" />

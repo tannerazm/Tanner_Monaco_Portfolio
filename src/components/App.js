@@ -5,15 +5,14 @@ import "../style/App.css";
 
 const App = () => {
   const [page, setPage] = useState(null);
-  const [individualProject, setIndividualProject] = useState(null);
 
   return (
     <>
-      <Header page={page} individualProject={individualProject} />
+      <Header page={page} />
       <Routes>
         <Route path="/" element={<Home setPage={setPage} />} />
         <Route path="/projects" element={<Projects setPage={setPage} />} />
-        <Route path="/projects/:project_name" element={<IndividualProject setPage={setPage} setIndividualProject={setIndividualProject} />} />
+        <Route path="/projects/:project_name" element={<IndividualProject setPage={setPage} />} />
         <Route path="/about" element={<About setPage={setPage} />} />
         <Route path="/blog" element={<Blog setPage={setPage} />} />
         <Route path="/contact" element={<Contact setPage={setPage} />} />

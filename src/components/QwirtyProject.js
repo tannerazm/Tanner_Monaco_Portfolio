@@ -31,7 +31,7 @@ const QwirtyProject = () => {
             className="individualProjectDescriptionSpan"
             id="individualProjectExtras"
           >
-            June 26th, 2022
+            June 12th, 2022
           </span>
           <br></br>
           <br></br>
@@ -39,7 +39,7 @@ const QwirtyProject = () => {
             className="individualProjectDescriptionSpan"
             id="individualProjectExtras"
           >
-            HTML | CSS | DOM Manipulation | JavaScript
+            HTML | CSS | Chrome Development Tools | Media Queries
           </span>
         </div>
         <br></br>
@@ -48,26 +48,41 @@ const QwirtyProject = () => {
           className="individualProjectDescriptionSpan"
           id="individualProjectDescription"
         >
-          This project is a personal take on the age old game, Tic Tac Toe. It
-          resembles efforts in HTML, CSS, DOM Manipulation and JavaScript. This
-          project was built over the second week of the Fullstack Academy
-          boot-camp and displays some ingenious ways to link a front facing HTML
-          page with a "back-end" JavaScript file structure to determine winners,
-          players and so much more. Being my second project in the cohort, this
-          was a tough project due to the lack of knowledge at the time, and took
-          a ton of critical thinking and utilizing the features and code that we
-          had learned in a brand new way.
+          This project is a replication project. What I mean by this is that is
+          we were given a template to try and replicate and were given boiler
+          plate code and used CSS in order to try and adjust the look to match
+          the example provided. Below is a link that we used in order to try to
+          duplicate. This was an entry level project for CSS and taught us how
+          to utilize grid and other cool CSS properties to achieve certain
+          functional and practical ways of handling layout and also window size.
+          The project was super enjoyable since it had everything to do with
+          producing code and didn't focus on trying to come up with your own
+          design. This also forced me to find new tools in order to accomplish
+          very specific tasks such as finding which specific was being used in
+          the end product example. Also, learning how to use chrome dev tools in
+          order to find a specific font style that was being used was another
+          small way that I obtained a very accurate. I feel as if being able to
+          utilize all of the resources around me to achieve a desired outcome
+          was super rewarding and enjoyable.
           <br></br>
           <br></br>
-          The hardest part of this project was definitely understanding how to
-          make the computer functional on it's own.
+          The most difficult portion of this project was definitely learning
+          grid and media queries for the first time. Not knowing how they worked
+          before and being thrown in the deep end and being required to know it
+          enough to code a website perfectly to the way you want it was tough
+          but super fun at the same time. Let's just say I like a challenge.
           <br></br>
-          <br></br>I thoroughly enjoyed working on this project where I got to
-          display my full capabilities up until that point.
           <br></br>
-          <br></br>
-          Extra Features: Score Counter | Fully Functional Clear Button |
-          Additional CSS Features
+          <span className="qwirtyEndProductExample">End Product Example:</span>
+          <span>
+            <a
+              className="qwirtyExampleProject"
+              href="https://serene-archimedes-8526f6.netlify.app/"
+              target="https://serene-archimedes-8526f6.netlify.app/"
+            >
+              https://serene-archimedes-8526f6.netlify.app/
+            </a>
+          </span>
         </span>
       </div>
     </div>
