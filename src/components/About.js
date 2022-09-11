@@ -96,8 +96,6 @@ const About = ({ setPage }) => {
             <GrLocationPin className="aboutMeLocationPinIcon" />
           </span>
           <br></br>
-          <span className="aboutMeLocationSpan">11193 Cherryvale St.,</span>
-          <br></br>
           <span className="aboutMeLocationSpan">Firestone, CO 80504</span>
           <br></br>
           <span className="aboutMeLocationSpan">(willing to relocate)</span>
