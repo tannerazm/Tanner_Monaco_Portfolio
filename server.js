@@ -1,5 +1,5 @@
 const chalk = require('chalk');
-const { app } = require('./app');
+const { app, Blog } = require('./app');
 
 const PORT = process.env['PORT'] ?? 8080;
 

@@ -1,3 +1,134 @@
 .blogPage {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     min-height: 78.8vh;
+}
+
+.blogPageTitle {
+    font-size: 75px;
+    border-bottom: 4px solid #841617;
+    margin: 0px 0px 50px 0px;
+}
+
+.blogSecretLoginPage{
+    text-decoration: none;
+    color: white;
+}
+
+.blogPageSubText {
+    font-size: 25px;
+    margin: 0px 0px 25px 0px;
+    text-align: center;
+}
+
+.youreLoggedInContainer {
+    display: grid;
+    grid-template-columns: 70% 50%;
+}
+
+.logoutForm {
+    margin: -50px 0px 0px -5px;
+}
+
+.logoutButton {
+    border: 1px solid black;
+    background-color: #841617;
+    color: black;
+    border-radius: 3px;
+}
+
+.logoutButton:hover {
+    box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
+    color: white;
+}
+
+.addPostLink {
+    text-decoration: none;
+    color: black;
+}
+
+.addPostLink:after {
+    display: block;
+    content: '';
+    border-bottom: solid 2px #841617;  
+    transform: scaleX(0);  
+    transition: transform 250ms ease-in-out;
+}
+
+.addPostLink:hover:after { transform: scaleX(.35); }
+
+.blogsMainDiv {
+    font-size: 25px;
+}
+
+.blogContent {
+    margin: 0px 0px 25px 0px;
+}
+
+.blogsSection {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.blogsGridDiv {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.blogGridIndividual {
+    border-radius: 10px;
+    background-color: rgb(208, 208, 208);
+    text-decoration: none;
+    color: black;
+    width: 40vw;
+    height: 90vh;
+    margin: 20px;
+}
+
+.blogGridIndividual:hover {
+    cursor: pointer;
+    opacity: .8;
+}
+
+.blogPicture {
+    border-radius: 10px 10px 0px 0px;
+    margin-left: -20px;
+    width: 100%;
+    height: 50%;
+}
+
+.blogDate {
+    color: #841617;
+}
+
+.blogDate, .blogTitle {
+    font-size: 35px;
+}
+
+.blogDate, .blogTitle, .blogContent {
+    margin: 20px;
+}
+
+.sadDaysDiv {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: gray;
+    opacity: .5;
+}
+
+@media screen and (max-width: 1250px) {
+    .blogsGridDiv {
+        grid-template-columns: 1fr;
+    }
+
+    .blogGridIndividual {
+        width: 75vw;
+        height: 75vh;
+    }
 }

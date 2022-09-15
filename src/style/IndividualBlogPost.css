@@ -1,0 +1,72 @@
+.individualBlogPostPage {
+    min-height: 78.8vh;
+}
+
+.divBackToAllBlogPosts {
+    text-align: left;
+}
+
+.navLinkBackToAllBlogPosts {
+    text-decoration: none;
+    font-weight: bolder;
+    color: black;
+    font-size: 25px;
+}
+
+.navLinkBackToAllBlogPosts:hover {
+    color: gray;
+}
+
+.individualBlogPicture {
+    height: 30vh;
+    width: 30vw;
+    border-radius: 15px;
+}
+
+.individualBlogInfo {
+    font-size: xx-large;
+}
+
+.individualBlogDate {
+    color: #841617;
+}
+
+.individualBlogDate, .individualBlogTitle {
+    font-size: 35px;
+}
+
+.individualBlogDate, .individualBlogTitle, .individualBlogContent, .deletePostButton, .updatePostButton, .cancelButton {
+    margin: 20px;
+}
+
+.updateBlogPostInput {
+    font-size: 35px;
+    width: 400px;
+    margin-left: 20px;
+    border: none;
+    border-bottom: #841617 2px solid;
+}
+
+.updateBlogPostInput:focus {
+    outline: none;
+}
+
+.updateBlogPostInput:first-of-type {
+    margin-top: 25px;
+}
+
+.deletePostButton, .updatePostButton, .cancelButton {
+    border: 1px solid black;
+    background-color: #841617;
+    color: black;
+    border-radius: 3px;
+}
+
+.cancelButton {
+    background-color: gray;
+}
+
+.deletePostButton:hover, .updatePostButton:hover, .cancelButton:hover {
+    box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
+    color: white;
+}

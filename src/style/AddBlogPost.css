@@ -1,0 +1,40 @@
+.addBlogPostPage {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    min-height: 78.8vh;
+}
+
+.addBlogPostLabel {
+    font-size: 40px;
+    margin: 10px 0px 0px 5vw;
+}
+
+.addBlogPostInput {
+    font-size: 35px;
+    width: 400px;
+    border: none;
+    border-bottom: #841617 2px solid;
+}
+
+.addBlogPostInput:focus {
+    outline: none;
+}
+
+.addBlogPostInput:first-of-type {
+    margin-top: 25px;
+}
+
+.addBlogPostButton {
+    border: 1px solid black;
+    background-color: #841617;
+    color: black;
+    border-radius: 3px;
+    margin-left: 7vw;
+}
+
+.addBlogPostButton:hover {
+    box-shadow: 0px 5px 5px 0px rgba(0,0,0,0.75);
+    color: white;
+}

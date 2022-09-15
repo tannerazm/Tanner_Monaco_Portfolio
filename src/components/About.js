@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { GrLocationPin } from "react-icons/gr";
-import { AiOutlinePhone, AiOutlineLinkedin } from "react-icons/ai";
+import { AiOutlinePhone } from "react-icons/ai";
 import { MdAlternateEmail } from "react-icons/md";
 // Programming Language Logos
 import ExcelLogo from "../programmingicons/ExcelLogo.png";
@@ -105,14 +105,11 @@ const About = ({ setPage }) => {
           <span>
             <AiOutlinePhone className="aboutMePhoneIcon" />
             <MdAlternateEmail className="aboutMeEmailIcon" />
-            <AiOutlineLinkedin className="aboutMeLinkedInIcon" />
           </span>
           <br></br>
           <span className="aboutMeLocationSpan">(303) 472-9342</span>
           <br></br>
           <span className="aboutMeLocationSpan">tannermonaco@gmail.com</span>
-          <br></br>
-          <span className="aboutMeLocationSpan">/in/tannermonaco</span>
           <br></br>
         </div>
       </div>

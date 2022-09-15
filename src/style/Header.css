@@ -20,8 +20,7 @@
 }
 
 .tannerNavBar:hover {
-  color: white;
-  font-weight: normal;
+  color: #841617;
 }
 
 .linksNavBar {
@@ -46,12 +45,11 @@
 }
 
 .NavLink:hover {
-  color: white;
-  font-weight: normal;
+  color: #841617;
 }
 
 .NavLinkActive {
-  color: white;
+  color: #841617;
   font-weight: bold;
   text-decoration: none;
   font-size: 25px;

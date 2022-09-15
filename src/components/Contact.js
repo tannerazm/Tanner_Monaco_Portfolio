@@ -19,12 +19,12 @@ const Contact = ({ setPage }) => {
     event.preventDefault();
 
     const send_to_self_params = {
+      message: message,
       from_first_name: firstName,
       from_last_name: lastName,
-      from_company: companyName,
       from_email_id: email,
       from_phone_number: phoneNumber,
-      message: message,
+      from_company: companyName,
     };
 
     const send_to_them_params = {
@@ -38,8 +38,9 @@ const Contact = ({ setPage }) => {
     setMessage("");
     setFirstName("");
     setLastName("");
-    setCompanyName("");
     setEmail("");
+    setPhoneNumber("");
+    setCompanyName("");
     setSuccessMessage(
       "Your message has been sent - thank you so much for reaching out! Continue to enjoy my portfolio website or check out my social media profiles below for more about me. I look forward to talking with you shortly!"
     );
