@@ -122,7 +122,7 @@ const Home = ({ setPage }) => {
         <div className="timelineContainer left fade-in from-left">
           <div className="timelineContent">
             <h1>Mar - 2013</h1>
-            <p>Moved from from Argyle, Texas to Hickory Creek, Texas.</p>
+            <p>Moved from from Argyle, Texas to Hickory Creek, Texas. Dang, we move a lot...</p>
           </div>
         </div>
         <div className="timelineContainer right fade-in from-right">
@@ -151,9 +151,7 @@ const Home = ({ setPage }) => {
           <div className="timelineContent">
             <h1>May - 2017</h1>
             <p>
-              Graduated from the University of Oklahoma with a GPA of 3.4 / 4.0.
-              Moved back in with family to figure out where I wanted to go. They
-              moved back to Flower Mound {"(Pecan Meadows)"}, Texas in April of
+              Graduated from the University of Oklahoma. Moved back to Flower Mound, Texas in April of
               2014.
             </p>
           </div>
@@ -166,9 +164,9 @@ const Home = ({ setPage }) => {
             <p>
               It didn't take me long to decide that Colorado was my next
               destination. Packed up my belongings and moved from Texas to
-              Colorado. I had no job, no place to stay, and no friends, but it
-              was a life goal of mine, so I took a dive off the deep end and
-              went for it!
+              Colorado. I had no job, no place to stay, and no friends in Colorado, but it
+              was a life goal of mine, so I took a big chance and
+              went for it! Best decision of my life.
             </p>
           </div>
         </div>
@@ -199,19 +197,43 @@ const Home = ({ setPage }) => {
           </div>
         </div>
         <div className="timelineContainer right fade-in from-right">
-          <div className="timelineContent">
+        <div className="timelineContent">
+            <h1>December - 2022</h1>
+            <p>
+              Returned to Fullstack Academy as a part-time mentor, for the program that I was a part of back in August, to continue helping emerging tech students learn coding.
+              <br></br>
+              <br></br>
+              Languages/software I am teaching: VSCode | Ubuntu on Linux | HTML5 | CSS | JavaScript | PostgreSQL |
+              Node.js {"&"} Express | React
+            </p>
+          </div>
+        </div>
+        {/* Copy from here up */}
+        {/* Copy from here down */}
+        <div className="timelineContainer left fade-in from-left">
+        <div className="timelineContent">
             <h1>Present</h1>
             <p>
-              Looking for a front-end, back-end or full stack web development
-              position from a company and organization that is willing to invest
-              in a dedicated, well versed, humble, and knowledgeable employee
-              who will go above and beyond for his colleagues and company.
-              <br></br>
-              <br></br>
-              As you can see, I embrace new experiences and new places with
-              moving to new locations, which should hopefully speak volumes
-              about my willingness to relocate anywhere to accommodate a
-              position at your company.
+              Continuing to look for a full-time front-end, back-end or full stack web development/software engineering
+              position.
+              <br />
+              <br />
+              <b className="typicalAppQuestionAnswers">Desired Salary:</b> $50,000.00+
+              <br />
+              <br />
+              <b className="typicalAppQuestionAnswers">Interview Availability:</b> Any day, any time!
+              <br />
+              <br />
+              <b className="typicalAppQuestionAnswers">Relocation:</b> Anywhere in the United States. No relocation package/company compensation needed. I am able to move at a moments notice.
+              <br />
+              <br />
+              <b className="typicalAppQuestionAnswers">Availability to Start:</b> Immediately.
+              <br />
+              <br />
+              <b className="typicalAppQuestionAnswers">Shifts:</b> I will accept all shifts.
+              <br />
+              <br />
+              <b className="typicalAppQuestionAnswers">Desired Salary:</b> $50,000.00+
               <br></br>
               <br></br>
               Want to know more? Contact me{" "}

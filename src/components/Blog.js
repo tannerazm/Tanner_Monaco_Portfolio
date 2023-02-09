@@ -15,7 +15,10 @@ const Blog = ({
     async function getBlogPosts() {
       const allBlogPosts = await getAllPosts();
       setBlogPosts(allBlogPosts);
-    }
+      if (localStorage.getItem("token")) {
+        setIsLoggedIn(true);
+      };
+    };
     getBlogPosts();
   }, []);
 
@@ -33,7 +36,7 @@ const Blog = ({
           {isLoggedIn ? (
             <>
               <div className="youreLoggedInContainer">
-                <div className="youreLoggedInDiv">YOU'RE LOGGED IN!</div>
+                <div className="youreLoggedInDiv">You're logged in!</div>
                 <form onSubmit={handleLogout} className="logoutForm">
                   <button type="submit" className="logoutButton">
                     Logout
@@ -46,14 +49,14 @@ const Blog = ({
             </>
           ) : (
             <span>
-              Welcome to Tanner
+              Work in progress
               <NavLink
                 to="/blog/secret/login/page/howdidyoufindme"
                 className="blogSecretLoginPage"
               >
-                '
+                ,
               </NavLink>
-              s Blog, the best way to stay up-to-date with everything me!
+              {" "}please check back in later!
             </span>
           )}
         </div>
@@ -89,17 +92,15 @@ const Blog = ({
             {blogPosts.post && blogPosts.post.length <= 0 && !isLoggedIn ? (
               <div className="sadDaysDiv">
                 <span>
-                  Unfortunately there are no blog posts to show as of now. Sad
-                  days. :(
+                  Unfortunately there are no blog posts to show as of now.
                 </span>
                 <small>
-                  (I am working hard to get more about me... to you!)
+                  I am working hard to get more about me... to you!
                 </small>
               </div>
             ) : blogPosts.post && blogPosts.post.length <= 0 && isLoggedIn ? (
               <div className="sadDaysDiv">
-                <span>No posts to show, read below!</span>
-                <small>ADD A POST... NOW!</small>
+                <span>No posts.</span>
               </div>
             ) : null}
           </div>

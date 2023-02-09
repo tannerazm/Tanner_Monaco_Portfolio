@@ -20,6 +20,9 @@ const TicTacToeProject = () => {
           Tic Tac Toe
         </a>
       </span>
+      <br />
+      <br />
+      <small>This is a link to the project.</small>
       <br></br>
       <br></br>
       <div className="individualProjectPictureDiv">

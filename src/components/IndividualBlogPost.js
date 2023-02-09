@@ -11,7 +11,6 @@ const IndividualBlogPost = ({ setPage, blogPosts, isLoggedIn }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
-  const token = localStorage.getItem("token");
   const { postID } = useParams();
   const navigate = useNavigate();
 

@@ -1,8 +1,8 @@
 // BASE FOR LOCAL CHANGES
-// const BASE = "http://localhost:8080";
+const BASE = "http://localhost:8080";
 
 // BASE FOR NETLIFY CHANGES
-const BASE = "https://tannermonaco.netlify.app/"
+// const BASE = "https://tannermonaco.netlify.app/"
 
 // USER FUNCTIONS
 

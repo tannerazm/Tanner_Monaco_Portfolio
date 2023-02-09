@@ -203,3 +203,7 @@
     opacity: 1;
   }
 }
+
+.typicalAppQuestionAnswers {
+  border-bottom: 1px black solid;
+}

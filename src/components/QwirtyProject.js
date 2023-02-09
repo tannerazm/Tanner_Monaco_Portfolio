@@ -20,6 +20,9 @@ const QwirtyProject = () => {
           Qwirty
         </a>
       </span>
+      <br />
+      <br />
+      <small>This is a link to the project.</small>
       <br></br>
       <br></br>
       <div className="individualProjectPictureDiv">
@@ -57,23 +60,14 @@ const QwirtyProject = () => {
           functional and practical ways of handling layout and also window size.
           The project was super enjoyable since it had everything to do with
           producing code and didn't focus on trying to come up with your own
-          design. This also forced me to find new tools in order to accomplish
-          very specific tasks such as finding which specific was being used in
-          the end product example. Also, learning how to use chrome dev tools in
-          order to find a specific font style that was being used was another
-          small way that I obtained a very accurate. I feel as if being able to
-          utilize all of the resources around me to achieve a desired outcome
-          was super rewarding and enjoyable.
+          design. This also forced me to find new tools, such as Chrome Dev
+          Tools, in order to accomplish very specific tasks such as finding how
+          their website was functioning and what it used to style it. I feel as
+          if being able to utilize all of the resources around me to achieve a
+          desired outcome was super rewarding and enjoyable.
           <br></br>
           <br></br>
-          The most difficult portion of this project was definitely learning
-          grid and media queries for the first time. Not knowing how they worked
-          before and being thrown in the deep end and being required to know it
-          enough to code a website perfectly to the way you want it was tough
-          but super fun at the same time. Let's just say I like a challenge.
-          <br></br>
-          <br></br>
-          <span className="qwirtyEndProductExample">End Product Example:</span>
+          <span className="qwirtyEndProductExample">Reference:</span>
           <span>
             <a
               className="qwirtyExampleProject"

@@ -6,8 +6,19 @@
     min-height: 78.8vh;
 }
 
-.loginMainDiv {
+.divBackToAllBlogPosts {
+    text-align: left;
+}
 
+.navLinkBackToAllBlogPosts {
+    text-decoration: none;
+    font-weight: bolder;
+    color: black;
+    font-size: 25px;
+}
+
+.navLinkBackToAllBlogPosts:hover {
+    color: gray;
 }
 
 .loginLabel {

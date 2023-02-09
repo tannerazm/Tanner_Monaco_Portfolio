@@ -12,28 +12,6 @@ const BlogPostRoute = require('./routes/blog_posts')
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// INITIAL DOCUMENTS FOR BLOG
-const initialBlogPost = [
-  {
-    blogPicture: "https://www.rd.com/wp-content/uploads/2019/09/Cute-cat-lying-on-his-back-on-the-carpet.-Breed-British-mackerel-with-yellow-eyes-and-a-bushy-mustache.-Close-up-e1573490045672.jpg",
-    blogDate: "Sep 01, 2022",
-    blogTitle: "First Blog Post",
-    blogContent: "This is my first blog post on this database!"
-  },
-  {
-    blogPicture: "https://www.rd.com/wp-content/uploads/2019/09/Cute-cat-lying-on-his-back-on-the-carpet.-Breed-British-mackerel-with-yellow-eyes-and-a-bushy-mustache.-Close-up-e1573490045672.jpg",
-    blogDate: "Sep 12, 2022",
-    blogTitle: "Second Blog Post",
-    blogContent: "Let's go!"
-  },
-  {
-    blogPicture: "https://www.rd.com/wp-content/uploads/2019/09/Cute-cat-lying-on-his-back-on-the-carpet.-Breed-British-mackerel-with-yellow-eyes-and-a-bushy-mustache.-Close-up-e1573490045672.jpg",
-    blogDate: "Sep 16, 2022",
-    blogTitle: "Third Blog Post",
-    blogContent: "I'm a pro at this point!"
-  }
-]
-
 mongoose.connect(
   process.env.MONGO_URI,
   {
