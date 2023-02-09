@@ -20,10 +20,10 @@ import UniversityOfOklahoma from "../photos/UniversityOfOklahoma.jpg";
 import DenverColorado from "../photos/DenverColorado.png";
 import UniversityOfOklahomaFootball from "../photos/UniversityOfOklahomaFootball.jpg";
 import TexasRangers from "../photos/TexasRangers.jpg";
-import BakerMayfieldPanthers from "../photos/BakerMayfieldPanthers.png";
+import BakerMayfieldRams from "../photos/BakerMayfieldRams.png";
 import WorldOfWacraft from "../photos/WorldOfWacraft.jpg";
+import Overwatch2 from "../photos/Overwatch2.jpg";
 import CallOfDuty from "../photos/CallOfDuty.jpg";
-import BreathOfTheWild from "../photos/BreathOfTheWild.jpg";
 import CapriSunCapris from "../photos/CapriSunCapris.png";
 import KindaNeedThisJob from "../photos/KindaNeedThisJob.jpg";
 import Company401K from "../photos/Company401K.png";
@@ -31,7 +31,9 @@ import RhineRiverCastle from "../photos/RhineRiverCastle.jpg";
 import ParisFranceEiffelTower from "../photos/ParisFranceEiffelTower.jpg";
 import GrandCaymanIsland from "../photos/GrandCaymanIsland.jpg";
 import GameOfThrones from "../photos/GameOfThrones.jpg";
+import TheWalkingDead from "../photos/TheWalkingDead.jpg"
 import HarryPotter from "../photos/HarryPotter.jpg";
+import FamilyGuy from "../photos/FamilyGuy.png";
 import LordOfTheRings from "../photos/LordOfTheRings.jpg";
 import Land from "../photos/Land.jpg";
 import AQuietPlace from "../photos/AQuietPlace.jpg";
@@ -185,9 +187,9 @@ const About = ({ setPage }) => {
           <img src={TexasRangers} className="aboutMeGridPhotos" />
         </div>
         <div className="personalInfoGridCell slide-in from-right">
-          <h1>Carolina Panthers</h1>
+          <h1>Los Angeles Rams</h1>
           <br></br>
-          <img src={BakerMayfieldPanthers} className="aboutMeGridPhotos" />
+          <img src={BakerMayfieldRams} className="aboutMeGridPhotos" />
         </div>
       </div>
       <span className="aboutMeGridDivider fade-in">Video Games</span>
@@ -198,9 +200,9 @@ const About = ({ setPage }) => {
           <img src={WorldOfWacraft} className="aboutMeGridPhotos" />
         </div>
         <div className="personalInfoGridCell slide-in from-top">
-          <h1>Zelda - Breath Of The Wild</h1>
+          <h1>Overwatch 2</h1>
           <br></br>
-          <img src={BreathOfTheWild} className="aboutMeGridPhotos" />
+          <img src={Overwatch2} className="aboutMeGridPhotos" />
         </div>
         <div className="personalInfoGridCell slide-in from-right">
           <h1>Call of Duty</h1>
@@ -234,14 +236,14 @@ const About = ({ setPage }) => {
           <img src={GameOfThrones} className="aboutMeGridPhotos" />
         </div>
         <div className="personalInfoGridCell slide-in from-top">
-          <h1>Lord Of The Rings</h1>
+          <h1>The Walking Dead</h1>
           <br></br>
-          <img src={LordOfTheRings} className="aboutMeGridPhotos" />
+          <img src={TheWalkingDead} className="aboutMeGridPhotos" />
         </div>
         <div className="personalInfoGridCell slide-in from-right">
-          <h1>Harry Potter</h1>
+          <h1>Family Guy</h1>
           <br></br>
-          <img src={HarryPotter} className="aboutMeGridPhotos" />
+          <img src={FamilyGuy} className="aboutMeGridPhotos" />
         </div>
       </div>
       <span className="aboutMeGridDivider fade-in">Movies</span>
