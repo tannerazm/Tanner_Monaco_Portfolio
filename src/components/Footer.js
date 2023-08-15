@@ -106,7 +106,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="rightFooter">© 2022 Tanner Monaco, Inc.</div>
+      <div className="rightFooter">© 2023 Tanner Monaco</div>
     </footer>
   );
 };

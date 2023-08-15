@@ -2,9 +2,8 @@
 
 .navBar {
   position: relative;
-  background-color: gray;
-  margin: -8px -8px 0px -8px;
-  width: 98.5vw;
+  background-color: inherit;
+
 }
 
 .tannerNavBar {
@@ -26,7 +25,6 @@
 .linksNavBar {
   display: flex;
   justify-content: space-between;
-  display: flex;
   flex-direction: row;
   justify-content: flex-end;
 }

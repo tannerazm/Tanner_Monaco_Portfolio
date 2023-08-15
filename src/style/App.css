@@ -4,13 +4,3 @@
     font-family: 'Alumni Sans Pinstripe', sans-serif;
     font-weight: bold;
 }
-
-*::-webkit-scrollbar {
-    width: 5px;
-    height: 5px;
-}
-
-*::-webkit-scrollbar-thumb {
-    background: linear-gradient(black, gray);
-    border-radius: 10px;
-}

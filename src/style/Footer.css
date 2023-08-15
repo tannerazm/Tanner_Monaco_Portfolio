@@ -10,7 +10,7 @@ footer {
     margin: 3rem -8px -8px -8px;
     height: 101px;
     width: 100vw;
-    background-color: gray;
+    background-color: inherit;
 }
 
 .leftFooter {

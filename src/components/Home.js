@@ -5,7 +5,7 @@ import "../style/Home.css";
 const Home = ({ setPage }) => {
   useEffect(() => {
     setPage("Home");
-    document.querySelector('.timelineSpotifySong').click()
+    console.log(document.querySelectorAll('.PreviewPlayPause_iconButton__PKraz'));
   }, []);
 
   // Intersection Observers
