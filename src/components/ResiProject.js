@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { BsArrowLeft } from "react-icons/bs";
 import Resi from "../projectpictures/Resi.png";
@@ -42,7 +42,7 @@ const ResiProject = () => {
             className="individualProjectDescriptionSpan"
             id="individualProjectExtras"
           >
-            PHP | Twig | CraftCMS | JavaScript | Less | AJAX/GuzzleHttp
+            CraftCMS | PHP | MySQL | AJAX | Vue.js | Twig | Less | BitBucket | Agile Methodologies
           </span>
         </div>
         <br></br>
@@ -51,7 +51,6 @@ const ResiProject = () => {
           className="individualProjectDescriptionSpan"
           id="individualProjectDescription"
         >
-          Current Web Application for Resi.
         </span>
       </div>
     </div>

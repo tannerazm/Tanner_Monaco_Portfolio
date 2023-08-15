@@ -214,7 +214,7 @@ const Home = ({ setPage }) => {
           <div className="timelineContent">
             <h1>March - 2023</h1>
             <p>
-              Started contract work for Resi, a marketing and Website/App development firm that focuses on unique, custom websites for property management/owner clients.
+              Started contract work for <a href={`/projects/Resi`} className="timelineContentNavLink">Resi</a>, a marketing and Website/App development firm that focuses on unique, custom websites for property management/owner clients.
               <br></br>
               <br></br>
               CraftCMS | PHP | MySQL | AJAX | Vue.js | Twig | Less | BitBucket | Agile Methodologies
