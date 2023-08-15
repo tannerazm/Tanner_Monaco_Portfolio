@@ -22,7 +22,7 @@ mongoose.connect(
     if (!err) {
       console.log("Database connected! Welcome to mongoDB.");
     } else {
-      console.log(err);
+      console.log("MONGOOSE ERROR: ", process.env.MONGO_URI, err);
     }
   }
 );

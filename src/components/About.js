@@ -12,6 +12,13 @@ import JavascriptLogo from "../programmingicons/JavascriptLogo.png";
 import PostgreSQLLogo from "../programmingicons/PostgreSQLLogo.png";
 import ExpressNodeJSLogo from "../programmingicons/Express&NodeJSLogo.svg";
 import ReactLogo from "../programmingicons/ReactLogo.png";
+import BitbucketLogo from "../programmingicons/BitbucketLogo.png";
+import CraftCMSLogo from "../programmingicons/CraftCMSLogo.png";
+import GuzzleHttpLogo from "../programmingicons/GuzzleHttpLogo.png";
+import PHPLogo from "../programmingicons/PHPLogo.png";
+import TailwindCSSLogo from "../programmingicons/TailwindCSSLogo.png";
+import TwigLogo from "../programmingicons/TwigLogo.png";
+import VuejsLogo from "../programmingicons/VuejsLogo.png";
 
 // Personal Photos
 import MeSeattle from "../photos/MeSeattle.jpg";
@@ -31,10 +38,8 @@ import RhineRiverCastle from "../photos/RhineRiverCastle.jpg";
 import ParisFranceEiffelTower from "../photos/ParisFranceEiffelTower.jpg";
 import GrandCaymanIsland from "../photos/GrandCaymanIsland.jpg";
 import GameOfThrones from "../photos/GameOfThrones.jpg";
-import TheWalkingDead from "../photos/TheWalkingDead.jpg"
-import HarryPotter from "../photos/HarryPotter.jpg";
+import TheWalkingDead from "../photos/TheWalkingDead.jpg";
 import FamilyGuy from "../photos/FamilyGuy.png";
-import LordOfTheRings from "../photos/LordOfTheRings.jpg";
 import Land from "../photos/Land.jpg";
 import AQuietPlace from "../photos/AQuietPlace.jpg";
 import EagleEye from "../photos/EagleEye.jpg";
@@ -117,40 +122,64 @@ const About = ({ setPage }) => {
       </div>
       <div className="aboutMeProgrammingLogosGridContainer">
         <div className="aboutMeProgrammingLogosIndividualGridDiv">
-          <img src={ExcelLogo} className="aboutMeProgrammingLogos fade-in" />
+          <img src={ExcelLogo} alt="ExcelLogo" className="aboutMeProgrammingLogos fade-in" />
         </div>
         <div className="aboutMeProgrammingLogosIndividualGridDiv">
-          <img src={VSCodeLogo} className="aboutMeProgrammingLogos fade-in" />
+          <img src={VSCodeLogo} alt="VSCodeLogo" className="aboutMeProgrammingLogos fade-in" />
         </div>
         <div className="aboutMeProgrammingLogosIndividualGridDiv">
-          <img src={LinuxLogo} className="aboutMeProgrammingLogos fade-in" />
+          <img src={LinuxLogo} alt="LinuxLogo" className="aboutMeProgrammingLogos fade-in" />
         </div>
         <div className="aboutMeProgrammingLogosIndividualGridDiv">
-          <img src={HTML5Logo} className="aboutMeProgrammingLogos fade-in" />
+          <img src={HTML5Logo} alt="HTML5Logo" className="aboutMeProgrammingLogos fade-in" />
         </div>
         <div className="aboutMeProgrammingLogosIndividualGridDiv">
-          <img src={CSSLogo} className="aboutMeProgrammingLogos fade-in" />
+          <img src={CSSLogo} alt="CSSLogo" className="aboutMeProgrammingLogos fade-in" />
         </div>
         <div className="aboutMeProgrammingLogosIndividualGridDiv">
           <img
             src={JavascriptLogo}
+            alt="JavascriptLogo"
             className="aboutMeProgrammingLogos fade-in"
           />
         </div>
         <div className="aboutMeProgrammingLogosIndividualGridDiv">
           <img
             src={PostgreSQLLogo}
+            alt="PostgreSQLLogo"
             className="aboutMeProgrammingLogos fade-in"
           />
         </div>
         <div className="aboutMeProgrammingLogosIndividualGridDiv">
           <img
             src={ExpressNodeJSLogo}
+            alt="ExpressNodeJSLogo"
             className="aboutMeProgrammingLogos fade-in"
           />
         </div>
         <div className="aboutMeProgrammingLogosIndividualGridDiv">
-          <img src={ReactLogo} className="aboutMeProgrammingLogos fade-in" />
+          <img src={ReactLogo} alt="ReactLogo" className="aboutMeProgrammingLogos fade-in" />
+        </div>
+        <div className="aboutMeProgrammingLogosIndividualGridDiv">
+          <img src={BitbucketLogo} alt="BitbucketLogo" className="aboutMeProgrammingLogos fade-in" />
+        </div>
+        <div className="aboutMeProgrammingLogosIndividualGridDiv">
+          <img src={CraftCMSLogo} alt="CraftCMSLogo" className="aboutMeProgrammingLogos fade-in" />
+        </div>
+        <div className="aboutMeProgrammingLogosIndividualGridDiv">
+          <img src={GuzzleHttpLogo} alt="GuzzleHttpLogo" className="aboutMeProgrammingLogos fade-in" />
+        </div>
+        <div className="aboutMeProgrammingLogosIndividualGridDiv">
+          <img src={PHPLogo} alt="PHPLogo" className="aboutMeProgrammingLogos fade-in" />
+        </div>
+        <div className="aboutMeProgrammingLogosIndividualGridDiv">
+          <img src={TailwindCSSLogo} alt="TailwindCSSLogo" className="aboutMeProgrammingLogos fade-in" />
+        </div>
+        <div className="aboutMeProgrammingLogosIndividualGridDiv">
+          <img src={TwigLogo} alt="TwigLogo" className="aboutMeProgrammingLogos fade-in" />
+        </div>
+        <div className="aboutMeProgrammingLogosIndividualGridDiv">
+          <img src={VuejsLogo} alt="VuejsLogo" className="aboutMeProgrammingLogos fade-in" />
         </div>
       </div>
       <span className="aboutMeGridDivider fade-in">Points of Interest</span>
