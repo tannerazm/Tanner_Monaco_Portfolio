@@ -27,7 +27,7 @@ import UniversityOfOklahoma from "../photos/UniversityOfOklahoma.jpg";
 import DenverColorado from "../photos/DenverColorado.png";
 import UniversityOfOklahomaFootball from "../photos/UniversityOfOklahomaFootball.jpg";
 import TexasRangers from "../photos/TexasRangers.jpg";
-import BakerMayfieldRams from "../photos/BakerMayfieldRams.png";
+import BakerMayfieldBucs from "../photos/BakerMayfieldBucs.jpeg";
 import WorldOfWacraft from "../photos/WorldOfWacraft.jpg";
 import Overwatch2 from "../photos/Overwatch2.jpg";
 import CallOfDuty from "../photos/CallOfDuty.jpg";
@@ -216,9 +216,9 @@ const About = ({ setPage }) => {
           <img src={TexasRangers} className="aboutMeGridPhotos" />
         </div>
         <div className="personalInfoGridCell slide-in from-right">
-          <h1>Los Angeles Rams</h1>
+          <h1>Tampa Bay Buccaneers</h1>
           <br></br>
-          <img src={BakerMayfieldRams} className="aboutMeGridPhotos" />
+          <img src={BakerMayfieldBucs} className="aboutMeGridPhotos" />
         </div>
       </div>
       <span className="aboutMeGridDivider fade-in">Video Games</span>
