@@ -197,7 +197,7 @@ const Home = ({ setPage }) => {
           </div>
         </div>
         <div className="timelineContainer right fade-in from-right">
-        <div className="timelineContent">
+          <div className="timelineContent">
             <h1>December - 2022</h1>
             <p>
               Returned to Fullstack Academy as a part-time mentor, for the program that I was a part of back in August, to continue helping emerging tech students learn coding.
@@ -211,14 +211,25 @@ const Home = ({ setPage }) => {
         {/* Copy from here up */}
         {/* Copy from here down */}
         <div className="timelineContainer left fade-in from-left">
-        <div className="timelineContent">
-            <h1>Present</h1>
+          <div className="timelineContent">
+            <h1>March - 2023</h1>
             <p>
-              Continuing to look for a full-time front-end, back-end or full stack web development/software engineering
+              Started contract work for Resi, a marketing and Website/App development firm that focuses on unique, custom websites for property management/owner clients.
+              <br></br>
+              <br></br>
+              CraftCMS | PHP | MySQL | AJAX | Vue.js | Twig | Less | BitBucket | Agile Methodologies
+            </p>
+          </div>
+        </div>
+        <div className="timelineContainer right fade-in from-right">
+          <div className="timelineContent">
+          <h1>Present</h1>
+            <p>
+              Looking for a full-time front-end, back-end or full stack web development/software development
               position.
               <br />
               <br />
-              <b className="typicalAppQuestionAnswers">Desired Salary:</b> $50,000.00+
+              <b className="typicalAppQuestionAnswers">Desired Salary:</b> $70,000.00+
               <br />
               <br />
               <b className="typicalAppQuestionAnswers">Interview Availability:</b> Any day, any time!
@@ -227,13 +238,10 @@ const Home = ({ setPage }) => {
               <b className="typicalAppQuestionAnswers">Relocation:</b> Anywhere in the United States. No relocation package/company compensation needed. I am able to move at a moments notice.
               <br />
               <br />
-              <b className="typicalAppQuestionAnswers">Availability to Start:</b> Immediately.
+              <b className="typicalAppQuestionAnswers">Availability to Start:</b> Two weeks.
               <br />
               <br />
               <b className="typicalAppQuestionAnswers">Shifts:</b> I will accept all shifts.
-              <br />
-              <br />
-              <b className="typicalAppQuestionAnswers">Desired Salary:</b> $50,000.00+
               <br></br>
               <br></br>
               Want to know more? Contact me{" "}
