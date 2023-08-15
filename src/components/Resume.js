@@ -9,10 +9,7 @@ const Projects = ({ setPage }) => {
   return (
     <div className="resumePage">
       <div className="resumeDiv">
-        <iframe
-          className="myResume"
-          src="https://docs.google.com/document/d/e/2PACX-1vRyzIckvQiMOPX6EVF-sTbjilmm5lkV6BiSHxSeUYgHEm23cZffkoz-nFpTjpUlunYjPyUUJM5Fqhyo/pub?embedded=true"
-        ></iframe>
+        <iframe src="https://docs.google.com/document/d/e/2PACX-1vRfdIHdAWejpgus26nIsJivmq89aSn-vc0AMtdpXXLi-pXlWftU8U5iIGllCAFjk-uCtEEjmRMibZNV/pub?embedded=true"></iframe>
       </div>
     </div>
   );
