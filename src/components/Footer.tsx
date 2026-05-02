@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Github, Linkedin, Mail, MapPin } from "lucide-react";
 import { CONTACT } from "@/data/contact";
+import { Wordmark } from "@/components/Wordmark";
 
 const FOOTER_LINKS = [
   { to: "/", label: "Home" },
@@ -26,7 +27,7 @@ export function Footer() {
               to="/"
               className="font-mono text-base font-semibold tracking-tight"
             >
-              tanner<span className="text-primary">.</span>monaco
+              <Wordmark />
             </Link>
             <p className="text-sm text-muted-foreground max-w-xs">
               Full-stack web developer based in Oklahoma. Building practical,

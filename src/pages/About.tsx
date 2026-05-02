@@ -161,7 +161,7 @@ export function About() {
                     </p>
                   </div>
                   <h3 className="text-4xl font-bold italic tracking-tight sm:text-5xl md:text-6xl">
-                    Addison.
+                    My Girlfriend.
                   </h3>
                   <p className="mt-4 max-w-xl text-base text-muted-foreground md:text-lg">
                     My favorite person, full stop. Sharp, sweet, and quietly

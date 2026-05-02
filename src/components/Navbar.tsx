@@ -10,7 +10,9 @@ import {
   SheetTitle,
 } from "@/components/ui/sheet";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { Wordmark } from "@/components/Wordmark";
 import { cn } from "@/lib/utils";
+import TMLogo from "@/assets/logos/TM_Logo_Mountain_And_Brackets.png";
 
 const NAV_LINKS = [
   { to: "/", label: "Home" },
@@ -46,9 +48,14 @@ export function Navbar() {
       <nav className="container-page flex h-16 items-center justify-between">
         <Link
           to="/"
-          className="font-mono text-base font-semibold tracking-tight transition-colors hover:text-primary"
+          className="group flex items-center gap-2 font-mono text-base font-semibold tracking-tight transition-colors hover:text-primary"
         >
-          tanner<span className="text-primary">.</span>monaco
+          <img
+            src={TMLogo}
+            alt=""
+            className="h-9 w-9 shrink-0 object-contain transition-[filter] duration-200 group-hover:brightness-[0.8]"
+          />
+          <Wordmark />
         </Link>
 
         <div className="hidden items-center gap-1 md:flex">
@@ -59,7 +66,7 @@ export function Navbar() {
               end={link.to === "/"}
               className={({ isActive }) =>
                 cn(
-                  "rounded-md px-3 py-2 text-sm font-medium transition-colors",
+                  "rounded-md px-3 py-2 font-mono text-base font-semibold tracking-tight transition-colors",
                   isActive
                     ? "text-primary"
                     : "text-muted-foreground hover:text-foreground",
@@ -93,7 +100,7 @@ export function Navbar() {
                     onClick={() => setOpen(false)}
                     className={({ isActive }) =>
                       cn(
-                        "rounded-md px-3 py-3 text-base font-medium transition-colors",
+                        "rounded-md px-3 py-3 font-mono text-base font-semibold tracking-tight transition-colors",
                         isActive
                           ? "bg-secondary text-primary"
                           : "text-muted-foreground hover:bg-secondary hover:text-foreground",

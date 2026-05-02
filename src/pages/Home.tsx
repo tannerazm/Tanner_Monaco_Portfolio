@@ -40,9 +40,10 @@ const STACK_LOGOS: StackLogo[] = [
   { name: "Stripe", url: "https://cdn.simpleicons.org/stripe/635BFF" },
 ];
 
-const HERO_NAME = "Tanner Monaco";
+const HERO_NAME = "Tanner.Monaco";
 const HERO_TAIL = "...";
 const HERO_FULL = HERO_NAME + HERO_TAIL;
+const BRAND_DOT_INDEX = "Tanner".length; // position of the brand period
 
 function TypedName() {
   const [text, setText] = useState("");
@@ -82,11 +83,23 @@ function TypedName() {
     };
   }, []);
 
+  const beforeDot = text.slice(0, BRAND_DOT_INDEX);
+  const showDot = text.length > BRAND_DOT_INDEX;
+  const afterDot = text.length > BRAND_DOT_INDEX + 1
+    ? text.slice(BRAND_DOT_INDEX + 1)
+    : "";
+
   return (
     <>
       <span className="sr-only">Tanner Monaco.</span>
-      <span aria-hidden="true" className="font-mono">
-        {text}
+      <span
+        aria-hidden="true"
+        className="font-mono"
+        style={{ fontFeatureSettings: '"liga" 0, "calt" 0' }}
+      >
+        {beforeDot}
+        {showDot && <span className="text-primary">.</span>}
+        {afterDot}
         <span
           className={`ml-1 inline-block h-[0.75em] w-[0.55em] bg-current align-baseline ${
             reduceMotion ? "" : "animate-[caret-blink_1.1s_linear_infinite]"
