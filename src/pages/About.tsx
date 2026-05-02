@@ -157,7 +157,7 @@ export function About() {
                   <div className="mb-3 flex items-center gap-2">
                     <span className="inline-block h-1.5 w-1.5 rounded-full bg-yellow-400" />
                     <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
-                      #1 · the most important person on this page
+                      the most important person on this page
                     </p>
                   </div>
                   <h3 className="text-4xl font-bold italic tracking-tight sm:text-5xl md:text-6xl">

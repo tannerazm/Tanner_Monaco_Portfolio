@@ -85,7 +85,7 @@ function TypedName() {
   return (
     <>
       <span className="sr-only">Tanner Monaco.</span>
-      <span aria-hidden="true">
+      <span aria-hidden="true" className="font-mono">
         {text}
         <span
           className={`ml-1 inline-block h-[0.75em] w-[0.55em] bg-current align-baseline ${
@@ -184,10 +184,6 @@ export function Home() {
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
                 The tools.
               </h2>
-              <p className="mt-3 text-muted-foreground">
-                Production at Repify Ai today; bootcamp PERN through contract
-                PHP/Vue at Resi to get here.
-              </p>
             </div>
           </div>
         </AnimatedSection>
@@ -201,16 +197,17 @@ export function Home() {
           <AnimatedSection>
             <div className="mb-10 max-w-2xl">
               <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground mb-3">
-                If you're hiring
+                Hiring?
               </p>
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                Currently happy. Open to a conversation.
+                If you're building something interesting, I want to hear
+                about it.
               </h2>
               <p className="mt-4 text-muted-foreground">
-                I'm not actively job hunting; I'm shipping production work at
-                Repify Ai. That said, if you're building something interesting
-                and think I'd be a strong fit, I'd love to hear from you. A
-                phone call or email is the easiest way to start.
+                I love hearing about what other teams are building,
+                especially where AI, infrastructure, or product engineering
+                meets real-world impact. Drop me a note below, or a phone
+                call or email also works.
               </p>
             </div>
           </AnimatedSection>

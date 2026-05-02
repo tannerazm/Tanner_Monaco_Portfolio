@@ -10,6 +10,7 @@ import {
   MapPin,
   Phone,
   Send,
+  Sparkles,
   X,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -46,6 +47,24 @@ const TOTAL_SKILLS = RESUME_SKILL_GROUPS.reduce(
   0,
 );
 
+// Tech terms commonly seen in JDs that are NOT in Tanner's stack. If the JD
+// mentions any of these, we don't trigger the "Perfect Fit" celebration
+// since there's a real gap to talk about.
+const COMMON_GAPS = [
+  "Go", "Golang", "Rust", "Java", "C++", "C#", "Ruby", "Scala", "Kotlin",
+  "Swift", "Elixir", "Erlang", "Haskell", "Clojure",
+  "Angular", "Svelte", "Solid", "Ember",
+  "GraphQL", "gRPC",
+  "Redis", "Cassandra", "DynamoDB", "Elasticsearch", "Neo4j",
+  "Kafka", "RabbitMQ", "NATS",
+  "Terraform", "Ansible", "Pulumi", "CloudFormation",
+  "Spring", "Spring Boot", ".NET", "Rails", "FastAPI",
+  "iOS", "Android", "React Native", "Flutter",
+  "Salesforce", "SAP",
+];
+
+const PERFECT_FIT_MIN_MATCHES = 3;
+
 export function Resume() {
   const navigate = useNavigate();
   const [jdText, setJdText] = useState("");
@@ -61,6 +80,42 @@ export function Resume() {
     }
     return matched;
   }, [trimmedJd]);
+
+  // For each matched skill, find the exact term in the JD that triggered the
+  // match (so we can show the recruiter what was found in their own words,
+  // e.g. "K8s" instead of "Kubernetes").
+  const matchedTerms = useMemo(() => {
+    if (!trimmedJd) return [] as { skill: string; jdTerm: string }[];
+    const result: { skill: string; jdTerm: string }[] = [];
+    for (const group of RESUME_SKILL_GROUPS) {
+      for (const skill of group.skills) {
+        const variants = [skill, ...(SKILL_ALIASES[skill] ?? [])];
+        for (const variant of variants) {
+          const re = new RegExp(`\\b${escapeRegex(variant)}\\b`, "i");
+          const m = trimmedJd.match(re);
+          if (m) {
+            result.push({ skill, jdTerm: m[0] });
+            break;
+          }
+        }
+      }
+    }
+    return result;
+  }, [trimmedJd]);
+
+  const gaps = useMemo(() => {
+    if (!trimmedJd) return [] as string[];
+    return COMMON_GAPS.filter((gap) =>
+      new RegExp(`\\b${escapeRegex(gap)}\\b`, "i").test(trimmedJd),
+    );
+  }, [trimmedJd]);
+
+  const isPerfectFit =
+    trimmedJd.length > 0 &&
+    matchedSkills.size >= PERFECT_FIT_MIN_MATCHES &&
+    gaps.length === 0;
+
+  const extras = TOTAL_SKILLS - matchedSkills.size;
 
   function handleSendJd() {
     navigate("/contact", {
@@ -246,28 +301,85 @@ export function Resume() {
               )}
             </div>
             <p className="mb-3 text-sm text-muted-foreground">
-              Drop in the JD and I'll highlight in red the skills below where
-              my expertise fits the role.
+              Drop in the JD and I'll highlight the skills below where my
+              expertise fits the role.
             </p>
             <textarea
               id="jd-input"
               value={jdText}
               onChange={(e) => setJdText(e.target.value)}
               placeholder="Paste the job description here…"
-              className="min-h-[120px] w-full resize-y rounded-md border border-input bg-background px-3 py-2 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring"
+              className={cn(
+                "min-h-[120px] w-full resize-y rounded-md border bg-background px-3 py-2 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2",
+                isPerfectFit
+                  ? "border-emerald-500/50 focus:border-emerald-500 focus:ring-emerald-500"
+                  : "border-input focus:ring-ring",
+              )}
             />
             {trimmedJd && (
-              <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
-                <p className="text-sm text-muted-foreground">
-                  <span className="font-mono text-base font-semibold text-red-500">
-                    {matchedSkills.size}
-                  </span>
-                  <span className="font-mono"> / {TOTAL_SKILLS}</span> skills
-                  match this JD.
-                </p>
-                <Button type="button" size="sm" onClick={handleSendJd}>
-                  <Send className="mr-1 h-4 w-4" /> Send this to Tanner
-                </Button>
+              <div className="mt-4 space-y-3">
+                <FitBar
+                  matchedTerms={matchedTerms}
+                  gapTerms={gaps}
+                  isPerfectFit={isPerfectFit}
+                />
+
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                  <div className="min-w-0 flex-1">
+                    {isPerfectFit ? (
+                      <motion.p
+                        initial={{ opacity: 0, y: 4 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.3, ease: "easeOut" }}
+                        className="flex items-start gap-2 text-sm"
+                      >
+                        <Sparkles className="mt-0.5 h-4 w-4 flex-shrink-0 text-emerald-500" />
+                        <span className="text-foreground">
+                          <span className="font-bold text-emerald-600 dark:text-emerald-400">
+                            Perfect Fit.
+                          </span>{" "}
+                          I match all{" "}
+                          <span className="font-mono font-semibold text-emerald-600 dark:text-emerald-400">
+                            {matchedSkills.size}
+                          </span>{" "}
+                          skills you've listed. You should{" "}
+                          <em className="font-semibold text-emerald-600 dark:text-emerald-400">
+                            definitely
+                          </em>{" "}
+                          send me this.
+                        </span>
+                      </motion.p>
+                    ) : matchedSkills.size + gaps.length > 0 ? (
+                      <p className="text-sm text-muted-foreground">
+                        <span className="font-mono font-semibold text-red-500">
+                          {matchedSkills.size}
+                        </span>{" "}
+                        of {matchedSkills.size + gaps.length} skills in your
+                        JD match my stack. I bring{" "}
+                        <span className="font-mono font-semibold text-foreground">
+                          {extras}
+                        </span>{" "}
+                        more on top.
+                      </p>
+                    ) : (
+                      <p className="text-sm text-muted-foreground">
+                        No tech terms detected in your JD yet.
+                      </p>
+                    )}
+                  </div>
+                  <Button
+                    type="button"
+                    size="sm"
+                    onClick={handleSendJd}
+                    className={cn(
+                      "flex-shrink-0",
+                      isPerfectFit &&
+                        "bg-emerald-500 text-white hover:bg-emerald-600",
+                    )}
+                  >
+                    <Send className="mr-1 h-4 w-4" /> Send this to me
+                  </Button>
+                </div>
               </div>
             )}
           </div>
@@ -291,7 +403,11 @@ export function Resume() {
                         className={cn(
                           "transition-colors",
                           isMatched &&
+                            !isPerfectFit &&
                             "border-red-500 bg-red-500 text-white hover:bg-red-600",
+                          isMatched &&
+                            isPerfectFit &&
+                            "border-emerald-500 bg-emerald-500 text-white hover:bg-emerald-600",
                         )}
                       >
                         {skill}
@@ -344,6 +460,59 @@ function SectionHeading({
         {eyebrow}
       </p>
       <h2 className="text-2xl font-bold tracking-tight sm:text-3xl">{title}</h2>
+    </div>
+  );
+}
+
+// Caution-tape stripe pattern in red — for sections of the bar where the JD
+// asks for something Tanner doesn't have.
+const STRIPE_STYLE: React.CSSProperties = {
+  backgroundImage:
+    "repeating-linear-gradient(45deg, #ef4444 0 6px, #7f1d1d 6px 12px)",
+};
+
+function FitBar({
+  matchedTerms,
+  gapTerms,
+  isPerfectFit,
+}: {
+  matchedTerms: { skill: string; jdTerm: string }[];
+  gapTerms: string[];
+  isPerfectFit: boolean;
+}) {
+  if (matchedTerms.length === 0 && gapTerms.length === 0) return null;
+
+  const matchedColor = isPerfectFit ? "bg-emerald-500" : "bg-red-500";
+
+  return (
+    <div className="flex flex-wrap gap-[3px]">
+      {matchedTerms.map((term, i) => (
+        <div
+          key={`m-${i}`}
+          title={`Matches ${term.skill}`}
+          className={cn(
+            "flex h-7 min-w-[60px] flex-1 items-center justify-center rounded-sm px-2 transition-colors",
+            matchedColor,
+          )}
+        >
+          <span className="truncate font-mono text-xs font-medium text-white">
+            {term.jdTerm}
+          </span>
+        </div>
+      ))}
+      {gapTerms.map((gap, i) => (
+        <div
+          key={`g-${i}`}
+          title={gap}
+          className="relative flex h-7 min-w-[60px] flex-1 items-center justify-center overflow-hidden rounded-sm"
+          style={STRIPE_STYLE}
+        >
+          <div className="absolute inset-1 rounded-[2px] bg-background" />
+          <span className="relative z-10 truncate px-2 font-mono text-xs font-medium text-foreground">
+            {gap}
+          </span>
+        </div>
+      ))}
     </div>
   );
 }

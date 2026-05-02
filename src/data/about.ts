@@ -4,7 +4,7 @@ import Stillwater from "@/assets/photos/Stillwater.jpg";
 import UniversityOfOklahomaFootball from "@/assets/photos/UniversityOfOklahomaFootball.jpg";
 import TexasRangers from "@/assets/photos/TexasRangers.jpg";
 import BakerMayfieldBucs from "@/assets/photos/BakerMayfieldBucs.jpeg";
-import WorldOfWacraft from "@/assets/photos/WorldOfWacraft.jpg";
+import WoWMidnight from "@/assets/photos/WoW_Midnight.png";
 import Overwatch2 from "@/assets/photos/Overwatch2.jpg";
 import CallOfDuty from "@/assets/photos/CallOfDuty.jpg";
 import RhineRiverCastle from "@/assets/photos/RhineRiverCastle.jpg";
@@ -47,7 +47,7 @@ export const ABOUT_SECTIONS: AboutSection[] = [
   {
     heading: "Games",
     items: [
-      { title: "World of Warcraft", image: WorldOfWacraft },
+      { title: "World of Warcraft", image: WoWMidnight },
       { title: "Overwatch 2", image: Overwatch2 },
       { title: "Call of Duty", image: CallOfDuty },
     ],
