@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light" />
+    <meta name="supported-color-schemes" content="light" />
+    <title>Tanner Monaco received your inquiry</title>
+    <style>
+      /* Mobile fine-tuning. Email clients that strip style blocks fall back
+         to the inline styles below, which already use max-width + width:100%. */
+      @media only screen and (max-width: 600px) {
+        .tm-outer { padding: 16px 8px !important; }
+        .tm-card { border-radius: 8px !important; }
+        .tm-header-pad { padding: 20px 20px !important; }
+        .tm-body-pad { padding: 24px 20px !important; }
+        .tm-info-cell-label { width: 80px !important; padding-left: 14px !important; padding-right: 10px !important; }
+        .tm-info-cell-value { padding-right: 14px !important; }
+        .tm-message-block { padding: 14px !important; }
+      }
+    </style>
+  </head>
+  <body style="margin: 0; padding: 0; background-color: #f5f5f4; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #1a1a1a; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%;">
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #f5f5f4;">
+      <tr>
+        <td class="tm-outer" align="center" style="padding: 32px 16px;">
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" class="tm-card" style="max-width: 600px; width: 100%; background-color: #ffffff; border: 1px solid #e7e5e4; border-radius: 12px; overflow: hidden;">
+            <!-- Header -->
+            <tr>
+              <td class="tm-header-pad" style="padding: 28px 32px; border-bottom: 1px solid #e7e5e4;">
+                <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                  <tr>
+                    <td valign="middle" width="56" style="width: 56px;">
+                      <img src="https://tannermonaco.netlify.app/favicon-192x192.png" alt="" width="48" height="48" style="display: block; width: 48px; height: 48px; border: 0;" />
+                    </td>
+                    <td valign="middle" align="right" style="font-family: 'JetBrains Mono', Menlo, Consolas, monospace; font-size: 13px; font-weight: 600; color: #1a1a1a; letter-spacing: -0.01em;">
+                      Tanner<span style="color: #841617;">.</span>Monaco
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- Body -->
+            <tr>
+              <td class="tm-body-pad" style="padding: 32px;">
+                <p style="margin: 0 0 16px 0; font-size: 17px; line-height: 1.5; font-weight: 600;">Hello {{from_first_name}},</p>
+                <p style="margin: 0 0 24px 0; font-size: 15px; line-height: 1.65; color: #44403c;">
+                  This is an automated email confirming that Tanner Monaco has received your inquiry through his portfolio website. He'll get back to you as soon as possible.
+                </p>
+
+                <!-- Records label -->
+                <p style="margin: 0 0 8px 0; font-family: 'JetBrains Mono', Menlo, Consolas, monospace; font-size: 11px; color: #78716c; text-transform: uppercase; letter-spacing: 0.08em;">
+                  For your records
+                </p>
+
+                <!-- Info table -->
+                <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #fafaf9; border: 1px solid #e7e5e4; border-radius: 8px; margin-bottom: 20px;">
+                  <tr>
+                    <td class="tm-info-cell-label" style="padding: 12px 16px 6px 16px; font-size: 13px; color: #78716c; width: 90px;">Name</td>
+                    <td class="tm-info-cell-value" style="padding: 12px 16px 6px 16px; font-size: 14px; color: #1a1a1a; font-weight: 500; word-break: break-word;">{{from_first_name}} {{from_last_name}}</td>
+                  </tr>
+                  <tr>
+                    <td class="tm-info-cell-label" style="padding: 6px 16px; font-size: 13px; color: #78716c;">Email</td>
+                    <td class="tm-info-cell-value" style="padding: 6px 16px; font-size: 14px; color: #1a1a1a; font-weight: 500; word-break: break-all;">{{from_email_id}}</td>
+                  </tr>
+                  <tr>
+                    <td class="tm-info-cell-label" style="padding: 6px 16px; font-size: 13px; color: #78716c;">Phone</td>
+                    <td class="tm-info-cell-value" style="padding: 6px 16px; font-size: 14px; color: #1a1a1a; font-weight: 500; word-break: break-word;">{{from_phone_number}}</td>
+                  </tr>
+                  <tr>
+                    <td class="tm-info-cell-label" style="padding: 6px 16px 12px 16px; font-size: 13px; color: #78716c;">Company</td>
+                    <td class="tm-info-cell-value" style="padding: 6px 16px 12px 16px; font-size: 14px; color: #1a1a1a; font-weight: 500; word-break: break-word;">{{from_company}}</td>
+                  </tr>
+                </table>
+
+                <!-- Message label -->
+                <p style="margin: 0 0 8px 0; font-family: 'JetBrains Mono', Menlo, Consolas, monospace; font-size: 11px; color: #78716c; text-transform: uppercase; letter-spacing: 0.08em;">
+                  Your message
+                </p>
+                <div class="tm-message-block" style="background-color: #fafaf9; border: 1px solid #e7e5e4; border-radius: 8px; padding: 16px; font-size: 14px; line-height: 1.65; color: #1a1a1a; white-space: pre-wrap; word-break: break-word;">{{message}}</div>
+
+                <p style="margin: 28px 0 16px 0; font-size: 15px; line-height: 1.65; color: #44403c;">
+                  Thank you for stopping by. Feel free to reach out personally with any additional questions or to skip the form next time:
+                </p>
+                <p style="margin: 0 0 6px 0; font-size: 15px; word-break: break-all;">
+                  <a href="mailto:tannermonaco@gmail.com" style="color: #841617; text-decoration: none; font-weight: 500;">tannermonaco@gmail.com</a>
+                </p>
+                <p style="margin: 0 0 24px 0; font-size: 15px; word-break: break-all;">
+                  <a href="https://tannermonaco.netlify.app" style="color: #841617; text-decoration: none; font-weight: 500;">tannermonaco.netlify.app</a>
+                </p>
+
+                <p style="margin: 32px 0 4px 0; font-size: 15px; line-height: 1.6; color: #44403c;">Best regards,</p>
+                <p style="margin: 0; font-size: 15px; font-weight: 600; color: #1a1a1a;">Tanner Monaco</p>
+              </td>
+            </tr>
+          </table>
+
+          <!-- Footer -->
+          <p style="font-size: 11px; color: #a8a29e; margin: 16px 0 0 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+            You received this because you submitted the contact form at <a href="https://tannermonaco.netlify.app" style="color: #a8a29e; text-decoration: underline;">tannermonaco.netlify.app</a>.
+          </p>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

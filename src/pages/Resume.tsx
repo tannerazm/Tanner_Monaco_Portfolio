@@ -32,6 +32,12 @@ import {
 const RESUME_DOC_URL =
   "https://docs.google.com/document/d/e/2PACX-1vRfdIHdAWejpgus26nIsJivmq89aSn-vc0AMtdpXXLi-pXlWftU8U5iIGllCAFjk-uCtEEjmRMibZNV/pub";
 
+// Direct Google Docs PDF export endpoint. Always serves the latest saved
+// version of the doc as a PDF download. Requires the doc's share permission
+// to be "Anyone with the link → Viewer".
+const RESUME_PDF_URL =
+  "https://docs.google.com/document/d/1cPRrLg8I5pCNSRmjvSK52UtRv8-nZiPr3yTjXEuTBSo/export?format=pdf";
+
 function escapeRegex(input: string) {
   return input.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
@@ -150,8 +156,8 @@ export function Resume() {
             </a>
           </Button>
           <Button asChild>
-            <a href={RESUME_DOC_URL} target="_blank" rel="noopener noreferrer">
-              <Download className="mr-1 h-4 w-4" /> Download
+            <a href={RESUME_PDF_URL} download="Tanner_Monaco_Resume.pdf">
+              <Download className="mr-1 h-4 w-4" /> Download PDF
             </a>
           </Button>
         </div>

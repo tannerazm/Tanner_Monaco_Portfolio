@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light" />
+    <meta name="supported-color-schemes" content="light" />
+    <title>Portfolio inquiry from {{from_first_name}}</title>
+    <style>
+      @media only screen and (max-width: 600px) {
+        .tm-outer { padding: 16px 8px !important; }
+        .tm-card { border-radius: 8px !important; }
+        .tm-header-pad { padding: 20px 20px !important; }
+        .tm-body-pad { padding: 24px 20px !important; }
+        .tm-info-cell-label { width: 80px !important; padding-left: 14px !important; padding-right: 10px !important; }
+        .tm-info-cell-value { padding-right: 14px !important; }
+        .tm-message-block { padding: 14px !important; }
+      }
+    </style>
+  </head>
+  <body style="margin: 0; padding: 0; background-color: #f5f5f4; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; color: #1a1a1a; -webkit-font-smoothing: antialiased; -webkit-text-size-adjust: 100%;">
+    <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #f5f5f4;">
+      <tr>
+        <td class="tm-outer" align="center" style="padding: 32px 16px;">
+          <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" class="tm-card" style="max-width: 600px; width: 100%; background-color: #ffffff; border: 1px solid #e7e5e4; border-radius: 12px; overflow: hidden;">
+            <!-- Header -->
+            <tr>
+              <td class="tm-header-pad" style="padding: 28px 32px; border-bottom: 1px solid #e7e5e4;">
+                <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                  <tr>
+                    <td valign="middle" width="56" style="width: 56px;">
+                      <img src="https://tannermonaco.netlify.app/favicon-192x192.png" alt="" width="48" height="48" style="display: block; width: 48px; height: 48px; border: 0;" />
+                    </td>
+                    <td valign="middle" align="right" style="font-family: 'JetBrains Mono', Menlo, Consolas, monospace; font-size: 11px; color: #78716c; text-transform: uppercase; letter-spacing: 0.08em;">
+                      New Inquiry
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+
+            <!-- Body -->
+            <tr>
+              <td class="tm-body-pad" style="padding: 32px;">
+                <p style="margin: 0 0 8px 0; font-size: 22px; font-weight: 700; line-height: 1.3; color: #1a1a1a;">Nice work.</p>
+                <p style="margin: 0 0 24px 0; font-size: 15px; line-height: 1.65; color: #44403c; word-break: break-word;">
+                  You got a new portfolio inquiry from
+                  <strong style="color: #1a1a1a;">{{from_first_name}} {{from_last_name}}</strong>
+                  at <strong style="color: #1a1a1a;">{{from_company}}</strong>.
+                </p>
+
+                <!-- Contact info -->
+                <p style="margin: 0 0 8px 0; font-family: 'JetBrains Mono', Menlo, Consolas, monospace; font-size: 11px; color: #78716c; text-transform: uppercase; letter-spacing: 0.08em;">
+                  Contact
+                </p>
+                <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #fafaf9; border: 1px solid #e7e5e4; border-radius: 8px; margin-bottom: 20px;">
+                  <tr>
+                    <td class="tm-info-cell-label" style="padding: 12px 16px 6px 16px; font-size: 13px; color: #78716c; width: 90px;">Name</td>
+                    <td class="tm-info-cell-value" style="padding: 12px 16px 6px 16px; font-size: 14px; color: #1a1a1a; font-weight: 500; word-break: break-word;">{{from_first_name}} {{from_last_name}}</td>
+                  </tr>
+                  <tr>
+                    <td class="tm-info-cell-label" style="padding: 6px 16px; font-size: 13px; color: #78716c;">Email</td>
+                    <td class="tm-info-cell-value" style="padding: 6px 16px; font-size: 14px; font-weight: 500; word-break: break-all;">
+                      <a href="mailto:{{from_email_id}}" style="color: #841617; text-decoration: none;">{{from_email_id}}</a>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="tm-info-cell-label" style="padding: 6px 16px; font-size: 13px; color: #78716c;">Phone</td>
+                    <td class="tm-info-cell-value" style="padding: 6px 16px; font-size: 14px; color: #1a1a1a; font-weight: 500; word-break: break-word;">{{from_phone_number}}</td>
+                  </tr>
+                  <tr>
+                    <td class="tm-info-cell-label" style="padding: 6px 16px 12px 16px; font-size: 13px; color: #78716c;">Company</td>
+                    <td class="tm-info-cell-value" style="padding: 6px 16px 12px 16px; font-size: 14px; color: #1a1a1a; font-weight: 500; word-break: break-word;">{{from_company}}</td>
+                  </tr>
+                </table>
+
+                <!-- Message -->
+                <p style="margin: 0 0 8px 0; font-family: 'JetBrains Mono', Menlo, Consolas, monospace; font-size: 11px; color: #78716c; text-transform: uppercase; letter-spacing: 0.08em;">
+                  Message
+                </p>
+                <div class="tm-message-block" style="background-color: #fafaf9; border: 1px solid #e7e5e4; border-radius: 8px; padding: 16px; font-size: 14px; line-height: 1.65; color: #1a1a1a; white-space: pre-wrap; word-break: break-word;">{{message}}</div>
+
+                <p style="margin: 28px 0 0 0; font-size: 13px; line-height: 1.65; color: #78716c;">
+                  Reply directly to this email to respond. It routes to {{from_email_id}}.
+                </p>
+              </td>
+            </tr>
+          </table>
+
+          <!-- Footer -->
+          <p style="font-size: 11px; color: #a8a29e; margin: 16px 0 0 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+            Sent from the contact form at <a href="https://tannermonaco.netlify.app" style="color: #a8a29e; text-decoration: underline;">tannermonaco.netlify.app</a>.
+          </p>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>

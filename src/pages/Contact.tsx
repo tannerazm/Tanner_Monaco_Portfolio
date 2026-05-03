@@ -88,6 +88,9 @@ export function Contact() {
     setSubmitting(true);
     setError(null);
 
+    const phone = form.phoneNumber.trim() || "(not provided)";
+    const company = form.companyName.trim() || "(not provided)";
+
     try {
       await emailjs.send(
         EMAILJS_SERVICE,
@@ -97,20 +100,27 @@ export function Contact() {
           from_first_name: form.firstName,
           from_last_name: form.lastName,
           from_email_id: form.email,
-          from_phone_number: form.phoneNumber,
-          from_company: form.companyName,
+          from_phone_number: phone,
+          from_company: company,
         },
         { publicKey: EMAILJS_PUBLIC_KEY },
       );
 
       // Auto-reply is best-effort. Don't block success on it.
+      // Send the same payload as the to-self template so the auto-reply
+      // can echo everything the user submitted (and the BCC copy gives
+      // Tanner the full record too).
       emailjs
         .send(
           EMAILJS_SERVICE,
           EMAILJS_TEMPLATE_AUTOREPLY,
           {
+            message: form.message,
             from_first_name: form.firstName,
+            from_last_name: form.lastName,
             from_email_id: form.email,
+            from_phone_number: phone,
+            from_company: company,
           },
           { publicKey: EMAILJS_PUBLIC_KEY },
         )
