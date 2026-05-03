@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
+import { HiddenLogo } from "@/components/HiddenLogo";
 import { CONTACT } from "@/data/contact";
 
 const EMAILJS_PUBLIC_KEY = "rMGN_hBsndMWWnEkb";
@@ -141,8 +142,9 @@ export function Contact() {
           <SuccessPanel firstName={form.firstName} />
         ) : (
           <>
-            <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground mb-3">
+            <p className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-muted-foreground mb-3">
               Contact
+              <HiddenLogo id="contact" size={11} />
             </p>
             <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
               Let's talk.

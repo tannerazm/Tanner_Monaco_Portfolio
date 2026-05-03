@@ -3,6 +3,7 @@ import { ArrowUpRight } from "lucide-react";
 import { motion } from "motion/react";
 import { Badge } from "@/components/ui/badge";
 import { AnimatedSection } from "@/components/AnimatedSection";
+import { HiddenLogo } from "@/components/HiddenLogo";
 import { PROJECTS } from "@/data/projects";
 
 export function Projects() {
@@ -14,8 +15,9 @@ export function Projects() {
         transition={{ duration: 0.5 }}
         className="mb-12 max-w-2xl"
       >
-        <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground mb-3">
+        <p className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-muted-foreground mb-3">
           Projects
+          <HiddenLogo id="projects" size={11} />
         </p>
         <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
           Things I've built.

@@ -6,6 +6,9 @@ import { Footer } from "@/components/Footer";
 import { BackToTop } from "@/components/BackToTop";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { PostHogPageView } from "@/components/PostHogPageView";
+import { EggHuntProvider } from "@/components/EggHuntProvider";
+import { EggHuntToast } from "@/components/EggHuntToast";
+import { EggHuntComplete } from "@/components/EggHuntComplete";
 import { Home } from "@/pages/Home";
 import { About } from "@/pages/About";
 import { Projects } from "@/pages/Projects";
@@ -31,23 +34,27 @@ export function App() {
   }, []);
 
   return (
-    <div className="flex min-h-screen flex-col">
-      <ScrollToTop />
-      <PostHogPageView />
-      <Navbar />
-      <main className="flex-1">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/projects/:slug" element={<ProjectDetail />} />
-          <Route path="/resume" element={<Resume />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </main>
-      <Footer />
-      <BackToTop />
-    </div>
+    <EggHuntProvider>
+      <div className="flex min-h-screen flex-col">
+        <ScrollToTop />
+        <PostHogPageView />
+        <Navbar />
+        <main className="flex-1">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/projects" element={<Projects />} />
+            <Route path="/projects/:slug" element={<ProjectDetail />} />
+            <Route path="/resume" element={<Resume />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </main>
+        <Footer />
+        <BackToTop />
+        <EggHuntToast />
+        <EggHuntComplete />
+      </div>
+    </EggHuntProvider>
   );
 }

@@ -5,6 +5,7 @@ import { ArrowRight, Github, Linkedin, Mail, MapPin } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { AnimatedSection } from "@/components/AnimatedSection";
+import { HiddenLogo } from "@/components/HiddenLogo";
 import { CONTACT } from "@/data/contact";
 import TwigLogo from "@/assets/programmingicons/TwigLogo.png";
 
@@ -182,6 +183,7 @@ export function Home() {
               <Mail className="h-4 w-4" />
               {CONTACT.email}
             </a>
+            <HiddenLogo id="home" size={12} />
           </div>
         </motion.div>
       </section>

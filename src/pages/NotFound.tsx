@@ -1,6 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { HiddenLogo } from "@/components/HiddenLogo";
+import { useEggHunt } from "@/components/EggHuntProvider";
+import { NOT_FOUND_ID, TOTAL_EGGS } from "@/lib/eggHunt";
 
 const GAME_W = 720;
 const GAME_H = 240;
@@ -208,11 +211,24 @@ export function NotFound() {
   const animRef = useRef<number | undefined>(undefined);
   const liftingRef = useRef(false);
 
+  const { foundIds, showNudge } = useEggHunt();
+
   // Load high score
   useEffect(() => {
     const stored = Number(localStorage.getItem(HS_KEY) || 0);
     if (Number.isFinite(stored)) setHighScore(stored);
   }, []);
+
+  // If they land on the 404 page with 5/6 marks found and the 404 mark is
+  // the missing one, give them a friendly nudge.
+  useEffect(() => {
+    if (
+      foundIds.length === TOTAL_EGGS - 1 &&
+      !foundIds.includes(NOT_FOUND_ID)
+    ) {
+      showNudge("Now where's that final one?");
+    }
+  }, [foundIds, showNudge]);
 
   // Static idle / over frame
   const drawStaticFrame = useCallback(() => {
@@ -387,12 +403,12 @@ export function NotFound() {
   };
 
   return (
-    <div className="container-page flex min-h-[60vh] flex-col items-center justify-center text-center">
+    <div className="container-page flex min-h-[60vh] flex-col items-center justify-center py-16 text-center md:py-20">
       <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground mb-4">
         404 // off trail
       </p>
       <h1 className="text-5xl font-bold tracking-tight sm:text-6xl">
-        You're lost.
+        You're lost... or are you?
       </h1>
       <p className="mt-4 max-w-xl text-muted-foreground">
         While you figure out where you meant to go, fly the plane. Hold SPACE
@@ -406,9 +422,10 @@ export function NotFound() {
             Score:{" "}
             <span className="font-semibold text-foreground">{score}</span>
           </span>
-          <span className="text-muted-foreground">
+          <span className="flex items-center gap-2 text-muted-foreground">
             High:{" "}
             <span className="font-semibold text-foreground">{highScore}</span>
+            <HiddenLogo id="404" size={11} />
           </span>
         </div>
         <canvas

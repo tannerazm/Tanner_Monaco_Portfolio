@@ -4,6 +4,7 @@ import { Mail, MapPin, Phone } from "lucide-react";
 import MeChicago from "@/assets/photos/MeChicago.jpg";
 import MeAndAddison from "@/assets/photos/MeAndAddison.jpg";
 import { AnimatedSection } from "@/components/AnimatedSection";
+import { HiddenLogo } from "@/components/HiddenLogo";
 import { ABOUT_SECTIONS } from "@/data/about";
 import { CONTACT } from "@/data/contact";
 
@@ -172,7 +173,7 @@ export function About() {
                     of it without making a show of it. Top billing here on
                     purpose.
                   </p>
-                  <div className="mt-5 flex flex-wrap gap-2">
+                  <div className="mt-5 flex flex-wrap items-center gap-2">
                     {[
                       "★ creative powerhouse",
                       "★ sharper mind in the room",
@@ -186,6 +187,7 @@ export function About() {
                         {tag}
                       </span>
                     ))}
+                    <HiddenLogo id="about" size={14} />
                   </div>
                 </div>
                 <div className="justify-self-center md:justify-self-end">

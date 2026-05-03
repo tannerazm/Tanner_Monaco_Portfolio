@@ -16,6 +16,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { AnimatedSection } from "@/components/AnimatedSection";
+import { HiddenLogo } from "@/components/HiddenLogo";
 import { cn } from "@/lib/utils";
 import { CONTACT } from "@/data/contact";
 import {
@@ -285,9 +286,10 @@ export function Resume() {
             <div className="mb-2 flex items-center justify-between gap-3">
               <label
                 htmlFor="jd-input"
-                className="font-mono text-xs uppercase tracking-wider text-muted-foreground"
+                className="flex items-center gap-2 font-mono text-xs uppercase tracking-wider text-muted-foreground"
               >
                 Recruiter? Paste your job description
+                <HiddenLogo id="resume" size={11} />
               </label>
               {trimmedJd && (
                 <button
