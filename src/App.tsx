@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import { CONTACT } from "@/data/contact";
 import { Navbar } from "@/components/Navbar";
@@ -17,22 +16,25 @@ import { Resume } from "@/pages/Resume";
 import { Contact } from "@/pages/Contact";
 import { NotFound } from "@/pages/NotFound";
 
-export function App() {
-  useEffect(() => {
-    console.log(
-      "%chi 👋. You found me.",
-      "font:bold 14px ui-monospace,SFMono-Regular,Menlo,monospace;color:#ef4444;",
-    );
-    console.log(
-      `%cif you're hiring or just curious: ${CONTACT.email}`,
-      "color:#888;font:13px ui-monospace,SFMono-Regular,Menlo,monospace;",
-    );
-    console.log(
-      `%csource: ${CONTACT.github}`,
-      "color:#888;font:13px ui-monospace,SFMono-Regular,Menlo,monospace;",
-    );
-  }, []);
+// Console easter egg. Runs once when this module is first imported, instead
+// of on every App mount, so React StrictMode's double-mount in dev doesn't
+// double-print it.
+if (typeof window !== "undefined") {
+  console.log(
+    "%chi 👋. You found me.",
+    "font:bold 14px ui-monospace,SFMono-Regular,Menlo,monospace;color:#ef4444;",
+  );
+  console.log(
+    `%cif you're hiring or just curious: ${CONTACT.email}`,
+    "color:#888;font:13px ui-monospace,SFMono-Regular,Menlo,monospace;",
+  );
+  console.log(
+    `%csource: ${CONTACT.github}`,
+    "color:#888;font:13px ui-monospace,SFMono-Regular,Menlo,monospace;",
+  );
+}
 
+export function App() {
   return (
     <EggHuntProvider>
       <div className="flex min-h-screen flex-col">

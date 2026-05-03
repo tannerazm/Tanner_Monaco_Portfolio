@@ -1,5 +1,6 @@
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { usePostHog } from "posthog-js/react";
 import { motion } from "motion/react";
 import {
   Download,
@@ -73,9 +74,11 @@ const COMMON_GAPS = [
 const PERFECT_FIT_MIN_MATCHES = 3;
 
 export function Resume() {
+  const posthog = usePostHog();
   const navigate = useNavigate();
   const [jdText, setJdText] = useState("");
   const trimmedJd = jdText.trim();
+  const jdTrackedRef = useRef(false);
 
   const matchedSkills = useMemo(() => {
     const matched = new Set<string>();
@@ -124,7 +127,30 @@ export function Resume() {
 
   const extras = TOTAL_SKILLS - matchedSkills.size;
 
+  const handleJdChange = useCallback(
+    (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+      const val = e.target.value;
+      setJdText(val);
+      if (!jdTrackedRef.current && val.trim().length > 0) {
+        jdTrackedRef.current = true;
+        posthog?.capture("resume_jd_pasted", {
+          jd_length: val.trim().length,
+        });
+      }
+      if (val.trim().length === 0) {
+        jdTrackedRef.current = false;
+      }
+    },
+    [posthog],
+  );
+
   function handleSendJd() {
+    posthog?.capture("resume_jd_sent_to_contact", {
+      matched_skills_count: matchedSkills.size,
+      gap_count: gaps.length,
+      is_perfect_fit: isPerfectFit,
+      jd_length: trimmedJd.length,
+    });
     navigate("/contact", {
       state: {
         jd: trimmedJd,
@@ -156,7 +182,11 @@ export function Resume() {
             </a>
           </Button>
           <Button asChild>
-            <a href={RESUME_PDF_URL} download="Tanner_Monaco_Resume.pdf">
+            <a
+              href={RESUME_PDF_URL}
+              download="Tanner_Monaco_Resume.pdf"
+              onClick={() => posthog?.capture("resume_pdf_downloaded")}
+            >
               <Download className="mr-1 h-4 w-4" /> Download PDF
             </a>
           </Button>
@@ -315,7 +345,7 @@ export function Resume() {
             <textarea
               id="jd-input"
               value={jdText}
-              onChange={(e) => setJdText(e.target.value)}
+              onChange={handleJdChange}
               placeholder="Paste the job description here…"
               className={cn(
                 "min-h-[120px] w-full resize-y rounded-md border bg-background px-3 py-2 text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2",

@@ -7,6 +7,7 @@ import {
   type ReactNode,
 } from "react";
 import { useNavigate } from "react-router-dom";
+import { usePostHog } from "posthog-js/react";
 import {
   EGG_HUNT,
   NOT_FOUND_ID,
@@ -34,28 +35,40 @@ const Ctx = createContext<EggHuntState | null>(null);
 const SAFETY_REDIRECT_MS = 60_000;
 
 export function EggHuntProvider({ children }: { children: ReactNode }) {
+  const posthog = usePostHog();
   const [foundIds, setFoundIds] = useState<string[]>(() => loadFound());
   const [toastEgg, setToastEgg] = useState<string | null>(null);
   const [nudgeMessage, setNudgeMessage] = useState<string | null>(null);
   const [showComplete, setShowComplete] = useState(false);
   const navigate = useNavigate();
 
-  const findEgg = useCallback((id: string) => {
-    setFoundIds((prev) => {
-      if (prev.includes(id)) return prev;
-      const next = [...prev, id];
-      saveFound(next);
+  const findEgg = useCallback(
+    (id: string) => {
+      setFoundIds((prev) => {
+        if (prev.includes(id)) return prev;
+        const next = [...prev, id];
+        saveFound(next);
 
-      if (next.length === TOTAL_EGGS) {
-        setShowComplete(true);
+        if (next.length === TOTAL_EGGS) {
+          posthog?.capture("egg_hunt_completed", {
+            total_eggs: TOTAL_EGGS,
+          });
+          setShowComplete(true);
+          return next;
+        }
+
+        posthog?.capture("egg_found", {
+          egg_id: id,
+          eggs_found: next.length,
+          eggs_remaining: TOTAL_EGGS - next.length,
+        });
+        setToastEgg(id);
+        setNudgeMessage(null);
         return next;
-      }
-
-      setToastEgg(id);
-      setNudgeMessage(null);
-      return next;
-    });
-  }, []);
+      });
+    },
+    [posthog],
+  );
 
   const showNudge = useCallback((message: string) => {
     setNudgeMessage(message);

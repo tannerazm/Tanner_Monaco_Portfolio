@@ -1,6 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import { motion } from "motion/react";
 import { ArrowLeft, ExternalLink } from "lucide-react";
+import { usePostHog } from "posthog-js/react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { AnimatedSection } from "@/components/AnimatedSection";
@@ -8,6 +9,7 @@ import { getProjectBySlug } from "@/data/projects";
 import { NotFound } from "@/pages/NotFound";
 
 export function ProjectDetail() {
+  const posthog = usePostHog();
   const { slug } = useParams();
   const project = slug ? getProjectBySlug(slug) : undefined;
 
@@ -44,6 +46,13 @@ export function ProjectDetail() {
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() =>
+                posthog?.capture("project_live_link_clicked", {
+                  project_name: project.name,
+                  project_slug: slug,
+                  project_url: project.liveUrl,
+                })
+              }
             >
               View live <ExternalLink className="ml-1 h-4 w-4" />
             </a>

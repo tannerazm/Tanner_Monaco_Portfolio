@@ -24,10 +24,17 @@ export function initPostHog() {
     persistence: "localStorage+cookie",
     autocapture: true,
     disable_session_recording: false,
-    loaded: (ph) => {
-      if (import.meta.env.DEV) ph.debug();
-    },
   });
+
+  // PostHog persists the debug flag in localStorage once enabled. If a prior
+  // session turned it on, clear it silently so the console stays clean.
+  // Guarded so we don't log "disabled debug mode" on every fresh load.
+  if (
+    typeof window !== "undefined" &&
+    window.localStorage?.getItem("ph_debug") === "true"
+  ) {
+    posthog.debug(false);
+  }
 
   initialized = true;
 }

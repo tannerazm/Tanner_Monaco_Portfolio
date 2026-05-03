@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import { motion } from "motion/react";
 import emailjs from "@emailjs/browser";
 import { CheckCircle2, FileText, Github, Linkedin, Mail } from "lucide-react";
+import { usePostHog } from "posthog-js/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -75,6 +76,7 @@ function buildJdMessage(state: JdLocationState): string {
 }
 
 export function Contact() {
+  const posthog = usePostHog();
   const location = useLocation();
   const jdState = (location.state ?? null) as JdLocationState | null;
   const hasJd = Boolean(jdState?.jd);
@@ -172,12 +174,24 @@ export function Contact() {
         )
         .catch((e) => console.warn("Auto-reply failed:", e));
 
+      posthog?.capture("contact_form_submitted", {
+        has_jd: hasJd,
+        has_company: Boolean(form.companyName.trim()),
+        has_phone: Boolean(form.phoneNumber.trim()),
+        matched_skills_count: jdState?.matchedSkills?.length ?? 0,
+      });
       setSubmitted(true);
     } catch (err) {
       const e = err as { status?: number; text?: string; message?: string };
       console.error("EmailJS error:", e);
       const detail = e?.text || e?.message || "Unknown error";
       const statusPart = e?.status ? ` (${e.status})` : "";
+      posthog?.capture("contact_form_error", {
+        error_detail: detail,
+        error_status: e?.status ?? null,
+        has_jd: hasJd,
+      });
+      posthog?.captureException(err, { extra: { context: "contact_form_submit" } });
       setError(
         `Couldn't send: ${detail}${statusPart}. Email me directly at ${CONTACT.email} if this keeps failing.`,
       );
