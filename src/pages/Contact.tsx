@@ -8,7 +8,25 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { HiddenLogo } from "@/components/HiddenLogo";
+import { cn } from "@/lib/utils";
 import { CONTACT } from "@/data/contact";
+
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const PHONE_RE = /^\(\d{3}\) \d{3}-\d{4}$/;
+
+function validateEmail(value: string): string | null {
+  const v = value.trim();
+  if (!v) return "Email is required.";
+  if (!EMAIL_RE.test(v)) return "Please enter a valid email address.";
+  return null;
+}
+
+function validatePhone(value: string): string | null {
+  const v = value.trim();
+  if (!v) return null; // optional
+  if (!PHONE_RE.test(v)) return "Please enter a valid 10-digit phone number.";
+  return null;
+}
 
 const EMAILJS_PUBLIC_KEY = "rMGN_hBsndMWWnEkb";
 const EMAILJS_SERVICE = "service_uls9257";
@@ -69,6 +87,18 @@ export function Contact() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [touched, setTouched] = useState<{
+    email?: boolean;
+    phoneNumber?: boolean;
+  }>({});
+
+  const markTouched = (key: "email" | "phoneNumber") => () =>
+    setTouched((t) => ({ ...t, [key]: true }));
+
+  const emailError = touched.email ? validateEmail(form.email) : null;
+  const phoneError = touched.phoneNumber
+    ? validatePhone(form.phoneNumber)
+    : null;
 
   // If a recruiter navigates from the JD highlighter while this page is
   // already mounted, refresh the message field.
@@ -82,6 +112,22 @@ export function Contact() {
     <K extends keyof FormState>(key: K) =>
     (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) =>
       setForm((f) => ({ ...f, [key]: e.target.value }));
+
+  // Format US phone numbers as the user types: (XXX) XXX-XXXX. Strips
+  // non-digits, caps at 10 digits, and rebuilds the display string so
+  // pasted numbers in any format normalize automatically.
+  function formatPhone(value: string): string {
+    const digits = value.replace(/\D/g, "").slice(0, 10);
+    if (digits.length === 0) return "";
+    if (digits.length <= 3) return `(${digits}`;
+    if (digits.length <= 6)
+      return `(${digits.slice(0, 3)}) ${digits.slice(3)}`;
+    return `(${digits.slice(0, 3)}) ${digits.slice(3, 6)}-${digits.slice(6)}`;
+  }
+
+  const onPhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setForm((f) => ({ ...f, phoneNumber: formatPhone(e.target.value) }));
+  };
 
   async function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -213,19 +259,55 @@ export function Contact() {
                 <Input
                   type="email"
                   required
+                  inputMode="email"
+                  autoComplete="email"
+                  pattern="[^\s@]+@[^\s@]+\.[^\s@]+"
+                  title="Enter a valid email address"
                   value={form.email}
                   onChange={update("email")}
+                  onBlur={markTouched("email")}
                   placeholder="you@company.com"
+                  aria-invalid={emailError ? "true" : undefined}
+                  aria-describedby={emailError ? "email-error" : undefined}
+                  className={cn(
+                    emailError && "border-destructive focus-visible:ring-destructive",
+                  )}
                 />
+                {emailError && (
+                  <p
+                    id="email-error"
+                    className="mt-1 text-xs text-destructive"
+                  >
+                    {emailError}
+                  </p>
+                )}
               </Field>
 
               <div className="grid gap-5 sm:grid-cols-2">
                 <Field label="Phone">
                   <Input
                     type="tel"
+                    inputMode="tel"
+                    autoComplete="tel"
+                    pattern="\(\d{3}\) \d{3}-\d{4}"
+                    title="Format: (XXX) XXX-XXXX"
                     value={form.phoneNumber}
-                    onChange={update("phoneNumber")}
+                    onChange={onPhoneChange}
+                    onBlur={markTouched("phoneNumber")}
+                    aria-invalid={phoneError ? "true" : undefined}
+                    aria-describedby={phoneError ? "phone-error" : undefined}
+                    className={cn(
+                      phoneError && "border-destructive focus-visible:ring-destructive",
+                    )}
                   />
+                  {phoneError && (
+                    <p
+                      id="phone-error"
+                      className="mt-1 text-xs text-destructive"
+                    >
+                      {phoneError}
+                    </p>
+                  )}
                 </Field>
                 <Field label="Company">
                   <Input
