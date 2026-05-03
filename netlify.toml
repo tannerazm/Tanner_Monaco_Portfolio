@@ -4,6 +4,11 @@
 
 [build.environment]
   NODE_VERSION = "20"
+  # PostHog's host (us.i.posthog.com) is a public ingestion endpoint, not a
+  # secret. The literal URL appears in source as a fallback, which Netlify's
+  # secrets scanner otherwise flags as a leak when the same value is set as
+  # an env var. Exclude it from scanning.
+  SECRETS_SCAN_OMIT_KEYS = "VITE_POSTHOG_HOST"
 
 # SPA fallback: React Router handles all routes client-side, so any unmatched
 # request should serve index.html instead of 404ing.
