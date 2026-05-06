@@ -19,3 +19,9 @@ yarn-error.log*
 # OS
 .DS_Store
 *.tsbuildinfo
+
+# Cover letters: per-application drafts and PDFs stay local (this is a public repo).
+# Tooling (cover-letter.config.cjs, scripts/build-cover-letter.mjs) is committed.
+resume-drafts/cover-letter-*.md
+resume-drafts/cover-letter-*.pdf
+resume-drafts/cover-letters/

@@ -9,7 +9,8 @@
     "build": "tsc -b && vite build",
     "preview": "vite preview",
     "typecheck": "tsc -b --noEmit",
-    "build:resume": "md-to-pdf resume-drafts/resume.md --config-file resume-drafts/resume.config.cjs && cp resume-drafts/resume.pdf public/Tanner_Monaco_Resume.pdf"
+    "build:resume": "md-to-pdf resume-drafts/resume.md --config-file resume-drafts/resume.config.cjs && cp resume-drafts/resume.pdf public/Tanner_Monaco_Resume.pdf",
+    "build:cover-letter": "node scripts/build-cover-letter.mjs"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",
