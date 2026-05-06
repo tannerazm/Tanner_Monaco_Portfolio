@@ -22,7 +22,7 @@ export interface ResumeSkillGroup {
 export const RESUME_TITLE = "Full Stack Software Engineer";
 
 export const RESUME_SUMMARY =
-  "Full-stack engineer who scales teams by treating AI as core engineering infrastructure (woven through CI/CD, code generation, code review, and project management), so a small team ships like a much bigger one. Currently shipping production AI features at Repify Ai on a Python, Django + MongoDB, and React stack: containerized with Docker, orchestrated on Kubernetes, and deployed to AWS via infrastructure-as-code.";
+  "Full-stack engineer who cares more about how software feels to use than how cleverly it was built. I want the apps I ship to feel inspiring, not just functional, and my proudest work is always the feature a user noticed, used, and came back to. Underneath, my approach pairs strong engineering fundamentals and best practices with AI as a development partner, producing technically sound code and infrastructure at high velocity. Currently building AI-powered products at Repify Ai with that bar in mind.";
 
 export interface ResumeAiSection {
   heading: string;

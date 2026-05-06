@@ -134,14 +134,12 @@ export function Home() {
             </span>
           </h1>
           <p className="mt-6 text-lg text-muted-foreground max-w-2xl">
-            I build clean, well-tested software end-to-end. Currently on a
-            Python, Django + MongoDB, and React stack at Repify Ai,
-            containerized with Docker, orchestrated on Kubernetes, and
-            deployed to AWS via infrastructure-as-code. I scale small teams
-            by treating AI as core engineering infrastructure across the
-            SDLC: code generation, AI-driven CI/CD, automated PR reviews,
-            and ticket/epic generation. Previously at Resi; trained at
-            Fullstack Academy via the University of Oklahoma.
+            I build software people actually enjoy using. My approach pairs
+            strong engineering fundamentals and best practices with AI as a
+            development partner, producing technically sound code and
+            infrastructure at high velocity. Currently shipping AI-powered
+            products at Repify Ai. Previously at Resi; trained at Fullstack
+            Academy via the University of Oklahoma.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <Button asChild size="lg">

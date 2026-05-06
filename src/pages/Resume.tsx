@@ -33,11 +33,9 @@ import {
 const RESUME_DOC_URL =
   "https://docs.google.com/document/d/e/2PACX-1vRfdIHdAWejpgus26nIsJivmq89aSn-vc0AMtdpXXLi-pXlWftU8U5iIGllCAFjk-uCtEEjmRMibZNV/pub";
 
-// Direct Google Docs PDF export endpoint. Always serves the latest saved
-// version of the doc as a PDF download. Requires the doc's share permission
-// to be "Anyone with the link → Viewer".
-const RESUME_PDF_URL =
-  "https://docs.google.com/document/d/1cPRrLg8I5pCNSRmjvSK52UtRv8-nZiPr3yTjXEuTBSo/export?format=pdf";
+// Locally-built PDF served from public/. Source of truth is
+// resume-drafts/resume.md; regenerate via `npm run build:resume`.
+const RESUME_PDF_URL = "/Tanner_Monaco_Resume.pdf";
 
 function escapeRegex(input: string) {
   return input.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
