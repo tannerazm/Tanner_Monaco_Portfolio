@@ -106,7 +106,7 @@ export const RESUME_SKILL_GROUPS: ResumeSkillGroup[] = [
   },
   {
     label: "Cloud & Infrastructure",
-    skills: ["AWS", "Infrastructure as Code (IaC)", "Docker", "Kubernetes"],
+    skills: ["AWS", "Infrastructure as Code (IaC)", "Terraform", "Docker", "Kubernetes"],
   },
   {
     label: "AI",

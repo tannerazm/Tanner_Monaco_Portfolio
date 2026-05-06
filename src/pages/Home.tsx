@@ -33,6 +33,7 @@ const STACK_LOGOS: StackLogo[] = [
   { name: "AWS", url: `${DEVICON}/amazonwebservices/amazonwebservices-original-wordmark.svg` },
   { name: "Docker", url: `${DEVICON}/docker/docker-original.svg` },
   { name: "Kubernetes", url: `${DEVICON}/kubernetes/kubernetes-plain.svg` },
+  { name: "Terraform", url: `${DEVICON}/terraform/terraform-original.svg` },
   { name: "Tailwind CSS", url: `${DEVICON}/tailwindcss/tailwindcss-original.svg` },
   { name: "HTML5", url: `${DEVICON}/html5/html5-original.svg` },
   { name: "CSS3", url: `${DEVICON}/css3/css3-original.svg` },

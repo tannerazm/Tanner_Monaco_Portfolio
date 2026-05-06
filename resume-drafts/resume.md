@@ -9,7 +9,7 @@ Full-stack engineer who cares more about how software feels to use than how clev
 ## Technical Skills
 **Frontend:** React.js, Tailwind, Vue.js, Filament, WordPress, Twig, HTML, CSS<br>
 **Backend:** Python, Django, MongoDB, PostgreSQL, Laravel, PHP, JavaScript, CraftCMS, MySQL, Eloquent<br>
-**Cloud & Infrastructure:** AWS, Infrastructure as Code (IaC), Docker, Kubernetes, Stripe<br>
+**Cloud & Infrastructure:** AWS, Infrastructure as Code (IaC), Terraform, Docker, Kubernetes, Stripe<br>
 **AI:** Anthropic (Claude), OpenAI, Gemini, Agentic Systems, Prompt Engineering<br>
 **Tools & Domains:** Git, Promise Handling, GuzzleHttp, AJAX, JSON, SaaS, Yardi/RentCafe, Entrata, RealPage, Fortress
 
