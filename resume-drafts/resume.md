@@ -4,14 +4,14 @@
 [tannermonaco.netlify.app](https://tannermonaco.netlify.app) &nbsp;|&nbsp; [linkedin.com/in/tannerazm](https://www.linkedin.com/in/tannerazm/) &nbsp;|&nbsp; [github.com/tannerazm](https://github.com/tannerazm)
 
 ## Summary
-Full-stack engineer who cares more about how software feels to use than how cleverly it was built. I want the apps I ship to feel inspiring, not just functional, and my proudest work is always the feature a user noticed, used, and came back to. Underneath, my approach pairs strong engineering fundamentals and best practices with AI as a development partner, producing technically sound code and infrastructure at high velocity. Currently building AI-powered products at Repify Ai with that bar in mind.
+Full-stack engineer who cares more about how software feels to use than how cleverly it was built. I want the apps I ship to feel inspiring, not just functional, and my proudest work is always the feature a user noticed, used, and came back to. Underneath, my approach pairs strong engineering fundamentals and best practices with AI as a development partner, producing technically sound code and infrastructure at high velocity. Currently building AI-powered products at Repify Ai with that bar in mind. Outside of Repify Ai, I lead engineering on Admin App, a roster-aware social publishing tool for athletic departments built on a two-person team with Addison driving product and design.
 
 ## Technical Skills
-**Frontend:** React.js, Tailwind, Vue.js, Filament, WordPress, Twig, HTML, CSS<br>
-**Backend:** Python, Django, MongoDB, PostgreSQL, Laravel, PHP, JavaScript, CraftCMS, MySQL, Eloquent<br>
-**Cloud & Infrastructure:** AWS, Infrastructure as Code (IaC), Terraform, Docker, Kubernetes, Stripe<br>
+**Frontend:** Next.js, React.js, TypeScript, Tailwind, Vue.js, Filament, WordPress, Twig, HTML, CSS<br>
+**Backend:** Python, Django, MongoDB, PostgreSQL, Prisma, Laravel, PHP, JavaScript, CraftCMS, MySQL, Eloquent<br>
+**Cloud & Infrastructure:** AWS (incl. Cognito), Infrastructure as Code (IaC), Terraform, Docker, Kubernetes, Stripe<br>
 **AI:** Anthropic (Claude), OpenAI, Gemini, Agentic Systems, Prompt Engineering<br>
-**Tools & Domains:** Git, Promise Handling, GuzzleHttp, AJAX, JSON, SaaS, Yardi/RentCafe, Entrata, RealPage, Fortress
+**Tools & Domains:** Git, OAuth, Multi-tenant Architecture (RBAC), Promise Handling, GuzzleHttp, AJAX, JSON, SaaS, Yardi/RentCafe, Entrata, RealPage, Fortress
 
 ## Experience
 

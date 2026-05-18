@@ -139,8 +139,10 @@ export function Home() {
             strong engineering fundamentals and best practices with AI as a
             development partner, producing technically sound code and
             infrastructure at high velocity. Currently shipping AI-powered
-            products at Repify Ai. Previously at Resi; trained at Fullstack
-            Academy via the University of Oklahoma.
+            products at Repify Ai, plus leading engineering on Admin App, a
+            side product I'm building with Addison for athletic departments.
+            Previously at Resi; trained at Fullstack Academy via the
+            University of Oklahoma.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-3">
             <Button asChild size="lg">

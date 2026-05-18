@@ -22,7 +22,7 @@ export interface ResumeSkillGroup {
 export const RESUME_TITLE = "Full Stack Software Engineer";
 
 export const RESUME_SUMMARY =
-  "Full-stack engineer who cares more about how software feels to use than how cleverly it was built. I want the apps I ship to feel inspiring, not just functional, and my proudest work is always the feature a user noticed, used, and came back to. Underneath, my approach pairs strong engineering fundamentals and best practices with AI as a development partner, producing technically sound code and infrastructure at high velocity. Currently building AI-powered products at Repify Ai with that bar in mind.";
+  "Full-stack engineer who cares more about how software feels to use than how cleverly it was built. I want the apps I ship to feel inspiring, not just functional, and my proudest work is always the feature a user noticed, used, and came back to. Underneath, my approach pairs strong engineering fundamentals and best practices with AI as a development partner, producing technically sound code and infrastructure at high velocity. Currently building AI-powered products at Repify Ai with that bar in mind. Outside of Repify Ai, I lead engineering on Admin App, a roster-aware social publishing tool for athletic departments built on a two-person team with Addison driving product and design.";
 
 export interface ResumeAiSection {
   heading: string;
@@ -69,16 +69,26 @@ export const RESUME_AI_AUTOMATION: ResumeAiSection = {
 // claim we haven't made).
 export const SKILL_ALIASES: Record<string, string[]> = {
   "React.js": ["React", "ReactJS"],
+  "Next.js": ["NextJS", "Next"],
+  TypeScript: ["TS"],
   JavaScript: ["JS"],
   Kubernetes: ["K8s"],
   PostgreSQL: ["Postgres"],
+  Prisma: ["Prisma ORM"],
   MongoDB: ["Mongo"],
-  AWS: ["Amazon Web Services"],
+  "AWS (incl. Cognito)": ["AWS", "Amazon Web Services", "AWS Cognito", "Cognito"],
   "Infrastructure as Code (IaC)": ["IaC", "IAC", "Infrastructure-as-Code", "Infrastructure as Code"],
   Tailwind: ["Tailwind CSS", "TailwindCSS"],
   "Yardi/RentCafe": ["Yardi", "RentCafe", "Rent Cafe"],
   "Vue.js": ["Vue", "VueJS"],
   "Promise Handling": ["Promises", "async/await"],
+  OAuth: ["OAuth2", "OAuth 2.0"],
+  "Multi-tenant Architecture (RBAC)": [
+    "RBAC",
+    "Role-Based Access Control",
+    "Multi-tenant",
+    "Multi-tenancy",
+  ],
   Anthropic: ["Claude", "Claude API"],
   OpenAI: ["GPT", "ChatGPT", "GPT-4", "OpenAI API"],
   Gemini: ["Google Gemini"],
@@ -87,7 +97,18 @@ export const SKILL_ALIASES: Record<string, string[]> = {
 export const RESUME_SKILL_GROUPS: ResumeSkillGroup[] = [
   {
     label: "Frontend",
-    skills: ["React.js", "Tailwind", "Vue.js", "Filament", "WordPress", "Twig", "HTML", "CSS"],
+    skills: [
+      "Next.js",
+      "React.js",
+      "TypeScript",
+      "Tailwind",
+      "Vue.js",
+      "Filament",
+      "WordPress",
+      "Twig",
+      "HTML",
+      "CSS",
+    ],
   },
   {
     label: "Backend",
@@ -96,6 +117,7 @@ export const RESUME_SKILL_GROUPS: ResumeSkillGroup[] = [
       "Django",
       "MongoDB",
       "PostgreSQL",
+      "Prisma",
       "Laravel",
       "PHP",
       "JavaScript",
@@ -106,7 +128,13 @@ export const RESUME_SKILL_GROUPS: ResumeSkillGroup[] = [
   },
   {
     label: "Cloud & Infrastructure",
-    skills: ["AWS", "Infrastructure as Code (IaC)", "Terraform", "Docker", "Kubernetes"],
+    skills: [
+      "AWS (incl. Cognito)",
+      "Infrastructure as Code (IaC)",
+      "Terraform",
+      "Docker",
+      "Kubernetes",
+    ],
   },
   {
     label: "AI",
@@ -114,7 +142,16 @@ export const RESUME_SKILL_GROUPS: ResumeSkillGroup[] = [
   },
   {
     label: "Web Development",
-    skills: ["Git", "Promise Handling", "GuzzleHttp", "AJAX", "JSON", "SaaS"],
+    skills: [
+      "Git",
+      "OAuth",
+      "Multi-tenant Architecture (RBAC)",
+      "Promise Handling",
+      "GuzzleHttp",
+      "AJAX",
+      "JSON",
+      "SaaS",
+    ],
   },
   {
     label: "Property Management Software",
