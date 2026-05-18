@@ -20,8 +20,8 @@ yarn-error.log*
 .DS_Store
 *.tsbuildinfo
 
-# Cover letters: per-application drafts and PDFs stay local (this is a public repo).
-# Tooling (cover-letter.config.cjs, scripts/build-cover-letter.mjs) is committed.
-resume-drafts/cover-letter-*.md
-resume-drafts/cover-letter-*.pdf
-resume-drafts/cover-letters/
+# Cover letters: per-application content stays local (this is a public repo).
+# The shared config lives at resume-drafts/cover-letters/cover-letter.config.cjs
+# and is tracked. Per-company subfolders (drafts, pdfs, research sources) are private.
+resume-drafts/cover-letters/*
+!resume-drafts/cover-letters/cover-letter.config.cjs

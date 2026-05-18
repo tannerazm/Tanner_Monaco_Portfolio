@@ -41,22 +41,28 @@ export function ProjectDetail() {
         </p>
 
         <div className="mt-6 flex flex-wrap items-center gap-3">
-          <Button asChild>
-            <a
-              href={project.liveUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() =>
-                posthog?.capture("project_live_link_clicked", {
-                  project_name: project.name,
-                  project_slug: slug,
-                  project_url: project.liveUrl,
-                })
-              }
-            >
-              View live <ExternalLink className="ml-1 h-4 w-4" />
-            </a>
-          </Button>
+          {project.inDevelopment ? (
+            <Badge variant="mono" className="px-3 py-1.5 text-sm">
+              Still in development
+            </Badge>
+          ) : (
+            <Button asChild>
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() =>
+                  posthog?.capture("project_live_link_clicked", {
+                    project_name: project.name,
+                    project_slug: slug,
+                    project_url: project.liveUrl,
+                  })
+                }
+              >
+                View live <ExternalLink className="ml-1 h-4 w-4" />
+              </a>
+            </Button>
+          )}
           {project.reference && (
             <Button asChild variant="outline">
               <a
@@ -95,7 +101,11 @@ export function ProjectDetail() {
             <div className="space-y-6 rounded-xl border border-border bg-card p-6">
               <Detail label="When" value={displayDate} />
               <Detail label="Stack" value={project.stack.join(" · ")} />
-              <Detail label="Live" value={project.liveUrl} link={project.liveUrl} />
+              {project.inDevelopment ? (
+                <Detail label="Live" value="Still in development" />
+              ) : (
+                <Detail label="Live" value={project.liveUrl} link={project.liveUrl} />
+              )}
               {project.reference && (
                 <Detail
                   label="Reference"

@@ -1,3 +1,4 @@
+import AdminApp from "@/assets/projectpictures/Admin_App.png";
 import Repify from "@/assets/projectpictures/Repify.png";
 import GetGuten from "@/assets/projectpictures/GetGuten.png";
 import Resi from "@/assets/projectpictures/Resi.png";
@@ -18,9 +19,37 @@ export interface Project {
   tagline: string;
   description: string[];
   reference?: string;
+  inDevelopment?: boolean;
 }
 
 export const PROJECTS: Project[] = [
+  {
+    slug: "Admin_App",
+    name: "Admin App",
+    image: AdminApp,
+    liveUrl: "",
+    inDevelopment: true,
+    date: "Apr 2026 - Present",
+    stack: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Prisma",
+      "PostgreSQL",
+      "Claude API",
+      "AWS Cognito",
+      "Tailwind CSS",
+      "Docker",
+    ],
+    tagline:
+      "Roster-aware social publishing for athletic departments. AI writes accessible alt text and on-brand captions; admins publish to every connected platform from one wizard.",
+    description: [
+      "Admin App is the product I'm building alongside Addison. She owns the domain, marketing, and legal side; I own the engineering. Athletic departments shoot a mountain of game-day photo and video, and the post-game scramble to caption everything (proper alt text, the right player names, on-brand voice, posted across every platform) is the pain point we're solving. The app turns that into a four-step wizard: pick a roster, drop media, review AI-generated copy, publish.",
+      "Built on Next.js 16 + React 19 + TypeScript, with Prisma 7 and PostgreSQL on the back. Anthropic's Claude API generates the captions and alt text with full roster context wired in (jersey numbers, positions, handles), so the model writes about the actual athlete in frame. Auth runs through AWS Cognito with JOSE-signed session tokens. Tailwind v4 across the front end, Docker for local infra.",
+      "Multi-tenant from the ground up: every team has its own roster, social accounts, brand voice settings, and user permission tiers (org owner, admin, staff, student). Coaches see only their teams; org owners reach everything. The wizard adapts to whichever permissions the signed-in user actually holds.",
+      "This one is being shipped with Claude Code deeply in the loop. Every step gets verified, tested, and reviewed before it lands. Output has been production-grade, and the velocity is the highest I've ever worked at.",
+    ],
+  },
   {
     slug: "GetGuten",
     name: "GetGuten",
