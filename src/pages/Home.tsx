@@ -14,22 +14,30 @@ const DEVICON = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons";
 interface StackLogo {
   name: string;
   url: string;
+  // Monochrome brand marks (Next.js, Prisma, OpenAI, etc.) are rendered via a
+  // CSS mask filled with the theme foreground color, so they stay legible in
+  // both light and dark mode instead of disappearing into the background.
+  mono?: boolean;
 }
 
 const STACK_LOGOS: StackLogo[] = [
   { name: "Python", url: `${DEVICON}/python/python-original.svg` },
   { name: "Django", url: `${DEVICON}/django/django-plain.svg` },
   { name: "JavaScript", url: `${DEVICON}/javascript/javascript-original.svg` },
+  { name: "TypeScript", url: `${DEVICON}/typescript/typescript-original.svg` },
   { name: "React", url: `${DEVICON}/react/react-original.svg` },
+  { name: "Next.js", url: "https://cdn.simpleicons.org/nextdotjs", mono: true },
   { name: "Vue.js", url: `${DEVICON}/vuejs/vuejs-original.svg` },
   { name: "Node.js", url: `${DEVICON}/nodejs/nodejs-original.svg` },
-  { name: "Express", url: `${DEVICON}/express/express-original.svg` },
+  { name: "Express", url: "https://cdn.simpleicons.org/express", mono: true },
   { name: "PHP", url: `${DEVICON}/php/php-original.svg` },
   { name: "Laravel", url: `${DEVICON}/laravel/laravel-original.svg` },
+  { name: "WordPress", url: `${DEVICON}/wordpress/wordpress-plain.svg` },
   { name: "Twig", url: TwigLogo },
   { name: "MongoDB", url: `${DEVICON}/mongodb/mongodb-original.svg` },
   { name: "PostgreSQL", url: `${DEVICON}/postgresql/postgresql-original.svg` },
   { name: "MySQL", url: `${DEVICON}/mysql/mysql-original.svg` },
+  { name: "Prisma", url: "https://cdn.simpleicons.org/prisma", mono: true },
   { name: "AWS", url: `${DEVICON}/amazonwebservices/amazonwebservices-original-wordmark.svg` },
   { name: "Docker", url: `${DEVICON}/docker/docker-original.svg` },
   { name: "Kubernetes", url: `${DEVICON}/kubernetes/kubernetes-plain.svg` },
@@ -40,6 +48,9 @@ const STACK_LOGOS: StackLogo[] = [
   { name: "Git", url: `${DEVICON}/git/git-original.svg` },
   { name: "Linux", url: `${DEVICON}/linux/linux-original.svg` },
   { name: "Stripe", url: "https://cdn.simpleicons.org/stripe/635BFF" },
+  { name: "Anthropic", url: "https://cdn.simpleicons.org/anthropic", mono: true },
+  { name: "OpenAI", url: "https://cdn.simpleicons.org/openai", mono: true },
+  { name: "Gemini", url: "https://cdn.simpleicons.org/googlegemini/8E75B2" },
 ];
 
 const HERO_NAME = "Tanner.Monaco";
@@ -316,12 +327,30 @@ function StackMarquee() {
               key={`${logo.name}-${i}`}
               className="group flex flex-shrink-0 flex-col items-center gap-2 px-2"
             >
-              <img
-                src={logo.url}
-                alt={logo.name}
-                loading="lazy"
-                className="h-12 w-12 object-contain transition-transform duration-300 group-hover:scale-110 sm:h-14 sm:w-14"
-              />
+              {logo.mono ? (
+                <span
+                  role="img"
+                  aria-label={logo.name}
+                  className="h-12 w-12 bg-foreground transition-transform duration-300 group-hover:scale-110 sm:h-14 sm:w-14"
+                  style={{
+                    maskImage: `url(${logo.url})`,
+                    WebkitMaskImage: `url(${logo.url})`,
+                    maskRepeat: "no-repeat",
+                    WebkitMaskRepeat: "no-repeat",
+                    maskPosition: "center",
+                    WebkitMaskPosition: "center",
+                    maskSize: "contain",
+                    WebkitMaskSize: "contain",
+                  }}
+                />
+              ) : (
+                <img
+                  src={logo.url}
+                  alt={logo.name}
+                  loading="lazy"
+                  className="h-12 w-12 object-contain transition-transform duration-300 group-hover:scale-110 sm:h-14 sm:w-14"
+                />
+              )}
               <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
                 {logo.name}
               </span>
