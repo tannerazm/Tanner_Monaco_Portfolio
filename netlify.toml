@@ -8,7 +8,24 @@
   # secret. The literal URL appears in source as a fallback, which Netlify's
   # secrets scanner otherwise flags as a leak when the same value is set as
   # an env var. Exclude it from scanning.
-  SECRETS_SCAN_OMIT_KEYS = "VITE_POSTHOG_HOST"
+  # PROP_PHONE holds the real number injected into /prop at build time. We
+  # intentionally render it into the deployed page, so tell the secrets scanner
+  # not to treat finding it as a leak (it stays out of the repo; only this env
+  # var and the local master hold the real number).
+  SECRETS_SCAN_OMIT_KEYS = "VITE_POSTHOG_HOST,PROP_PHONE"
+
+# Unlisted /prop page (standalone static page; nothing links to it). Send the
+# bare /prop to /prop/ so its relative asset paths resolve under /prop/.
+[[redirects]]
+  from = "/prop"
+  to = "/prop/"
+  status = 301
+
+# Keep /prop and its assets out of search engines.
+[[headers]]
+  for = "/prop/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
 
 # SPA fallback: React Router handles all routes client-side, so any unmatched
 # request should serve index.html instead of 404ing.

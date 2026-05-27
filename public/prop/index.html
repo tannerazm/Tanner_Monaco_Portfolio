@@ -1,0 +1,1297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="robots" content="noindex, nofollow" />
+<title>The League</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg-page: #0a0a0a;
+    --bg-phone: #faf7f1;
+    --bg-header: #ffffff;
+    --bg-input: #ffffff;
+    --bubble-sent: #1c1c1e;
+    --bubble-sent-text: #ffffff;
+    --bubble-received: #ebe7df;
+    --bubble-received-text: #1c1c1e;
+    --text-primary: #1c1c1e;
+    --text-secondary: #8e8e93;
+    --text-faint: #b8b3aa;
+    --accent: #1c1c1e;
+    --divider: #d8d3ca;
+    --match-card: #fffaf0;
+  }
+
+  * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  html, body {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background: var(--bg-page);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    color: var(--text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+
+  /* Phone frame */
+  .phone {
+    width: 100%;
+    max-width: 420px;
+    height: 100vh;
+    max-height: 100vh;
+    background: var(--bg-phone);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+  }
+
+  @media (min-width: 700px) {
+    .phone {
+      max-height: 900px;
+      border-radius: 52px;
+      border: 11px solid #0a0a0a;
+      box-shadow:
+        0 0 0 2px #2a2a2a,
+        0 30px 80px rgba(0,0,0,0.6);
+    }
+    .phone::before {
+      content: "";
+      position: absolute;
+      top: 11px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 32px;
+      background: #0a0a0a;
+      border-radius: 0 0 18px 18px;
+      z-index: 100;
+    }
+  }
+
+  /* Status bar */
+  .status-bar {
+    flex-shrink: 0;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 28px;
+    padding-top: 4px;
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
+    background: var(--bg-header);
+  }
+
+  .status-bar .time {
+    letter-spacing: -0.2px;
+  }
+
+  .status-bar .right {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .status-bar svg {
+    height: 12px;
+    fill: #000;
+  }
+
+  /* Header */
+  .header {
+    flex-shrink: 0;
+    background: var(--bg-header);
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    padding: 6px 8px 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .back-btn {
+    background: none;
+    border: none;
+    color: var(--text-primary);
+    font-size: 28px;
+    line-height: 1;
+    padding: 6px 8px;
+    cursor: pointer;
+    font-weight: 300;
+  }
+
+  .header-center {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .avatar {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #c9b896 0%, #8a7556 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    overflow: hidden;
+    border: 1px solid rgba(0,0,0,0.08);
+  }
+
+  .avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 62% 38%;
+  }
+
+  .header-name {
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: -0.1px;
+  }
+
+  .header-sub {
+    font-size: 11px;
+    color: var(--text-secondary);
+    font-weight: 400;
+    letter-spacing: 0.2px;
+  }
+
+  .header-right {
+    width: 44px;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 6px;
+  }
+
+  .header-right .dots {
+    color: var(--text-primary);
+    font-size: 20px;
+    letter-spacing: 1px;
+    cursor: pointer;
+  }
+
+  /* Messages area */
+  .messages {
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 16px 14px 24px;
+    background: var(--bg-phone);
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .messages::-webkit-scrollbar {
+    width: 0;
+  }
+
+  /* Match banner */
+  .match-banner {
+    margin: 8px 0 20px;
+    padding: 18px 16px;
+    background: var(--match-card);
+    border: 1px solid rgba(0,0,0,0.07);
+    border-radius: 14px;
+    text-align: center;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+  }
+
+  .match-banner .league-mark {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 500;
+    letter-spacing: 1.2px;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+  }
+
+  .match-banner .league-mark .amp {
+    font-style: italic;
+    margin: 0 2px;
+  }
+
+  .match-banner .match-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+  }
+
+  .match-banner .match-detail {
+    font-size: 12px;
+    color: var(--text-secondary);
+    line-height: 1.4;
+  }
+
+  .match-banner .match-divider {
+    height: 1px;
+    background: var(--divider);
+    margin: 10px auto;
+    width: 40%;
+  }
+
+  /* Date separator */
+  .date-sep {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin: 18px 4px 14px;
+  }
+
+  .date-sep .line {
+    flex: 1;
+    height: 1px;
+    background: var(--divider);
+    opacity: 0.6;
+  }
+
+  .date-sep .label {
+    font-size: 10.5px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    letter-spacing: 1.4px;
+    text-transform: uppercase;
+  }
+
+  /* Message rows */
+  .row {
+    display: flex;
+    margin-bottom: 4px;
+    align-items: flex-end;
+  }
+
+  .row.sent {
+    justify-content: flex-end;
+  }
+
+  .row.received {
+    justify-content: flex-start;
+  }
+
+  .row.cluster-end {
+    margin-bottom: 14px;
+  }
+
+  .bubble {
+    max-width: 76%;
+    padding: 10px 14px;
+    border-radius: 20px;
+    font-size: 15px;
+    line-height: 1.38;
+    letter-spacing: -0.05px;
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    position: relative;
+  }
+
+  .row.sent .bubble {
+    background: var(--bubble-sent);
+    color: var(--bubble-sent-text);
+    border-bottom-right-radius: 6px;
+  }
+
+  .row.received .bubble {
+    background: var(--bubble-received);
+    color: var(--bubble-received-text);
+    border-bottom-left-radius: 6px;
+    min-width: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 16px;
+  }
+
+  .row.received .bubble .triple-dot {
+    display: inline-flex;
+    gap: 4px;
+    align-items: center;
+  }
+
+  .row.received .bubble .triple-dot span {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #8a8580;
+  }
+
+  /* Phone-number bubble (Addison's number reply) */
+  .row.received .bubble.phone-bubble {
+    padding: 10px 14px;
+    display: inline-block;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .phone-link {
+    color: #0a7aff;
+    text-decoration: underline;
+    text-decoration-color: rgba(10, 122, 255, 0.55);
+    text-underline-offset: 2px;
+    font-weight: 500;
+    font-variant-numeric: tabular-nums;
+  }
+
+  /* iOS action sheet overlay */
+  .sheet-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.42);
+    backdrop-filter: blur(2px);
+    -webkit-backdrop-filter: blur(2px);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 0 8px 8px;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.18s ease-out;
+    z-index: 200;
+  }
+
+  .sheet-overlay.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .sheet-card {
+    background: rgba(245, 245, 245, 0.86);
+    -webkit-backdrop-filter: blur(28px) saturate(180%);
+    backdrop-filter: blur(28px) saturate(180%);
+    border-radius: 14px;
+    overflow: hidden;
+    transform: translateY(20px);
+    transition: transform 0.22s cubic-bezier(0.2, 0.9, 0.3, 1);
+  }
+
+  .sheet-overlay.open .sheet-card {
+    transform: translateY(0);
+  }
+
+  .sheet-card + .sheet-card {
+    margin-top: 8px;
+    margin-bottom: 12px;
+  }
+
+  .sheet-title {
+    padding: 14px 16px 12px;
+    text-align: center;
+    font-size: 13px;
+    color: #6b6b70;
+    font-weight: 400;
+    line-height: 1.35;
+    border-bottom: 0.5px solid rgba(60, 60, 67, 0.36);
+  }
+
+  .sheet-title .sheet-number {
+    display: block;
+    font-size: 15px;
+    color: #1c1c1e;
+    font-weight: 500;
+    margin-top: 2px;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .sheet-action {
+    width: 100%;
+    background: transparent;
+    border: none;
+    padding: 16px;
+    font-size: 20px;
+    color: #0a7aff;
+    font-family: inherit;
+    font-weight: 400;
+    cursor: pointer;
+    text-align: center;
+    border-bottom: 0.5px solid rgba(60, 60, 67, 0.36);
+  }
+
+  .sheet-action:last-child {
+    border-bottom: none;
+  }
+
+  .sheet-action:active {
+    background: rgba(0, 0, 0, 0.06);
+  }
+
+  .sheet-action.cancel {
+    font-weight: 600;
+  }
+
+  /* Timestamp */
+  .timestamp {
+    text-align: center;
+    font-size: 10.5px;
+    color: var(--text-secondary);
+    margin: 16px 0 8px;
+    font-weight: 500;
+    letter-spacing: 0.3px;
+  }
+
+  .timestamp .bold {
+    font-weight: 700;
+    color: var(--text-primary);
+  }
+
+  /* Read indicator */
+  .read-indicator {
+    text-align: right;
+    font-size: 11px;
+    color: var(--text-secondary);
+    padding-right: 6px;
+    margin-top: -2px;
+    margin-bottom: 8px;
+    font-weight: 500;
+    letter-spacing: 0.2px;
+  }
+
+  /* Input bar */
+  .input-bar {
+    flex-shrink: 0;
+    background: var(--bg-input);
+    padding: 8px 12px 22px;
+    border-top: 1px solid rgba(0,0,0,0.06);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .input-pill {
+    flex: 1;
+    background: #f0ece4;
+    border-radius: 22px;
+    padding: 11px 16px;
+    font-size: 14px;
+    color: var(--text-secondary);
+    border: 1px solid rgba(0,0,0,0.04);
+  }
+
+  .send-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    flex-shrink: 0;
+    opacity: 0.4;
+  }
+
+  .send-btn svg {
+    width: 16px;
+    height: 16px;
+    fill: #fff;
+  }
+
+  /* Home indicator */
+  .home-indicator {
+    flex-shrink: 0;
+    height: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-input);
+    padding-bottom: 6px;
+  }
+
+  .home-indicator::after {
+    content: "";
+    width: 134px;
+    height: 5px;
+    background: #1c1c1e;
+    border-radius: 3px;
+  }
+
+  /* Fade in animation for initial load */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .messages > * {
+    animation: fadeIn 0.4s ease-out;
+  }
+
+  /* ===================================================================
+     PROPOSAL SHOW — added screens, animations, and helpers
+     =================================================================== */
+
+  /* Stacked app "screens" inside the phone (League + iMessage) */
+  .screen {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-phone);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.55s ease, transform 0.55s ease;
+    z-index: 1;
+  }
+  .screen.active { opacity: 1; pointer-events: auto; }
+
+  /* iMessage opens with a gentle zoom, on a white background */
+  #imessageScreen { transform: scale(1.05); background: #ffffff; }
+  #imessageScreen.active { transform: scale(1); }
+
+  /* Finger-tap ripple */
+  #tapInd {
+    position: absolute;
+    width: 52px; height: 52px;
+    left: -200px; top: -200px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.35);
+    border: 2px solid rgba(255,255,255,0.95);
+    box-shadow: 0 0 0 1.5px rgba(0,0,0,0.18), 0 2px 12px rgba(0,0,0,0.25);
+    transform: translate(-50%,-50%) scale(0);
+    opacity: 0;
+    pointer-events: none;
+    z-index: 500;
+  }
+  #tapInd.go { animation: tapPulse 0.6s ease-out; }
+  @keyframes tapPulse {
+    0%   { transform: translate(-50%,-50%) scale(0);    opacity: 0; }
+    25%  { opacity: 1; }
+    55%  { transform: translate(-50%,-50%) scale(1);    opacity: 0.95; }
+    100% { transform: translate(-50%,-50%) scale(1.35); opacity: 0; }
+  }
+
+  /* Start screen */
+  #startScreen {
+    position: absolute; inset: 0; z-index: 420;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; text-align: center;
+    background: radial-gradient(120% 80% at 50% 18%, #fffdf8 0%, var(--bg-phone) 60%);
+    padding: 32px;
+    opacity: 1;
+    transition: opacity 0.6s ease;
+  }
+  #startScreen.hide { opacity: 0; pointer-events: none; }
+  #startScreen .s-mark {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 40px; font-weight: 600; letter-spacing: 3px;
+    color: var(--text-primary); line-height: 1.1;
+  }
+  #startScreen .s-rule { width: 54px; height: 1px; background: var(--divider); margin: 18px 0; }
+  #startScreen .s-names {
+    font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 22px; color: #6b6256; margin-bottom: 6px;
+  }
+  #startScreen .s-heart { color: #c9a24b; font-size: 16px; margin-bottom: 38px; }
+  #startScreen .s-btn {
+    border: none; cursor: pointer;
+    background: var(--accent); color: #fff;
+    font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 600; letter-spacing: 2.5px;
+    padding: 16px 36px; border-radius: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.28);
+    animation: btnPulse 1.8s ease-in-out infinite;
+  }
+  @keyframes btnPulse {
+    0%,100% { transform: scale(1);     box-shadow: 0 10px 30px rgba(0,0,0,0.28); }
+    50%     { transform: scale(1.045); box-shadow: 0 14px 38px rgba(0,0,0,0.34); }
+  }
+
+  /* "It's a Match" screen */
+  #matchScreen {
+    position: absolute; inset: 0; z-index: 380;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; text-align: center;
+    padding: 32px; pointer-events: none;
+    background: radial-gradient(120% 80% at 50% 30%, #fffdf8 0%, var(--bg-phone) 65%);
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+  #matchScreen.show { opacity: 1; }
+  #matchScreen .m-mark {
+    font-family: 'Cormorant Garamond', serif; font-size: 22px;
+    letter-spacing: 2px; color: #8a7556; margin-bottom: 32px;
+  }
+  .m-avatars { position: relative; display: flex; align-items: center; justify-content: center; gap: 26px; margin-bottom: 32px; }
+  .m-avatar {
+    width: 112px; height: 112px; border-radius: 50%; overflow: hidden;
+    border: 3px solid #fff; box-shadow: 0 8px 24px rgba(0,0,0,0.18);
+    background: linear-gradient(135deg, #c9b896 0%, #8a7556 100%);
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-family: 'Cormorant Garamond', serif; font-size: 46px; font-weight: 500;
+    opacity: 0;
+  }
+  .m-avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .m-avatar.left img { object-position: 62% 38%; }
+  .m-heart {
+    position: absolute; left: 50%; top: 50%;
+    transform: translate(-50%,-50%) scale(0);
+    font-size: 40px; color: #e0577b; z-index: 5; opacity: 0;
+    filter: drop-shadow(0 3px 6px rgba(0,0,0,0.2));
+  }
+  #matchScreen .m-headline {
+    font-family: 'Cormorant Garamond', serif; font-size: 40px; font-weight: 600;
+    color: var(--text-primary); margin-bottom: 10px; opacity: 0;
+  }
+  #matchScreen .m-sub  { font-size: 14px; color: var(--text-secondary); opacity: 0; margin-bottom: 5px; }
+  #matchScreen .m-date { font-size: 12px; color: var(--text-faint); opacity: 0; }
+
+  #matchScreen.play .m-avatar.left  { animation: slideInL 0.7s cubic-bezier(.2,.8,.2,1) forwards; }
+  #matchScreen.play .m-avatar.right { animation: slideInR 0.7s cubic-bezier(.2,.8,.2,1) forwards; }
+  #matchScreen.play .m-heart        { animation: popHeart 0.6s cubic-bezier(.2,1.3,.4,1) 0.5s forwards; }
+  #matchScreen.play .m-headline     { animation: fadeUp 0.6s ease 0.75s forwards; }
+  #matchScreen.play .m-sub          { animation: fadeUp 0.6s ease 0.95s forwards; }
+  #matchScreen.play .m-date         { animation: fadeUp 0.6s ease 1.10s forwards; }
+
+  @keyframes slideInL { from { opacity: 0; transform: translateX(-150px) rotate(-8deg); } to { opacity: 1; transform: translateX(0) rotate(0); } }
+  @keyframes slideInR { from { opacity: 0; transform: translateX(150px) rotate(8deg); }  to { opacity: 1; transform: translateX(0) rotate(0); } }
+  @keyframes popHeart { 0% { opacity: 0; transform: translate(-50%,-50%) scale(0); } 60% { opacity: 1; transform: translate(-50%,-50%) scale(1.25); } 100% { opacity: 1; transform: translate(-50%,-50%) scale(1); } }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+
+  /* Black lead-in for the ring-reveal video */
+  #videoStage {
+    position: absolute; inset: 0; z-index: 440;
+    background: #000; opacity: 0; pointer-events: none;
+    transition: opacity 1.2s ease;
+    display: flex; align-items: center; justify-content: center;
+  }
+  #videoStage.show { opacity: 1; }
+  #videoStage video { width: 100%; height: 100%; object-fit: cover; }
+
+  /* iMessage app look */
+  .ims-header {
+    flex-shrink: 0; background: rgba(255,255,255,0.92);
+    -webkit-backdrop-filter: blur(20px); backdrop-filter: blur(20px);
+    border-bottom: 0.5px solid rgba(0,0,0,0.12);
+    padding: 4px 10px 10px; display: flex; align-items: center; gap: 6px;
+  }
+  .ims-back { display: flex; align-items: center; color: #007aff; }
+  .ims-back svg { width: 13px; height: 22px; }
+  .ims-hcenter { flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px; }
+  .ims-avatar { width: 50px; height: 50px; border-radius: 50%; overflow: hidden; background: linear-gradient(135deg, #c9b896, #8a7556); }
+  .ims-avatar img { width: 100%; height: 100%; object-fit: cover; object-position: 62% 38%; }
+  .ims-name { font-size: 11px; font-weight: 500; color: #1c1c1e; display: flex; align-items: center; gap: 4px; }
+  .ims-name svg { width: 6px; height: 9px; fill: #b0b0b5; }
+  .ims-facetime { width: 44px; display: flex; justify-content: flex-end; color: #007aff; }
+  .ims-facetime svg { width: 26px; height: 18px; }
+
+  .ims-messages { flex: 1; overflow-y: auto; overflow-x: hidden; padding: 12px 14px 20px; background: #fff; }
+  .ims-messages::-webkit-scrollbar { width: 0; }
+  .ims-time { text-align: center; font-size: 11px; color: #8e8e93; margin: 6px 0 14px; }
+  .ims-time b { color: #3c3c43; font-weight: 600; }
+  .ims-row { display: flex; margin-bottom: 7px; }
+  .ims-row.sent { justify-content: flex-end; }
+  .ims-row.received { justify-content: flex-start; }
+  .ims-photo { max-width: 64%; border-radius: 18px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.14); background: #eee; }
+  .ims-photo img { display: block; width: 100%; height: auto; }
+
+  .ims-input { flex-shrink: 0; background: #fff; border-top: 0.5px solid rgba(0,0,0,0.1); padding: 8px 12px 22px; display: flex; align-items: center; gap: 9px; }
+  .ims-plus { color: #8e8e93; font-size: 26px; line-height: 1; font-weight: 300; }
+  .ims-field { flex: 1; border: 1px solid #d1d1d6; border-radius: 18px; padding: 7px 14px; font-size: 14px; color: #b0b0b5; display: flex; align-items: center; justify-content: space-between; }
+  .ims-field .arrow { width: 26px; height: 26px; border-radius: 50%; background: #0a84ff; display: flex; align-items: center; justify-content: center; margin: -3px -6px -3px 0; }
+  .ims-field .arrow svg { width: 14px; height: 14px; fill: #fff; }
+
+  /* Ring finale: fullscreen final photo + the question */
+  #ringFull {
+    position: absolute; inset: 0; z-index: 460;
+    background: #000; overflow: hidden;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.45s ease;
+  }
+  #ringFull.show { opacity: 1; }
+  #ringFullImg {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: center;
+    transform-origin: center center; will-change: transform;
+  }
+  #ringScrim {
+    position: absolute; inset: 0; pointer-events: none; opacity: 0;
+    background: linear-gradient(to bottom,
+      rgba(0,0,0,0.62) 0%, rgba(0,0,0,0.28) 24%,
+      rgba(0,0,0,0) 46%, rgba(0,0,0,0) 72%, rgba(0,0,0,0.5) 100%);
+  }
+  #ringScrim.show { opacity: 1; }
+  #ringText {
+    position: absolute; top: 13%; left: 0; right: 0;
+    padding: 0 34px; text-align: center; pointer-events: none;
+    color: #fff; font-family: 'Cormorant Garamond', serif; font-style: italic;
+    font-size: 30px; line-height: 1.32; font-weight: 500; letter-spacing: 0.4px;
+    text-shadow: 0 2px 20px rgba(0,0,0,0.7), 0 1px 3px rgba(0,0,0,0.6);
+    opacity: 0; transform: translateY(22px); filter: blur(8px);
+  }
+  #ringText.show { opacity: 1; transform: translateY(0); filter: blur(0); }
+</style>
+</head>
+<body>
+
+<div class="phone">
+ <!-- ============ THE LEAGUE app ============ -->
+ <div class="screen active" id="leagueScreen">
+
+  <!-- iOS status bar -->
+  <div class="status-bar">
+    <span class="time">9:41</span>
+    <span class="right">
+      <svg viewBox="0 0 18 12" width="18" height="12"><path d="M1 8h2v3H1V8zm4-2h2v5H5V6zm4-2h2v7H9V4zm4-2h2v9h-2V2z"/></svg>
+      <svg viewBox="0 0 18 12" width="16" height="12"><path d="M9 2.5C5.5 2.5 2.4 3.8 0 6l1.8 1.8C3.8 5.9 6.3 4.8 9 4.8s5.2 1.1 7.2 3L18 6C15.6 3.8 12.5 2.5 9 2.5zm0 4.3c-1.9 0-3.6.7-4.9 2L6 10.6c.8-.8 1.9-1.3 3-1.3s2.2.5 3 1.3l1.9-1.8c-1.3-1.3-3-2-4.9-2z"/></svg>
+      <svg viewBox="0 0 26 12" width="24" height="12"><rect x="1" y="2" width="20" height="8" rx="2" fill="none" stroke="#000" stroke-width="1"/><rect x="2.5" y="3.5" width="17" height="5" rx="0.8" fill="#000"/><rect x="22" y="4.5" width="1.5" height="3" rx="0.5" fill="#000"/></svg>
+    </span>
+  </div>
+
+  <!-- Header -->
+  <div class="header">
+    <button class="back-btn" aria-label="back">&lsaquo;</button>
+    <div class="header-center">
+      <div class="avatar"><img src="addison.jpg" alt="Addison"/></div>
+      <div class="header-name">Addison</div>
+      <div class="header-sub">Active recently</div>
+    </div>
+    <div class="header-right"><span class="dots">&#8230;</span></div>
+  </div>
+
+  <!-- Messages -->
+  <div class="messages" id="messages"></div>
+
+  <!-- Input bar -->
+  <div class="input-bar">
+    <div class="input-pill">Message Addison&hellip;</div>
+    <button class="send-btn" aria-label="send">
+      <svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
+    </button>
+  </div>
+  <div class="home-indicator"></div>
+
+  <!-- iOS action sheet -->
+  <div class="sheet-overlay" id="sheet">
+    <div class="sheet-card">
+      <div class="sheet-title">
+        <span class="sheet-number" id="sheetNumber">__PROP_PHONE__</span>
+        mobile
+      </div>
+      <button class="sheet-action" data-act="call">Call</button>
+      <button class="sheet-action" data-act="message">Send Message</button>
+    </div>
+    <div class="sheet-card">
+      <button class="sheet-action cancel" data-act="cancel">Cancel</button>
+    </div>
+  </div>
+ </div><!-- /#leagueScreen -->
+
+ <!-- ============ iMessage app ============ -->
+ <div class="screen" id="imessageScreen">
+  <div class="status-bar">
+    <span class="time">9:41</span>
+    <span class="right">
+      <svg viewBox="0 0 18 12" width="18" height="12"><path d="M1 8h2v3H1V8zm4-2h2v5H5V6zm4-2h2v7H9V4zm4-2h2v9h-2V2z"/></svg>
+      <svg viewBox="0 0 18 12" width="16" height="12"><path d="M9 2.5C5.5 2.5 2.4 3.8 0 6l1.8 1.8C3.8 5.9 6.3 4.8 9 4.8s5.2 1.1 7.2 3L18 6C15.6 3.8 12.5 2.5 9 2.5zm0 4.3c-1.9 0-3.6.7-4.9 2L6 10.6c.8-.8 1.9-1.3 3-1.3s2.2.5 3 1.3l1.9-1.8c-1.3-1.3-3-2-4.9-2z"/></svg>
+      <svg viewBox="0 0 26 12" width="24" height="12"><rect x="1" y="2" width="20" height="8" rx="2" fill="none" stroke="#000" stroke-width="1"/><rect x="2.5" y="3.5" width="17" height="5" rx="0.8" fill="#000"/><rect x="22" y="4.5" width="1.5" height="3" rx="0.5" fill="#000"/></svg>
+    </span>
+  </div>
+  <div class="ims-header">
+    <div class="ims-back">
+      <svg viewBox="0 0 13 22"><path d="M11.5 1L2 11l9.5 10" fill="none" stroke="#007aff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </div>
+    <div class="ims-hcenter">
+      <div class="ims-avatar"><img src="addison.jpg" alt="Addison"/></div>
+      <div class="ims-name">Addison <svg viewBox="0 0 6 9"><path d="M1 1l4 3.5L1 8"/></svg></div>
+    </div>
+    <div class="ims-facetime">
+      <svg viewBox="0 0 26 18"><rect x="1" y="2" width="16" height="14" rx="4.5" fill="none" stroke="#007aff" stroke-width="2"/><path d="M19 7l6-4.2v12.4L19 11z" fill="#007aff"/></svg>
+    </div>
+  </div>
+  <div class="ims-messages" id="imessageMessages">
+    <div class="ims-time"><b>iMessage</b> &middot; Today 9:41 PM</div>
+    <!-- photo rows are injected by the script below -->
+  </div>
+  <div class="ims-input">
+    <span class="ims-plus">+</span>
+    <div class="ims-field">iMessage<span class="arrow"><svg viewBox="0 0 24 24"><path d="M12 4l7 7h-4.2v9h-5.6v-9H5z"/></svg></span></div>
+  </div>
+  <div class="home-indicator"></div>
+ </div><!-- /#imessageScreen -->
+
+ <!-- ============ Start screen ============ -->
+ <div id="startScreen">
+   <div class="s-mark">THE&nbsp;LEAGUE</div>
+   <div class="s-rule"></div>
+   <div class="s-names">Tanner &amp; Addison</div>
+   <div class="s-heart">&#9829;</div>
+   <button class="s-btn" id="startBtn">CLICK HERE</button>
+ </div>
+
+ <!-- ============ "It's a Match" animation ============ -->
+ <div id="matchScreen">
+   <div class="m-mark">THE&nbsp;LEAGUE</div>
+   <div class="m-avatars">
+     <div class="m-avatar left"><img src="addison.jpg" alt="Addison"/></div>
+     <div class="m-heart">&#9829;</div>
+     <div class="m-avatar right" id="tannerAvatar"><img src="tanner.jpg" alt="Tanner" onerror="this.remove(); document.getElementById('tannerAvatar').textContent='T';"/></div>
+   </div>
+   <div class="m-headline">It&rsquo;s a Match</div>
+   <div class="m-sub">You and Addison liked each other</div>
+   <div class="m-date">Thursday, June 12, 2025</div>
+ </div>
+
+ <!-- ============ Ring finale (fullscreen photo + the question) ============ -->
+ <div id="ringFull">
+   <img id="ringFullImg" src="Pictures/web/FINAL_RING.jpg" alt=""/>
+   <div id="ringScrim"></div>
+   <div id="ringText">I just have one question to ask you&hellip;</div>
+ </div>
+
+ <!-- Finger-tap ripple indicator -->
+ <div id="tapInd"></div>
+
+ <!-- Song: plays on CLICK HERE. Drop the audio file in beside index.html as
+      song.mp3 (or song.m4a). Until a file is added, the show just runs silently. -->
+ <audio id="song" preload="auto">
+   <source src="song.mp3" type="audio/mpeg" />
+   <source src="song.m4a" type="audio/mp4" />
+ </audio>
+</div>
+
+<script>
+  // ---------------------------------------------------------------
+  // Conversation data — all messages from Tanner to Addison (dff939eb)
+  // Times converted to America/Chicago (CDT, UTC-5)
+  // ---------------------------------------------------------------
+  const matchInfo = {
+    date: "Thursday, June 12, 2025",
+    time: "8:54 PM"
+  };
+
+  // Each item is either:
+  //   { type: 'sent',     text, time, cluster: 'start'|'mid'|'end'|'solo' }
+  //   { type: 'received', time }
+  //   { type: 'date',     label }
+  //   { type: 'timestamp', label }
+  //   { type: 'read' }
+  const timeline = [
+    { type: 'date', label: 'Thursday, June 12, 2025' },
+
+    { type: 'timestamp', label: 'Thu, Jun 12 · 9:03 PM' },
+    { type: 'sent', text: 'You must HATE football, huh? 🤣', cluster: 'solo' },
+
+    { type: 'received' },
+
+    { type: 'timestamp', label: 'Thu, Jun 12 · 9:35 PM' },
+    { type: 'sent', text: 'Have you gone to therapy at all?', cluster: 'solo' },
+
+    { type: 'received' },
+
+    { type: 'timestamp', label: 'Thu, Jun 12 · 10:28 PM' },
+    { type: 'sent', text: "I can only imagine! I’m a little jealous of your career to be honest. It’s a weird jealous though, because I am jealous you get to be down on the field during game days, I am NOT jealous about you getting to be down on the field during game days with that weird orange color and a funny looking cowboy. I’ll still admire your pictures and digital content that you produce though! 😉 That probably answers your question honestly - you should judge hard because if this thing were to work out, we’d be a house massively divided. 🤣\n\nDo you work in/manage/run the digital content sphere solely for the football team or do you have other (or all) sports to cover? Huge football fan, so color me SUPER interested for all of your nerding out moments about your job.\n\nPS. Beware of sending me long messages by the way. I’ll send long messages back, haha! 🤣", cluster: 'solo' },
+
+    { type: 'received' },
+
+    { type: 'timestamp', label: 'Thu, Jun 12 · 10:55 PM' },
+    { type: 'sent', text: "Is family in Stillwater with you or do they live closer to/in the city? Regardless, super happy you got to advance and get a better living situation, distance wise, with closeness to family. Family is super important to me and it’s very attractive that you seem to value it the same.\n\nBaylor and Ohio State though? You really know how to pick some weird ass schools to work for, I’ll give you that. 🤣", cluster: 'start' },
+    { type: 'sent', text: "My story starts in New York, takes me to Texas for a long while (way too long), out to Oklahoma to attend the best university on the planet where they wear CRIMSON AND CREAM… BOOOOOOOOOMER!\n\nI also got to go spend 7 years in Colorado and played around with multiple different professions (most of which were entry level as I was figuring out what I truly wanted to do) before I landed in tech as a software engineer. Love (seriously) my job, but it’s usually SUPER boring to everyone but the ultra nerdy people. I build stuff, I fix stuff, I create connections between softwares, and I work with data… you know, a typical day for anyone! 😉", cluster: 'end' },
+
+    { type: 'received' },
+
+    { type: 'timestamp', label: 'Thu, Jun 12 · 11:39 PM' },
+    { type: 'sent', text: "Oh boy here we go with the score board talk. I’m surprised you were even able to gather any content for those teams honestly. And I bet you bought into the whole sticker idea when you were at Ohio State, huh? I know what to get you for Christmas. Did they give you stickers when you behaved in class too? Holy shit I’m having too much fun with this. 😂🤣😂\n\nI’m from upstate New York, so the Buffalo area. Much different vibe than the city. My family moved to Texas when I was a year old, so I only know anything about the area through traveling back there and spending time with extended family.\n\nOutside of the panhandle of Texas, do you have any extended family elsewhere? Also are we talking Amarillo or somewhere very secluded? I spent one year at Texas Tech in my collegiate journey, which I don’t care if you roast me for, I’ll take the L on that one, haha! All of that to say I’ve been in the panhandle of Texas before and I can say two things confidently: I can see why you wanted to get out and explore, and I can also see why you want to stay close and go visit. Love me some Texas panhandle for the visit, not for the stay if that makes sense. Seems like you couldn’t get away from small town living with Stillwater though, huh?", cluster: 'solo' },
+
+    { type: 'received' },
+
+    { type: 'date', label: 'Friday, June 13, 2025' },
+
+    { type: 'timestamp', label: 'Fri, Jun 13 · 11:19 AM' },
+    { type: 'sent', text: "Oh my gosh, Perryton is OUT THERE! How many folks live in that town? I’d say max a thousand, min five… LMFAO! 🤣\n\nWhat got you into big cities? Was it your time at university to where you just enjoyed being around a lot of people and feeling “small” or do you just have a dream to be living in a city due to where you grew up? Both answers completely viable and make sense, just curious where that desire came from is all! ☺️", cluster: 'start' },
+    { type: 'sent', text: "I lived in the DFW area. We moved around a lot there since my Mom was a real estate agent, so she started the conversation and we all rolled with it and made the wish come true.\n\nWhat’s your favorite thing about Perryton?", cluster: 'end' },
+
+    { type: 'received' },
+
+    { type: 'timestamp', label: 'Fri, Jun 13 · 9:03 PM' },
+    { type: 'sent', text: "Dang, you must have known everyone in town, huh? 😆 Which university and/or city that you’ve been to has been your favorite culture?\n\nAre you watching the Thunder play?! 🏀⚡️ I’m hoping we win, but it’s gonna be a tall task.\n\nI liked living there after I left. It was one of those moments that you don’t appreciate what you have until you don’t have it. So now I’m in the mode of  enjoying where I am when I’m there rather than afterwards. It’s why I’ve fallen in love with OK. I’ve always wanted to try living in Nashville or Tampa though, for whatever reason.\n\nDo you have any spots you’ve wanted to check out living?", cluster: 'solo' },
+
+    { type: 'received' },
+
+    { type: 'timestamp', label: 'Fri, Jun 13 · 10:45 PM' },
+    { type: 'sent', text: "I’m over my family’s house through the weekend. So I’m going swimming and playing some board games tomorrow and Sunday. Just spending time with them. How about you?", cluster: 'start' },
+    { type: 'sent', text: "Honestly, not sure how we won, we played like shit. 💩 ", cluster: 'end' },
+
+    { type: 'received' },
+
+    { type: 'timestamp', label: 'Fri, Jun 13 · 11:06 PM' },
+    { type: 'sent', text: "Yeah what the hell took you so long? You better watch on Sunday. If that’s the day of your cousins wedding, oh well, we got a finals game and series to winnnnn…", cluster: 'start' },
+    { type: 'sent', text: "Where in Denver? I’m jealous, I love weddings. Sick invite though. 🙄", cluster: 'end' },
+
+    { type: 'received' },
+
+    { type: 'timestamp', label: 'Fri, Jun 13 · 11:25 PM' },
+    { type: 'sent', text: "No shot if I showed up in Colorado you would actually take me in, right?! 🤣", cluster: 'start' },
+    { type: 'sent', text: "Littleton is a vibe. Y’all doing a little pre-gaming now?", cluster: 'end' },
+
+    { type: 'received' },
+
+    { type: 'timestamp', label: 'Fri, Jun 13 · 11:42 PM' },
+    { type: 'sent', text: "Who’s playing? And what a party pooper, you should have still gone and taken pics to share. I would have gone with you.\n\nAnd yeah, but spontaneous shit like that is so much fun. I wouldn’t have ever considered unless you confirmed you’d actually come get me. However would have been nerve wracking for both of us, haha!", cluster: 'start' },
+    { type: 'sent', text: "I see this emoji after the “I would have gone with you.”:\n\n😤", cluster: 'end' },
+
+    { type: 'received' },
+
+    { type: 'date', label: 'Saturday, June 14, 2025' },
+
+    { type: 'timestamp', label: 'Sat, Jun 14 · 10:24 AM' },
+    { type: 'sent', text: "Well damn, now I wish I was available to fly out to Colorado on a minutes notice. When are the vows? Take lots of pics!", cluster: 'solo' },
+
+    { type: 'received' },
+
+    { type: 'timestamp', label: 'Sat, Jun 14 · 4:05 PM' },
+    { type: 'sent', text: "Imagine I show up in street clothes and not even dressed up… 🤣 “Yo, what’s up guys?! Happy Marriage!” (I would actually bring some dress clothes for the occasion, I just had that image and had to share)\n\nWhat’s been the highlight argument so far? 😅\n\nMy family lives in Arkansas - right across the border of Oklahoma!", cluster: 'solo' },
+
+    { type: 'received' },
+
+    { type: 'timestamp', label: 'Sat, Jun 14 · 4:46 PM' },
+    { type: 'sent', text: "What’s your number by the way? I’d love to text you!", cluster: 'solo' },
+
+    { type: 'phone', number: '__PROP_PHONE__' },
+
+    { type: 'read' }
+  ];
+
+  // ---------------------------------------------------------------
+  // Render
+  // ---------------------------------------------------------------
+  const container = document.getElementById('messages');
+
+  // Match banner first
+  const banner = document.createElement('div');
+  banner.className = 'match-banner';
+  banner.innerHTML = `
+    <div class="league-mark">THE LEAGUE</div>
+    <div class="match-divider"></div>
+    <div class="match-title">It's a Match</div>
+    <div class="match-detail">You and Addison liked each other<br/>${matchInfo.date} &middot; ${matchInfo.time}</div>
+  `;
+  container.appendChild(banner);
+
+  timeline.forEach(item => {
+    if (item.type === 'date') {
+      const d = document.createElement('div');
+      d.className = 'date-sep';
+      d.innerHTML = `<span class="line"></span><span class="label">${item.label}</span><span class="line"></span>`;
+      container.appendChild(d);
+    } else if (item.type === 'timestamp') {
+      const t = document.createElement('div');
+      t.className = 'timestamp';
+      const parts = item.label.split(' · ');
+      t.innerHTML = `<span class="bold">${parts[0]}</span> · ${parts[1]}`;
+      container.appendChild(t);
+    } else if (item.type === 'sent') {
+      const row = document.createElement('div');
+      row.className = 'row sent' + (item.cluster === 'end' || item.cluster === 'solo' ? ' cluster-end' : '');
+      const bubble = document.createElement('div');
+      bubble.className = 'bubble';
+      bubble.textContent = item.text;
+      row.appendChild(bubble);
+      container.appendChild(row);
+    } else if (item.type === 'received') {
+      const row = document.createElement('div');
+      row.className = 'row received cluster-end';
+      const bubble = document.createElement('div');
+      bubble.className = 'bubble';
+      bubble.innerHTML = '<span class="triple-dot"><span></span><span></span><span></span></span>';
+      row.appendChild(bubble);
+      container.appendChild(row);
+    } else if (item.type === 'phone') {
+      const row = document.createElement('div');
+      row.className = 'row received cluster-end';
+      const bubble = document.createElement('div');
+      bubble.className = 'bubble phone-bubble';
+      bubble.innerHTML = '<span class="phone-link" data-number="' + item.number + '">' + item.number + '</span>';
+      row.appendChild(bubble);
+      container.appendChild(row);
+    } else if (item.type === 'read') {
+      const r = document.createElement('div');
+      r.className = 'read-indicator';
+      r.textContent = 'Delivered';
+      container.appendChild(r);
+    }
+  });
+
+  // ---------------------------------------------------------------
+  // iOS action sheet
+  // ---------------------------------------------------------------
+  const sheet = document.getElementById('sheet');
+  const sheetNumber = document.getElementById('sheetNumber');
+
+  function openSheet(num) {
+    sheetNumber.textContent = num;
+    sheet.classList.add('open');
+  }
+
+  function closeSheet() {
+    sheet.classList.remove('open');
+  }
+
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('.phone-link');
+    if (link) {
+      e.preventDefault();
+      openSheet(link.dataset.number || link.textContent.trim());
+      return;
+    }
+
+    const action = e.target.closest('.sheet-action');
+    if (action) {
+      closeSheet();
+      return;
+    }
+
+    if (e.target === sheet) {
+      closeSheet();
+    }
+  });
+
+  // =================================================================
+  // PROPOSAL SHOW DIRECTOR
+  // Auto-plays the whole sequence after the CLICK HERE button.
+  // Every value in T is a tunable knob (milliseconds). When we add the
+  // song later, stretch chatScroll / imsgScroll so the whole thing
+  // lands inside the music. Nothing here is shown to the viewer.
+  // =================================================================
+  // ----- TIMING (ms) — tuned so the photos finish exactly at 2:59 (179s) -----
+  // The song plays from CLICK HERE through the last photo and ends as the
+  // iMessage scroll reaches the bottom. The values below sum to 179,000 ms
+  // from the click to the end of the photo scroll; the video plays after that.
+  // To re-fit a different song length, change chatScroll + imsgScroll so the
+  // running total to the end of imsgScroll equals (song length in ms).
+  // ----- TIMING (ms) — tuned so the WHOLE show (incl. the ring finale) ends at 2:59 -----
+  // The song plays from CLICK HERE through the fullscreen ring and the question.
+  // The running total in runShow sums to 179,000 ms and ends a few seconds after
+  // the words appear. To re-fit a different song length, change chatScroll +
+  // imsgScroll so the grand total equals (song length in ms).
+  const T = {
+    startDelay:    600,   // after CLICK HERE, before the match plays
+    matchPlay:    1350,   // match avatars/text animate in
+    matchHold:    3000,   // hold on the "It's a Match" screen
+    matchToChat:   800,   // match dissolves into the chat
+    chatSettle:    800,   // breath at the top of the chat
+    chatScroll:  22000,   // scroll through ALL the League messages
+    beforeTap:    1500,   // pause at the bottom before tapping the number
+    tapAnim:       600,   // finger-tap ripple length (matches CSS); each tap uses this
+    sheetHold:    2500,   // hold with the Call / Message sheet open
+    sheetTapHold:  800,   // beat after tapping Send Message
+    appOpen:       900,   // League -> iMessage open transition
+    imsgSettle:    800,   // breath at the top of iMessage
+    imsgScroll: 134250,   // photo montage (shortened to make room for the ring finale)
+    // ----- ring finale (all inside the 2:59) -----
+    ringSettle:    900,   // beat on the final ring photo before tapping it
+    ringZoom:      800,   // the photo opens to fullscreen
+    ringFullHold: 1400,   // hold on the fullscreen ring before the words
+    textFadeIn:   1800,   // "I just have one question to ask you…" fades in
+    textHold:     3000    // the words linger, then the song ends
+  };
+
+  const wait = ms => new Promise(r => setTimeout(r, ms));
+
+  // Photo stream for iMessage. The list below is generated by build_show.py
+  // (run it whenever you add or remove photos). Rules baked into the build:
+  //   * order = numbered photos 001..NNN, then FINAL_RING last
+  //   * you send first, sides alternate after that
+  //   * FINAL_RING is ALWAYS the last photo AND always sent by you
+  // Do not hand-edit between the markers; re-run build_show.py instead.
+  /* PHOTOS_START */
+  const PHOTOS = ["001.jpg", "002.jpg", "003.jpg", "004.jpg", "005.jpg", "006.jpg", "007.jpg", "008.jpg", "009.jpg", "010.jpg", "011.jpg", "012.jpg", "013.jpg", "014.jpg", "015.jpg", "016.jpg", "017.jpg", "018.jpg", "019.jpg", "020.jpg", "021.jpg", "022.jpg", "023.jpg", "024.jpg", "025.jpg", "026.jpg", "027.jpg", "028.jpg", "029.jpg", "030.jpg", "031.jpg", "032.jpg", "033.jpg", "034.jpg", "035.jpg", "036.jpg", "037.jpg", "038.jpg", "039.jpg", "040.jpg", "041.jpg", "042.jpg", "043.jpg", "044.jpg", "045.jpg", "046.jpg", "047.jpg", "048.jpg", "049.jpg", "050.jpg", "051.jpg", "052.jpg", "053.jpg", "054.jpg", "055.jpg", "056.jpg", "057.jpg", "058.jpg", "059.jpg", "060.jpg", "061.jpg", "062.jpg", "063.jpg", "064.jpg", "065.jpg", "066.jpg", "067.jpg", "068.jpg", "069.jpg", "070.jpg", "071.jpg", "072.jpg", "073.jpg", "074.jpg", "075.jpg", "076.jpg", "077.jpg", "078.jpg", "079.jpg", "080.jpg", "081.jpg", "082.jpg", "083.jpg", "084.jpg", "085.jpg", "086.jpg", "087.jpg", "088.jpg", "089.jpg", "090.jpg", "091.jpg", "092.jpg", "093.jpg", "094.jpg", "095.jpg", "096.jpg", "097.jpg", "098.jpg", "099.jpg", "100.jpg", "101.jpg", "102.jpg", "103.jpg", "104.jpg", "105.jpg", "106.jpg", "107.jpg", "108.jpg", "109.jpg", "110.jpg", "111.jpg", "112.jpg", "113.jpg", "114.jpg", "115.jpg", "116.jpg", "117.jpg", "118.jpg", "119.jpg", "120.jpg", "121.jpg", "122.jpg", "123.jpg", "124.jpg", "125.jpg", "126.jpg", "127.jpg", "128.jpg", "129.jpg", "130.jpg", "131.jpg", "132.jpg", "133.jpg", "134.jpg", "135.jpg", "136.jpg", "137.jpg", "138.jpg", "139.jpg", "140.jpg", "141.jpg", "142.jpg", "143.jpg", "144.jpg", "145.jpg", "146.jpg", "147.jpg", "148.jpg", "149.jpg", "150.jpg", "151.jpg", "152.jpg", "153.jpg", "154.jpg", "155.jpg", "156.jpg", "157.jpg", "158.jpg", "159.jpg", "160.jpg", "161.jpg", "162.jpg", "163.jpg", "164.jpg", "165.jpg", "FINAL_RING.jpg"];
+  /* PHOTOS_END */
+
+  (function buildIMessage() {
+    const wrap = document.getElementById('imessageMessages');
+    const frag = document.createDocumentFragment();
+    PHOTOS.forEach((file, i) => {
+      // First photo is sent (you), then alternate. The final photo (FINAL_RING)
+      // is forced to "sent" so the ring always comes from you.
+      const sent = (i === PHOTOS.length - 1) ? true : (i % 2 === 0);
+      const row = document.createElement('div');
+      row.className = 'ims-row ' + (sent ? 'sent' : 'received');
+      const photo = document.createElement('div');
+      photo.className = 'ims-photo';
+      const img = document.createElement('img');
+      img.src = 'Pictures/web/' + file;
+      img.alt = file;
+      photo.appendChild(img);
+      row.appendChild(photo);
+      frag.appendChild(row);
+    });
+    wrap.appendChild(frag);
+  })();
+
+  // Smooth, duration-controlled auto-scroll (ease in and out).
+  function autoScroll(el, duration) {
+    return new Promise(resolve => {
+      el.style.scrollBehavior = 'auto';
+      const start = el.scrollTop;
+      const end = el.scrollHeight - el.clientHeight;
+      const dist = end - start;
+      if (dist <= 1 || duration <= 0) { el.scrollTop = end; resolve(); return; }
+      const t0 = performance.now();
+      function step(now) {
+        const p = Math.min(1, (now - t0) / duration);
+        // Cruise easing: gentle ramp up, steady constant scroll, gentle ramp down.
+        // Keeps a long montage moving at one even pace instead of racing the middle.
+        const a = 0.08, v = 1 / (1 - a);
+        let eased;
+        if (p < a)            eased = v * p * p / (2 * a);
+        else if (p > 1 - a) { const q = 1 - p; eased = 1 - v * q * q / (2 * a); }
+        else                  eased = v * a / 2 + v * (p - a);
+        el.scrollTop = start + dist * eased;
+        if (p < 1) requestAnimationFrame(step); else resolve();
+      }
+      requestAnimationFrame(step);
+    });
+  }
+
+  // Show a finger-tap ripple centered on an element.
+  const tapInd = document.getElementById('tapInd');
+  const phoneFrame = document.querySelector('.phone');
+  function tapElement(el) {
+    return new Promise(resolve => {
+      const pr = phoneFrame.getBoundingClientRect();
+      const r = el.getBoundingClientRect();
+      tapInd.style.left = (r.left - pr.left + r.width / 2) + 'px';
+      tapInd.style.top  = (r.top  - pr.top  + r.height / 2) + 'px';
+      tapInd.classList.remove('go');
+      void tapInd.offsetWidth;   // restart the animation
+      tapInd.classList.add('go');
+      setTimeout(resolve, T.tapAnim);
+    });
+  }
+
+  function showScreen(sel) {
+    document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+    document.querySelector(sel).classList.add('active');
+  }
+
+  // Open the final ring photo to fullscreen, growing from the tapped bubble.
+  function openRingFullscreen(streamImg) {
+    return new Promise(resolve => {
+      const rf = document.getElementById('ringFull');
+      const img = document.getElementById('ringFullImg');
+      const full = rf.getBoundingClientRect();      // fullscreen target
+      const b = streamImg.getBoundingClientRect();  // the photo as it sits in the chat
+      const s = b.width / full.width;
+      const tx = (b.left + b.width / 2) - (full.left + full.width / 2);
+      const ty = (b.top + b.height / 2) - (full.top + full.height / 2);
+      img.style.transition = 'none';
+      img.style.transform = `translate(${tx}px, ${ty}px) scale(${s})`;
+      rf.classList.add('show');                     // black + photo fade in
+      void img.offsetWidth;                         // commit the start frame
+      img.style.transition = `transform ${T.ringZoom}ms cubic-bezier(.2,.8,.2,1)`;
+      img.style.transform = 'translate(0,0) scale(1)';
+      setTimeout(resolve, T.ringZoom);
+    });
+  }
+
+  // Fade in the question over the fullscreen ring, with a slow living zoom.
+  function showRingText() {
+    const img = document.getElementById('ringFullImg');
+    const text = document.getElementById('ringText');
+    const scrim = document.getElementById('ringScrim');
+    img.style.transition = `transform ${T.textFadeIn + T.textHold}ms ease-out`;
+    img.style.transform = 'scale(1.06)';            // gentle living zoom as words arrive
+    text.style.transition = `opacity ${T.textFadeIn}ms ease, transform ${T.textFadeIn}ms cubic-bezier(.2,.8,.2,1), filter ${T.textFadeIn}ms ease`;
+    scrim.style.transition = `opacity ${T.textFadeIn}ms ease`;
+    requestAnimationFrame(() => {
+      scrim.classList.add('show');
+      text.classList.add('show');
+    });
+    return wait(T.textFadeIn);
+  }
+
+  async function runShow() {
+    document.getElementById('startScreen').classList.add('hide');
+    await wait(T.startDelay);
+
+    // 1) It's a Match
+    const match = document.getElementById('matchScreen');
+    match.classList.add('show');
+    void match.offsetWidth;
+    match.classList.add('play');
+    await wait(T.matchPlay + T.matchHold);
+
+    // 2) Dissolve the match into the League chat (already underneath)
+    match.classList.remove('show');
+    const chat = document.getElementById('messages');
+    chat.style.scrollBehavior = 'auto';
+    chat.scrollTop = 0;
+    await wait(T.matchToChat + T.chatSettle);
+
+    // 3) Scroll through all the League messages
+    await autoScroll(chat, T.chatScroll);
+    await wait(T.beforeTap);
+
+    // 4) Tap the phone number -> Call / Send Message sheet
+    const link = document.querySelector('.phone-link');
+    await tapElement(link);
+    openSheet(link.textContent.trim());
+    await wait(T.sheetHold);
+
+    // 5) Tap "Send Message"
+    const sendBtn = document.querySelector('.sheet-action[data-act="message"]');
+    await tapElement(sendBtn);
+    await wait(T.sheetTapHold);
+    closeSheet();
+
+    // 6) Open iMessage and fast-scroll through the photo montage
+    const ims = document.getElementById('imessageMessages');
+    ims.scrollTop = 0;
+    showScreen('#imessageScreen');
+    await wait(T.appOpen + T.imsgSettle);
+    await autoScroll(ims, T.imsgScroll);
+
+    // 7) Ring finale: tap the final photo, open it fullscreen, fade in the question.
+    await wait(T.ringSettle);
+    const ringImg = document.querySelector('#imessageMessages .ims-row:last-child img');
+    await tapElement(ringImg);
+    await openRingFullscreen(ringImg);
+    await wait(T.ringFullHold);
+    await showRingText();
+    await wait(T.textHold);
+    // 2:59 — the song ends here. The fullscreen ring and the question stay on
+    // screen while Tanner asks in person. (This replaces the earlier video.)
+  }
+
+  // Start the show on click. The click is the user gesture browsers require to
+  // play audio with sound, so the song begins exactly when the timeline does.
+  document.getElementById('startBtn').addEventListener('click', () => {
+    const song = document.getElementById('song');
+    if (song) { song.currentTime = 0; song.play().catch(() => {}); }
+    runShow();
+  }, { once: true });
+</script>
+
+</body>
+</html>
