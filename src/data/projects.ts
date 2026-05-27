@@ -24,8 +24,8 @@ export interface Project {
 
 export const PROJECTS: Project[] = [
   {
-    slug: "Admin_App",
-    name: "Admin App",
+    slug: "Team_App",
+    name: "@Team App",
     image: AdminApp,
     liveUrl: "",
     inDevelopment: true,
@@ -42,12 +42,12 @@ export const PROJECTS: Project[] = [
       "Docker",
     ],
     tagline:
-      "Roster-aware social publishing for athletic departments. Lead engineer on a two-person team with Addison driving product and design.",
+      "AI-powered roster, scheduling, and social publishing for athletic departments. Lead engineer on a two-person team, owning the stack from schema to publish.",
     description: [
-      "Admin App is a two-person product I'm building with Addison. She leads product and design, bringing the domain expertise that drives what the app needs to do; I lead engineering. Athletic departments shoot a mountain of game-day photo and video, and the post-game scramble to caption everything (proper alt text, the right player names, on-brand voice, posted across every platform) is the pain point we're solving. The app turns that into a four-step wizard: pick a roster, drop media, review the generated copy, publish.",
-      "I own the full engineering stack: schema, APIs, UI, auth, and the publishing pipeline. Next.js 16 + React 19 + TypeScript on the front, Prisma 7 + PostgreSQL on the back. The product's AI features run on Anthropic's Claude API, wired with full roster context (jersey numbers, positions, handles) so generated captions reference the actual athlete in frame. Auth runs through AWS Cognito with JOSE-signed session tokens. Tailwind v4 across the UI, Docker for local infra.",
-      "Multi-tenant from the ground up: every team has its own roster, social accounts, brand voice settings, and user permission tiers (org owner, admin, staff, student). Coaches see only their teams; org owners reach everything. The wizard adapts to whichever permissions the signed-in user actually holds.",
-      "Beyond the wizard, the admin surface handles roster management, social account OAuth, scheduling, user invites, and per-team brand voice tuning. Addison shapes what the product feels like; I build every layer of it.",
+      "@Team App is an AI publishing and operations platform for athletic departments, built on a two-person team where I lead engineering. Departments shoot a mountain of game-day photo and video, and the post-game scramble to caption it all (the right player names, proper alt text, on-brand voice, posted across every platform) burns hours every week. @Team App turns that into a four-step wizard: pick a roster, drop in the media, review the AI-generated copy, publish everywhere at once.",
+      "The differentiator is the AI. Anthropic's Claude reads each photo, matches the athletes in frame against the team roster (jersey numbers, positions, social handles), and writes accessible alt text plus captions tuned to each platform: tight for X, on-voice for Instagram, fuller for Facebook. Every caption names the actual player on the field, not a generic stand-in.",
+      "Under the hood I own every layer: schema, APIs, UI, auth, and the publishing pipeline. Next.js 16 + React 19 + TypeScript on the front, Prisma 7 + PostgreSQL on the back, Tailwind v4 across the UI, Docker for local infra. Auth runs through AWS Cognito with JOSE-signed session tokens, and posts go out to Facebook Pages, Instagram Business, and X over OAuth with account tokens encrypted at rest (AES-256-GCM).",
+      "It's multi-tenant from the ground up: every organization gets its own rosters, social accounts, brand-voice settings, and a four-tier permission model (org owner, admin, staff, student) that the whole app enforces. Beyond publishing, it runs roster management, event scheduling with shift releases and pickups, user invites, notifications, and audit logging, with a contract-based test suite that keeps refactors from silently breaking any of it.",
     ],
   },
   {

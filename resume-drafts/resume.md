@@ -4,7 +4,7 @@
 [tannermonaco.netlify.app](https://tannermonaco.netlify.app) &nbsp;|&nbsp; [linkedin.com/in/tannerazm](https://www.linkedin.com/in/tannerazm/) &nbsp;|&nbsp; [github.com/tannerazm](https://github.com/tannerazm)
 
 ## Summary
-Full-stack engineer who cares more about how software feels to use than how cleverly it was built. I want the apps I ship to feel inspiring, not just functional, and my proudest work is always the feature a user noticed, used, and came back to. Underneath, my approach pairs strong engineering fundamentals and best practices with AI as a development partner, producing technically sound code and infrastructure at high velocity. Currently building AI-powered products at Repify Ai with that bar in mind. Outside of Repify Ai, I lead engineering on Admin App, a roster-aware social publishing tool for athletic departments built on a two-person team with Addison driving product and design.
+Full-stack engineer who cares more about how software feels to use than how cleverly it was built. I want the apps I ship to feel inspiring, not just functional, and my proudest work is always the feature a user noticed, used, and came back to. Underneath, my approach pairs strong engineering fundamentals and best practices with AI as a development partner, producing technically sound code and infrastructure at high velocity. Currently building AI-powered products at Repify Ai with that bar in mind. Outside of Repify Ai, I lead engineering on @Team App, an AI-powered social publishing platform for athletic departments, built on a two-person team.
 
 ## Technical Skills
 **Frontend:** Next.js, React.js, TypeScript, Tailwind, Vue.js, Filament, WordPress, Twig, HTML, CSS<br>
