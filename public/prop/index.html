@@ -765,6 +765,45 @@
     user-select: none;
     -webkit-touch-callout: none;
   }
+
+  /* Volume reminder: appears after CLICK HERE, counts down from 5 while
+     she turns the phone volume up, then auto-starts the show. */
+  #volumeScreen {
+    position: absolute; inset: 0; z-index: 430;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center; text-align: center;
+    background: radial-gradient(120% 80% at 50% 30%, #fffdf8 0%, var(--bg-phone) 65%);
+    padding: 32px;
+    opacity: 0; pointer-events: none;
+    transition: opacity 0.55s ease;
+  }
+  #volumeScreen.show { opacity: 1; pointer-events: auto; }
+  #volumeScreen.hide { opacity: 0; pointer-events: none; }
+  #volumeScreen .v-icon {
+    font-size: 78px; line-height: 1; margin-bottom: 28px;
+    filter: drop-shadow(0 4px 14px rgba(0,0,0,0.15));
+    animation: volumePulse 1.4s ease-in-out infinite;
+  }
+  @keyframes volumePulse {
+    0%, 100% { transform: scale(1);    }
+    50%      { transform: scale(1.10); }
+  }
+  #volumeScreen .v-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 32px; font-weight: 500; letter-spacing: 0.4px;
+    color: var(--text-primary);
+    margin-bottom: 18px;
+  }
+  #volumeScreen .v-count {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 56px; font-weight: 500; line-height: 1;
+    color: var(--text-secondary);
+    letter-spacing: 1px;
+    font-variant-numeric: tabular-nums;
+    min-width: 60px;
+  }
 </style>
 </head>
 <body>
@@ -862,6 +901,13 @@
    <div class="s-names">Tanner &amp; Addison</div>
    <div class="s-heart">&#9829;</div>
    <button class="s-btn" id="startBtn">CLICK HERE</button>
+ </div>
+
+ <!-- ============ Volume reminder screen (5s auto-countdown) ============ -->
+ <div id="volumeScreen">
+   <div class="v-icon">&#128266;</div>
+   <div class="v-title">Turn your volume up</div>
+   <div class="v-count" id="vCount">5</div>
  </div>
 
  <!-- ============ "It's a Match" animation ============ -->
@@ -1325,21 +1371,40 @@
     // screen while Tanner asks in person. (This replaces the earlier video.)
   }
 
-  // Start the show on click. The click is the user gesture browsers need to
-  // play audio with sound, so the song begins exactly when the timeline does.
-  // We also lock all scroll/zoom/key input so nothing can bump the timing,
-  // and we push the in-page audio to max + unmuted. (The PHONE's hardware
-  // volume is still the user's responsibility — no web page can change that.)
+  // CLICK HERE -> "Turn your volume up" screen + 5s countdown -> show auto-starts.
+  // No second tap needed. We "warm up" the song under the current user gesture
+  // so play() still works 5 seconds later (browsers expire the gesture window).
+  // The warmup is a brief, almost-inaudible nudge at the song's start that we
+  // immediately pause and reset, so the real play below kicks in cleanly at t=0.
   document.getElementById('startBtn').addEventListener('click', () => {
-    lockInteraction();
+    document.getElementById('startScreen').classList.add('hide');
+    document.getElementById('volumeScreen').classList.add('show');
+
     const song = document.getElementById('song');
     if (song) {
       song.muted = false;
       song.volume = 1.0;
-      song.currentTime = 0;
-      song.play().catch(() => {});
+      song.play().then(() => { song.pause(); song.currentTime = 0; }).catch(() => {});
     }
-    runShow();
+
+    const cd = document.getElementById('vCount');
+    let n = 5;
+    cd.textContent = String(n);
+    const tick = setInterval(() => {
+      n -= 1;
+      if (n < 1) {
+        clearInterval(tick);
+        lockInteraction();
+        document.getElementById('volumeScreen').classList.add('hide');
+        if (song) {
+          song.currentTime = 0;
+          song.play().catch(() => {});
+        }
+        runShow();
+      } else {
+        cd.textContent = String(n);
+      }
+    }, 1000);
   }, { once: true });
 </script>
 
