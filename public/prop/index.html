@@ -725,6 +725,43 @@
   .ims-field .arrow { width: 26px; height: 26px; border-radius: 50%; background: #0a84ff; display: flex; align-items: center; justify-content: center; margin: -3px -6px -3px 0; }
   .ims-field .arrow svg { width: 14px; height: 14px; fill: #fff; }
 
+  /* Ring-finale typing indicator: pretends you're composing the next message,
+     then the ring photo appears as if you just sent it. */
+  .ims-row.ims-typing { opacity: 0; animation: typingIn 0.4s ease forwards; }
+  @keyframes typingIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to   { opacity: 1; transform: translateY(0);   }
+  }
+  .ims-typing-bubble {
+    background: #0a84ff;
+    padding: 13px 16px;
+    border-radius: 20px 20px 6px 20px;
+    display: flex; gap: 4px; align-items: center;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.08);
+  }
+  .ims-typing-bubble .dot {
+    width: 7px; height: 7px; border-radius: 50%;
+    background: #fff; opacity: 0.5;
+    animation: typingDot 1.2s ease-in-out infinite;
+  }
+  .ims-typing-bubble .dot:nth-child(2) { animation-delay: 0.18s; }
+  .ims-typing-bubble .dot:nth-child(3) { animation-delay: 0.36s; }
+  @keyframes typingDot {
+    0%, 60%, 100% { opacity: 0.35; transform: translateY(0);    }
+    30%           { opacity: 1;    transform: translateY(-2px); }
+  }
+
+  /* Ring photo "pops in" when it arrives right after the typing indicator. */
+  .ims-row.ims-pop-in {
+    transform-origin: bottom right;
+    animation: photoPop 0.6s cubic-bezier(.2, 1.5, .4, 1);
+  }
+  @keyframes photoPop {
+    0%   { transform: scale(0.3);  opacity: 0; }
+    60%  { transform: scale(1.05); opacity: 1; }
+    100% { transform: scale(1);    opacity: 1; }
+  }
+
   /* Ring finale: fullscreen final photo + the question */
   #ringFull {
     position: absolute; inset: 0; z-index: 460;
@@ -1168,9 +1205,11 @@
     sheetTapHold:  800,   // beat after tapping Send Message
     appOpen:       900,   // League -> iMessage open transition
     imsgSettle:    800,   // breath at the top of iMessage
-    imsgScroll: 134250,   // photo montage (shortened to make room for the ring finale)
+    imsgScroll: 132050,   // photo montage (shortened to make room for the ring finale)
     // ----- ring finale (all inside the 2:59) -----
-    ringSettle:    900,   // beat on the final ring photo before tapping it
+    typingShow:   1800,   // sent-side typing dots: "you" composing the ring photo
+    photoPop:      650,   // ring photo pops into the chat (matches CSS animation)
+    photoSettle:   650,   // brief beat on the photo before the tap
     ringZoom:      800,   // the photo opens to fullscreen
     ringFullHold: 1400,   // hold on the fullscreen ring before the words
     textFadeIn:   1800,   // "I just have one question to ask you…" fades in
@@ -1206,8 +1245,11 @@
     const numberedCount = PHOTOS.length - 1;        // all but FINAL_RING
     const firstSent = (numberedCount % 2 === 0);    // even count -> you first
     PHOTOS.forEach((file, i) => {
-      const isLast = i === PHOTOS.length - 1;
-      const sent = isLast ? true : (i % 2 === (firstSent ? 0 : 1));
+      // Skip FINAL_RING in the initial render — the finale appends it
+      // dynamically right after a "typing" indicator, so it feels like
+      // you're sending the ring photo right at that moment.
+      if (i === PHOTOS.length - 1) return;
+      const sent = i % 2 === (firstSent ? 0 : 1);
       const row = document.createElement('div');
       row.className = 'ims-row ' + (sent ? 'sent' : 'received');
       const photo = document.createElement('div');
@@ -1221,6 +1263,37 @@
     });
     wrap.appendChild(frag);
   })();
+
+  // Sent-side "typing" bubble (three pulsing white dots in iMessage blue) —
+  // used in the finale to make the ring photo feel like a live composition.
+  function createTypingRow() {
+    const row = document.createElement('div');
+    row.className = 'ims-row sent ims-typing';
+    const bubble = document.createElement('div');
+    bubble.className = 'ims-typing-bubble';
+    for (let i = 0; i < 3; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'dot';
+      bubble.appendChild(dot);
+    }
+    row.appendChild(bubble);
+    return row;
+  }
+
+  // The FINAL_RING photo row, appended dynamically in the finale with a
+  // "pops in" scale + fade animation right after the typing indicator.
+  function createRingPhotoRow() {
+    const row = document.createElement('div');
+    row.className = 'ims-row sent ims-pop-in';
+    const photo = document.createElement('div');
+    photo.className = 'ims-photo';
+    const img = document.createElement('img');
+    img.src = 'Pictures/web/FINAL_RING.jpg';
+    img.alt = 'FINAL_RING.jpg';
+    photo.appendChild(img);
+    row.appendChild(photo);
+    return row;
+  }
 
   // Smooth, duration-controlled auto-scroll (ease in and out).
   function autoScroll(el, duration) {
@@ -1368,9 +1441,20 @@
     await wait(T.appOpen + T.imsgSettle);
     await autoScroll(ims, T.imsgScroll);
 
-    // 7) Ring finale: tap the final photo, open it fullscreen, fade in the question.
-    await wait(T.ringSettle);
-    const ringImg = document.querySelector('#imessageMessages .ims-row:last-child img');
+    // 7) Ring finale: typing indicator → ring photo pops in → tap → fullscreen → question.
+    //    Reads as: "I just sent you something" -> photo arrives -> she taps -> the ask.
+    const typingRow = createTypingRow();
+    ims.appendChild(typingRow);
+    autoScroll(ims, 350);                          // glide the typing bubble into view
+    await wait(T.typingShow);
+
+    typingRow.remove();
+    const ringRow = createRingPhotoRow();
+    ims.appendChild(ringRow);
+    autoScroll(ims, 300);                          // glide the just-arrived photo into view
+    await wait(T.photoPop + T.photoSettle);
+
+    const ringImg = ringRow.querySelector('img');
     await tapElement(ringImg);
     await openRingFullscreen(ringImg);
     await wait(T.ringFullHold);
@@ -1391,9 +1475,15 @@
 
     const song = document.getElementById('song');
     if (song) {
-      song.muted = false;
+      // MUTED warmup: plays silently under the user gesture to unlock the
+      // element on iOS without any audible blip. We un-mute and reset to 0
+      // at the countdown end so the real play starts cleanly from the top.
+      song.muted = true;
       song.volume = 1.0;
-      song.play().then(() => { song.pause(); song.currentTime = 0; }).catch(() => {});
+      song.play().then(() => {
+        song.pause();
+        song.currentTime = 0;
+      }).catch(() => {});
     }
 
     const cd = document.getElementById('vCount');
@@ -1406,6 +1496,7 @@
         lockInteraction();
         document.getElementById('volumeScreen').classList.add('hide');
         if (song) {
+          song.muted = false;
           song.currentTime = 0;
           song.play().catch(() => {});
         }
