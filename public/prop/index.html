@@ -35,6 +35,8 @@
 
   html, body {
     height: 100%;
+    height: 100svh;          /* mobile: stay inside the visible area
+                                (below the URL bar, above the nav bar) */
     width: 100%;
     overflow: hidden;
     background: var(--bg-page);
@@ -56,7 +58,9 @@
     width: 100%;
     max-width: 420px;
     height: 100vh;
+    height: 100svh;          /* never get clipped by mobile browser chrome */
     max-height: 100vh;
+    max-height: 100svh;
     background: var(--bg-phone);
     display: flex;
     flex-direction: column;
