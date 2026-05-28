@@ -1295,6 +1295,18 @@
     return row;
   }
 
+  // Resolves once an <img> has its intrinsic dimensions, so scrollHeight /
+  // row offsets reflect real layout (otherwise a freshly-appended row reports
+  // 0 height for one frame and any scroll-to-bottom undershoots).
+  function imageReady(img) {
+    if (img.decode) return img.decode().catch(() => {});
+    if (img.complete && img.naturalWidth > 0) return Promise.resolve();
+    return new Promise(res => {
+      img.addEventListener('load', res, { once: true });
+      img.addEventListener('error', res, { once: true });
+    });
+  }
+
   // Smooth, duration-controlled auto-scroll (ease in and out).
   function autoScroll(el, duration) {
     return new Promise(resolve => {
@@ -1450,11 +1462,16 @@
 
     typingRow.remove();
     const ringRow = createRingPhotoRow();
+    const ringImg = ringRow.querySelector('img');
     ims.appendChild(ringRow);
-    autoScroll(ims, 300);                          // glide the just-arrived photo into view
+    // Wait for the photo's dimensions AND one paint frame so scrollHeight
+    // reflects the real row height — otherwise the glide ends short and the
+    // ring photo sits below the visible area.
+    await imageReady(ringImg);
+    await new Promise(r => requestAnimationFrame(r));
+    autoScroll(ims, 400);                          // glide to the now-correct bottom
     await wait(T.photoPop + T.photoSettle);
 
-    const ringImg = ringRow.querySelector('img');
     await tapElement(ringImg);
     await openRingFullscreen(ringImg);
     await wait(T.ringFullHold);
