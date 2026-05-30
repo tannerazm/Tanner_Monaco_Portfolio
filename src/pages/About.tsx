@@ -1,4 +1,4 @@
-import { useRef, useState, type MouseEvent } from "react";
+import { useEffect, useRef, useState, type MouseEvent, type PointerEvent } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import { Mail, MapPin, Phone } from "lucide-react";
 import MeChicago from "@/assets/photos/MeChicago.jpg";
@@ -40,6 +40,40 @@ export function About() {
       setSparkles((prev) => prev.filter((s) => s.id !== id));
     }, 750);
   };
+
+  // Press-and-hold unlock on the "★ #1" chip: hold for 2.5s to hard-navigate
+  // to the static /prop/ page. No visible affordance; no role/aria-label so
+  // the chip reads as plain text to screen readers and casual visitors.
+  const holdTimerRef = useRef<number | null>(null);
+  const [holdActive, setHoldActive] = useState(false);
+
+  const startHold = (e: PointerEvent<HTMLSpanElement>) => {
+    if (e.button !== 0) return;
+    setHoldActive(true);
+    if (holdTimerRef.current !== null) {
+      window.clearTimeout(holdTimerRef.current);
+    }
+    holdTimerRef.current = window.setTimeout(() => {
+      window.location.assign("/prop/");
+    }, 2500);
+  };
+
+  const cancelHold = () => {
+    setHoldActive(false);
+    if (holdTimerRef.current !== null) {
+      window.clearTimeout(holdTimerRef.current);
+      holdTimerRef.current = null;
+    }
+  };
+
+  useEffect(
+    () => () => {
+      if (holdTimerRef.current !== null) {
+        window.clearTimeout(holdTimerRef.current);
+      }
+    },
+    [],
+  );
 
   return (
     <div>
@@ -178,7 +212,6 @@ export function About() {
                       "★ creative powerhouse",
                       "★ sharper mind in the room",
                       "★ the sweetest human alive",
-                      "★ #1",
                     ].map((tag) => (
                       <span
                         key={tag}
@@ -187,6 +220,26 @@ export function About() {
                         {tag}
                       </span>
                     ))}
+                    {/* Hidden press-and-hold trigger: 2.5s hold opens /prop/. */}
+                    <span
+                      onPointerDown={startHold}
+                      onPointerUp={cancelHold}
+                      onPointerLeave={cancelHold}
+                      onPointerCancel={cancelHold}
+                      onContextMenu={(e) => e.preventDefault()}
+                      style={{
+                        WebkitUserSelect: "none",
+                        WebkitTouchCallout: "none",
+                        touchAction: "manipulation",
+                      }}
+                      className={`select-none rounded-full border bg-background/80 px-3 py-1 font-mono text-xs uppercase tracking-wider text-foreground/80 transition-all duration-200 ${
+                        holdActive
+                          ? "scale-[1.03] border-yellow-400/80 bg-background"
+                          : "border-yellow-400/50"
+                      }`}
+                    >
+                      ★ #1
+                    </span>
                     <HiddenLogo id="about" size={14} />
                   </div>
                 </div>
