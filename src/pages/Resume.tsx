@@ -21,6 +21,7 @@ import { HiddenLogo } from "@/components/HiddenLogo";
 import { cn } from "@/lib/utils";
 import { CONTACT } from "@/data/contact";
 import {
+  bulletText,
   RESUME_AI_AUTOMATION,
   RESUME_EDUCATION,
   RESUME_EXPERIENCE,
@@ -269,7 +270,7 @@ export function Resume() {
                     </span>
                   </h3>
                   <ul className="mt-3 space-y-2 text-muted-foreground leading-relaxed max-w-3xl">
-                    {role.bullets.map((bullet) => (
+                    {role.bullets.map(bulletText).map((bullet) => (
                       <li key={bullet} className="flex gap-3">
                         <span
                           aria-hidden

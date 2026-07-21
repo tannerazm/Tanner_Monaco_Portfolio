@@ -20,6 +20,11 @@ export interface Project {
   description: string[];
   reference?: string;
   inDevelopment?: boolean;
+  // One tight line for the Projects section of the one-page PDF. The site
+  // tagline is written for a page with room to breathe and usually runs too
+  // long for the resume. Only projects listed in RESUME_PDF_PROJECT_SLUGS
+  // need this; the build falls back to `tagline` if it is missing.
+  resumeLine?: string;
 }
 
 export const PROJECTS: Project[] = [
@@ -42,6 +47,8 @@ export const PROJECTS: Project[] = [
     ],
     tagline:
       "AI-powered roster, scheduling, and social publishing for college athletic departments. Lead engineer on a two-person team, building on a current-generation Next.js and React stack.",
+    resumeLine:
+      "AI publishing and operations platform for college athletic departments. Lead engineer on a two-person team. Multi-tenant with four-tier permissions: rosters, scheduling with shift releases and pickups, QR equipment check-out, real-time chat, push notifications, and AI-drafted publishing to Facebook, Instagram, and X. Next.js 16, React 19, Prisma 7 on PostgreSQL, in-house auth (JWT, TOTP, passkeys), 100+ Jest tests.",
     description: [
       "@Team App is an AI publishing and operations platform for college athletic departments, built by a two-person team with me leading engineering. Departments shoot a mountain of game-day photo and video, and the post-game scramble to caption it all (the right player names, accessible alt text, on-brand voice, posted across every platform) burns hours every week. I built @Team App to automate that away: a four-step wizard where staff pick a roster, drop in the media, review AI-written copy, and publish everywhere at once. What used to eat hours becomes a draft the team just reviews and sends.",
       "The engine is AI, and I built the pipeline around it. I wired Anthropic's Claude in as a vision model that reads each photo, matches the athletes in frame against the team roster (jersey numbers, positions, social handles), and drafts accessible alt text plus captions tuned to each platform: tight for X, on-voice for Instagram, fuller for Facebook. I centralized the model behind a single constant so the whole app moves to the newest Claude in one line, and designed a graceful fallback so it keeps running when no AI key is present. Every caption names the actual player on the field, not a generic stand-in.",
@@ -69,6 +76,8 @@ export const PROJECTS: Project[] = [
     ],
     tagline:
       "Internal AI content tool at Repify Ai. End-to-end blog generation on mobile, with voice and tone baked in.",
+    resumeLine:
+      "Claude-powered editorial tool taking teams from idea to publish-ready draft, on brand voice. Shipped end-to-end on Next.js 16, React 19, Prisma, PostgreSQL, and AWS S3. Began as an internal Repify Ai tool and drew shareholder interest as a standalone product.",
     description: [
       "GetGuten started as an internal tool at Repify Ai, built to help our content team ship more tailored, on-brand blog posts faster. The app walks teams through the full editorial flow: idea generation, brand voice and tone capture, drafting, and final publish-ready output. Mobile-optimized so the work doesn't have to live on a desk.",
       "Shareholders saw the demo and asked to use it themselves. That kicked off the next chapter: an internal accelerator growing into a product, with real prospective users outside the company.",
