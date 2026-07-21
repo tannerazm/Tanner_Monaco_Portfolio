@@ -41,11 +41,12 @@ export function ProjectDetail() {
         </p>
 
         <div className="mt-6 flex flex-wrap items-center gap-3">
-          {project.inDevelopment ? (
+          {project.inDevelopment && (
             <Badge variant="mono" className="px-3 py-1.5 text-sm">
               Still in development
             </Badge>
-          ) : (
+          )}
+          {project.liveUrl && (
             <Button asChild>
               <a
                 href={project.liveUrl}
@@ -101,10 +102,10 @@ export function ProjectDetail() {
             <div className="space-y-6 rounded-xl border border-border bg-card p-6">
               <Detail label="When" value={displayDate} />
               <Detail label="Stack" value={project.stack.join(" · ")} />
-              {project.inDevelopment ? (
-                <Detail label="Live" value="Still in development" />
-              ) : (
+              {project.liveUrl ? (
                 <Detail label="Live" value={project.liveUrl} link={project.liveUrl} />
+              ) : (
+                <Detail label="Live" value="Still in development" />
               )}
               {project.reference && (
                 <Detail
