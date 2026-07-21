@@ -27,7 +27,7 @@ export const PROJECTS: Project[] = [
     slug: "Team_App",
     name: "@Team App",
     image: AdminApp,
-    liveUrl: "",
+    liveUrl: "https://atteam.app",
     inDevelopment: true,
     date: "Apr 2026 - Present",
     stack: [
@@ -37,17 +37,16 @@ export const PROJECTS: Project[] = [
       "Prisma",
       "PostgreSQL",
       "Claude API",
-      "AWS Cognito",
       "Tailwind CSS",
       "Docker",
     ],
     tagline:
-      "AI-powered roster, scheduling, and social publishing for athletic departments. Lead engineer on a two-person team, owning the stack from schema to publish.",
+      "AI-powered roster, scheduling, and social publishing for college athletic departments. Lead engineer on a two-person team, building on a current-generation Next.js and React stack.",
     description: [
-      "@Team App is an AI publishing and operations platform for athletic departments, built on a two-person team where I lead engineering. Departments shoot a mountain of game-day photo and video, and the post-game scramble to caption it all (the right player names, proper alt text, on-brand voice, posted across every platform) burns hours every week. @Team App turns that into a four-step wizard: pick a roster, drop in the media, review the AI-generated copy, publish everywhere at once.",
-      "The differentiator is the AI. Anthropic's Claude reads each photo, matches the athletes in frame against the team roster (jersey numbers, positions, social handles), and writes accessible alt text plus captions tuned to each platform: tight for X, on-voice for Instagram, fuller for Facebook. Every caption names the actual player on the field, not a generic stand-in.",
-      "Under the hood I own every layer: schema, APIs, UI, auth, and the publishing pipeline. Next.js 16 + React 19 + TypeScript on the front, Prisma 7 + PostgreSQL on the back, Tailwind v4 across the UI, Docker for local infra. Auth runs through AWS Cognito with JOSE-signed session tokens, and posts go out to Facebook Pages, Instagram Business, and X over OAuth with account tokens encrypted at rest (AES-256-GCM).",
-      "It's multi-tenant from the ground up: every organization gets its own rosters, social accounts, brand-voice settings, and a four-tier permission model (org owner, admin, staff, student) that the whole app enforces. Beyond publishing, it runs roster management, event scheduling with shift releases and pickups, user invites, notifications, and audit logging, with a contract-based test suite that keeps refactors from silently breaking any of it.",
+      "@Team App is an AI publishing and operations platform for college athletic departments, built by a two-person team with me leading engineering. Departments shoot a mountain of game-day photo and video, and the post-game scramble to caption it all (the right player names, accessible alt text, on-brand voice, posted across every platform) burns hours every week. I built @Team App to automate that away: a four-step wizard where staff pick a roster, drop in the media, review AI-written copy, and publish everywhere at once. What used to eat hours becomes a draft the team just reviews and sends.",
+      "The engine is AI, and I built the pipeline around it. I wired Anthropic's Claude in as a vision model that reads each photo, matches the athletes in frame against the team roster (jersey numbers, positions, social handles), and drafts accessible alt text plus captions tuned to each platform: tight for X, on-voice for Instagram, fuller for Facebook. I centralized the model behind a single constant so the whole app moves to the newest Claude in one line, and designed a graceful fallback so it keeps running when no AI key is present. Every caption names the actual player on the field, not a generic stand-in.",
+      "I chose a current-generation stack deliberately: Next.js 16 and React 19 with TypeScript on the front, Prisma 7 on PostgreSQL through its engine-less driver adapter on the back, Tailwind 4 across the UI, S3-compatible object storage for media, and Docker for local infra. I built the auth in-house rather than leaning on a hosted identity provider: scrypt-hashed passwords, jose-signed JWT sessions, TOTP two-factor, and WebAuthn passkeys. Posts go out to Facebook Pages, Instagram Business, and X over OAuth through a prepare-then-commit pipeline I designed so a multi-platform post either lands everywhere or rolls back cleanly, with account tokens encrypted at rest using AES-256-GCM.",
+      "The app is multi-tenant from the ground up: every organization gets its own rosters, social accounts, brand-voice settings, and a four-tier permission model (org owner, admin, staff, student) enforced everywhere. Beyond publishing, I built roster management, event scheduling with shift releases and pickups, an equipment check-out system with QR scanning, real-time team chat on a separate WebSocket service, and push notifications. I move this fast by pairing strong engineering fundamentals with AI as a development partner: it speeds the work, I make the architecture calls, and a Jest suite of well over a hundred tests pins the behavior so the velocity never costs correctness.",
     ],
   },
   {
