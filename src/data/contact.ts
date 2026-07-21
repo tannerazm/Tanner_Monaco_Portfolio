@@ -8,6 +8,8 @@ export const CONTACT = {
   email: "tannermonaco@gmail.com",
   emailHref: "mailto:tannermonaco@gmail.com",
   location: "Stillwater, OK",
+  site: "tannermonaco.com",
+  siteUrl: "https://tannermonaco.com",
   linkedin: "https://www.linkedin.com/in/tannerazm/",
   github: "https://github.com/tannerazm",
 } as const;

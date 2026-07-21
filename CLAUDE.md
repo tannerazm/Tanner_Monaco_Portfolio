@@ -1,6 +1,18 @@
 # Tanner Monaco Portfolio
 
-React + Vite + TypeScript single-page portfolio. Tailwind v4, React Router, PostHog analytics, deployed on Netlify (auto-deploys the `main` branch). The resume PDF is generated from `resume-drafts/resume.md` via `npm run build:resume`; a `prebuild` hook regenerates it on build but skips on Netlify/CI (no Chrome there), so the committed `public/Tanner_Monaco_Resume.pdf` is what ships.
+React + Vite + TypeScript single-page portfolio. Tailwind v4, React Router, PostHog analytics, deployed on Netlify (auto-deploys the `main` branch).
+
+## The resume PDF is generated from the site data
+
+`npm run build:resume` reads `src/data/{resume,projects,contact}.ts` (the same data the site renders), writes `resume-drafts/resume.md`, and produces `resume-drafts/resume.pdf` plus `public/Tanner_Monaco_Resume.pdf`.
+
+**`resume-drafts/resume.md` is output, not input.** Never hand-edit it; the next build overwrites it. Edit the data in `src/data/` instead.
+
+Where the site and the one-page PDF need to differ, use the escape hatches rather than a second copy of the resume: per-bullet `pdf` overrides (`pdf: "shorter"` or `pdf: null` to omit), `RESUME_SUMMARY_PDF` alongside `RESUME_SUMMARY`, `pdfLabel` to merge skill groups onto one PDF line, and `resumeLine` on a project. `RESUME_PDF_PROJECT_SLUGS` picks which projects appear.
+
+The build measures the rendered height and fails if the resume runs past one page or fits with under 12px of headroom, printing how many lines you are over. `npm test` covers the markdown rendering.
+
+A `prebuild` hook regenerates the PDF on build but skips on Netlify/CI (no Chrome there), so the committed `public/Tanner_Monaco_Resume.pdf` is what ships. Commit it whenever resume data changes.
 
 ## Keep the stack icons and the skills list in sync
 
