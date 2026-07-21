@@ -192,26 +192,28 @@ export function About() {
                   <div className="mb-3 flex items-center gap-2">
                     <span className="inline-block h-1.5 w-1.5 rounded-full bg-yellow-400" />
                     <p className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
-                      the most important person on this page
+                      the best part of this whole page
                     </p>
                   </div>
                   <h3 className="text-4xl font-bold italic tracking-tight sm:text-5xl md:text-6xl">
-                    My Girlfriend.
+                    My Fiancée.
                   </h3>
                   <p className="mt-4 max-w-xl text-base text-muted-foreground md:text-lg">
-                    My favorite person, full stop. Sharp, sweet, and quietly
-                    the most creative person I know. The kind who turns a
-                    blank page into something better than the rest of us
-                    produce on a deadline. She lands on the kind thing first,
-                    makes complicated things look easy, and somehow does all
-                    of it without making a show of it. Top billing here on
-                    purpose.
+                    She said yes, and I am still not over it. She is the
+                    smartest person in whatever room she walks into, and by a
+                    wide margin the most creative one I know. I have watched
+                    her take a blank page and turn it into something better
+                    than what the rest of us come up with after a week of
+                    trying. She notices the kind thing before anyone else
+                    does. She makes hard things look easy and never brags
+                    about any of it. So she is at the top of this page. That
+                    was not a close call.
                   </p>
                   <div className="mt-5 flex flex-wrap items-center gap-2">
                     {[
-                      "★ creative powerhouse",
-                      "★ sharper mind in the room",
-                      "★ the sweetest human alive",
+                      "★ she said yes",
+                      "★ out-creates everybody",
+                      "★ kindest person i know",
                     ].map((tag) => (
                       <span
                         key={tag}
