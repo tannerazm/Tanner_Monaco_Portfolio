@@ -32,7 +32,7 @@ export const PROJECTS: Project[] = [
     slug: "Team_App",
     name: "@Team App",
     image: AdminApp,
-    liveUrl: "https://atteam.app",
+    liveUrl: "https://atteamapp.com",
     inDevelopment: true,
     date: "Apr 2026 - Present",
     stack: [
