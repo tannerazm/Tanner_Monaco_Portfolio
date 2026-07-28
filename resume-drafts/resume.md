@@ -34,7 +34,7 @@ Full-stack engineer who cares more about how software feels to use than how clev
 
 ## Projects
 
-**@Team App** &nbsp;&middot;&nbsp; [atteam.app](https://atteam.app) &nbsp;&middot;&nbsp; *Apr 2026 - Present*
+**@Team App** &nbsp;&middot;&nbsp; [atteamapp.com](https://atteamapp.com) &nbsp;&middot;&nbsp; *Apr 2026 - Present*
 - AI publishing and operations platform for college athletic departments. Lead engineer on a two-person team. Multi-tenant with four-tier permissions: rosters, scheduling with shift releases and pickups, QR equipment check-out, real-time chat, push notifications, and AI-drafted publishing to Facebook, Instagram, and X. Next.js 16, React 19, Prisma 7 on PostgreSQL, in-house auth (JWT, TOTP, passkeys), 100+ Jest tests.
 
 **GetGuten** &nbsp;&middot;&nbsp; [app.getguten.ai](https://app.getguten.ai) &nbsp;&middot;&nbsp; *Feb 2026 - Present*
