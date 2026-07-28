@@ -3,23 +3,26 @@ import UniversityOfOklahoma from "@/assets/photos/UniversityOfOklahoma.jpg";
 import Stillwater from "@/assets/photos/Stillwater.jpg";
 import UniversityOfOklahomaFootball from "@/assets/photos/UniversityOfOklahomaFootball.jpg";
 import TexasRangers from "@/assets/photos/TexasRangers.jpg";
-import BakerMayfieldBucs from "@/assets/photos/BakerMayfieldBucs.jpeg";
+import OklahomaStateCowboys from "@/assets/photos/OSU.jpg";
 import WoWMidnight from "@/assets/photos/WoW_Midnight.png";
+import LeagueOfLegends from "@/assets/photos/LeagueOfLegends.jpg";
 import Overwatch2 from "@/assets/photos/Overwatch2.jpg";
-import CallOfDuty from "@/assets/photos/CallOfDuty.jpg";
 import RhineRiverCastle from "@/assets/photos/RhineRiverCastle.jpg";
 import ParisFranceEiffelTower from "@/assets/photos/ParisFranceEiffelTower.jpg";
 import GrandCaymanIsland from "@/assets/photos/GrandCaymanIsland.jpg";
 import GameOfThrones from "@/assets/photos/GameOfThrones.jpg";
+import Fallout from "@/assets/photos/Fallout.jpg";
 import TheWalkingDead from "@/assets/photos/TheWalkingDead.jpg";
-import FamilyGuy from "@/assets/photos/FamilyGuy.png";
-import Land from "@/assets/photos/Land.jpg";
-import AQuietPlace from "@/assets/photos/AQuietPlace.jpg";
-import EagleEye from "@/assets/photos/EagleEye.jpg";
+import TheOutsiders from "@/assets/photos/TheOutsiders.jpeg";
+import Hadestown from "@/assets/photos/Hadestown.jpg";
+import TheLionKing from "@/assets/photos/TheLionKing.jpeg";
 
 export interface AboutItem {
   title: string;
   image: string;
+  // Optional second line under the caption, for a card that needs a joke or a
+  // bit of context the title cannot carry on its own.
+  note?: string;
 }
 
 export interface AboutSection {
@@ -31,9 +34,9 @@ export const ABOUT_SECTIONS: AboutSection[] = [
   {
     heading: "Places",
     items: [
-      { title: "Now: Stillwater, Oklahoma", image: Stillwater },
-      { title: "School: Boomer Sooner, Oklahoma", image: UniversityOfOklahoma },
-      { title: "Hometown: Buffalo, New York", image: BuffaloNY },
+      { title: "Live: Go Pokes, Oklahoma", image: Stillwater },
+      { title: "Study: Boomer Sooner, Oklahoma", image: UniversityOfOklahoma },
+      { title: "Born: Buffalo, New York", image: BuffaloNY },
     ],
   },
   {
@@ -41,15 +44,19 @@ export const ABOUT_SECTIONS: AboutSection[] = [
     items: [
       { title: "Oklahoma Sooners", image: UniversityOfOklahomaFootball },
       { title: "Texas Rangers", image: TexasRangers },
-      { title: "Tampa Bay Buccaneers", image: BakerMayfieldBucs },
+      {
+        title: "Oklahoma State Cowboys",
+        image: OklahomaStateCowboys,
+        note: "House divided: my alma mater says Sooner, my fiancée says Cowboy. She won. I have never owned this much orange.",
+      },
     ],
   },
   {
     heading: "Games",
     items: [
       { title: "World of Warcraft", image: WoWMidnight },
+      { title: "League of Legends", image: LeagueOfLegends },
       { title: "Overwatch 2", image: Overwatch2 },
-      { title: "Call of Duty", image: CallOfDuty },
     ],
   },
   {
@@ -64,16 +71,16 @@ export const ABOUT_SECTIONS: AboutSection[] = [
     heading: "TV",
     items: [
       { title: "Game of Thrones", image: GameOfThrones },
+      { title: "Fallout", image: Fallout },
       { title: "The Walking Dead", image: TheWalkingDead },
-      { title: "Family Guy", image: FamilyGuy },
     ],
   },
   {
-    heading: "Movies",
+    heading: "Broadway",
     items: [
-      { title: "Land (2021)", image: Land },
-      { title: "A Quiet Place (2018)", image: AQuietPlace },
-      { title: "Eagle Eye (2008)", image: EagleEye },
+      { title: "The Outsiders", image: TheOutsiders },
+      { title: "Hadestown", image: Hadestown },
+      { title: "The Lion King", image: TheLionKing },
     ],
   },
 ];

@@ -276,14 +276,40 @@ export function About() {
                     delay={i * 0.05}
                     direction="up"
                   >
-                    <div className="group overflow-hidden rounded-lg border border-border bg-card transition-all hover:border-primary hover:shadow-md">
-                      <div className="aspect-[4/3] overflow-hidden bg-muted">
+                    {/* A card with a note stays exactly the size of every
+                        other card: the note lives on top of the image and
+                        appears on hover, tap, or keyboard focus. */}
+                    <div
+                      tabIndex={item.note ? 0 : undefined}
+                      className={`group h-full overflow-hidden rounded-lg border border-border bg-card transition-all hover:border-primary hover:shadow-md ${
+                        item.note
+                          ? "cursor-help outline-none focus-visible:border-primary focus-visible:ring-2 focus-visible:ring-primary/50"
+                          : ""
+                      }`}
+                    >
+                      <div className="relative aspect-[4/3] overflow-hidden bg-muted">
                         <img
                           src={item.image}
                           alt={item.title}
                           className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                           loading="lazy"
                         />
+                        {item.note && (
+                          <>
+                            {/* Hint that there is something to reveal. */}
+                            <span
+                              aria-hidden
+                              className="absolute right-2 top-2 flex h-5 w-5 items-center justify-center rounded-full bg-background/80 font-mono text-[10px] font-bold text-foreground/70 backdrop-blur-sm transition-opacity duration-300 group-hover:opacity-0 group-focus:opacity-0"
+                            >
+                              i
+                            </span>
+                            <div className="absolute inset-0 flex items-end bg-gradient-to-t from-background via-background/90 to-background/40 p-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus:opacity-100">
+                              <p className="text-xs leading-relaxed text-foreground">
+                                {item.note}
+                              </p>
+                            </div>
+                          </>
+                        )}
                       </div>
                       <div className="p-4">
                         <p className="text-sm font-medium">{item.title}</p>
